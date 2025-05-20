@@ -1,0 +1,39 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "user": "TIRTHANKAR.DEBNATH@ZETARIS.COM",
+      "dateUpdated": "2025-04-03 02:58:24.779",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743649101454_637863443",
+      "id": "paragraph_1743649101454_637863443",
+      "dateCreated": "2025-04-03 02:58:21.455",
+      "status": "READY"
+    }
+  ],
+  "name": "test",
+  "id": "2KTMESEZF",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

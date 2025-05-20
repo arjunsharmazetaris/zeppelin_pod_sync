@@ -1,0 +1,716 @@
+{
+  "paragraphs": [
+    {
+      "text": "import subprocess\r\n\r\n# Define the notebook directory and backup file path\r\nnotebook_dir \u003d \"/home/zetaris/zeppelin/notebooks\"\r\nbackup_file \u003d \"/tmp/zeppelin_backup.tar.gz\"\r\n\r\n# Create a tar.gz archive of the notebooks directory\r\ntry:\r\n    subprocess.run(f\"tar -czf {backup_file} {notebook_dir}\", shell\u003dTrue, check\u003dTrue)\r\n    print(f\"✅ Backup created at {backup_file}\")\r\nexcept subprocess.CalledProcessError as e:\r\n    print(f\"❌ Error creating backup: {e}\")\r\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 11:27:58.787",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "tar: Removing leading `/\u0027 from member names\n✅ Backup created at /tmp/zeppelin_backup.tar.gz\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747740299112_1744571694",
+      "id": "paragraph_1747740299112_1744571694",
+      "dateCreated": "2025-05-20 11:24:59.112",
+      "dateStarted": "2025-05-20 11:27:58.795",
+      "dateFinished": "2025-05-20 11:28:10.749",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import subprocess\r\nimport os\r\nimport datetime\r\n\r\n# GitHub token and repo details\r\nGIT_TOKEN \u003d \"#################\"  # \u003c-- Replace this securely\r\nGIT_REPO_URL \u003d f\"https://arjunsharmazetaris:{GIT_TOKEN}@github.com/arjunsharmazetaris/zeppelin_pod_sync.git\"\r\nGIT_BRANCH \u003d \"zeppelin_sync\"\r\nlocal_repo_path \u003d \"/tmp/repo\"\r\n\r\ntry:\r\n    # Clean up existing clone\r\n    subprocess.run(f\"rm -rf {local_repo_path}\", shell\u003dTrue, check\u003dTrue)\r\n\r\n    # Clone the specific branch of the repo\r\n    subprocess.run(f\"git clone --single-branch --branch {GIT_BRANCH} {GIT_REPO_URL} {local_repo_path}\", shell\u003dTrue, check\u003dTrue)\r\n\r\n    # Copy the backup file into the repo directory\r\n    subprocess.run(f\"cp /tmp/zeppelin_backup.tar.gz {local_repo_path}/\", shell\u003dTrue, check\u003dTrue)\r\n\r\n    # Move into the local repo directory\r\n    os.chdir(local_repo_path)\r\n\r\n    # Configure Git user if not already set\r\n    subprocess.run(\u0027git config user.email \"zeppelin@zetaris.com\"\u0027, shell\u003dTrue, check\u003dTrue)\r\n    subprocess.run(\u0027git config user.name \"zeppelin\"\u0027, shell\u003dTrue, check\u003dTrue)\r\n\r\n    # Add, commit, and push the backup\r\n    subprocess.run(\"git add .\", shell\u003dTrue, check\u003dTrue)\r\n    commit_message \u003d f\"Zeppelin notebook backup on {datetime.datetime.now().isoformat()}\"\r\n    subprocess.run(f\u0027git commit -m \"{commit_message}\"\u0027, shell\u003dTrue, check\u003dTrue)\r\n    subprocess.run(f\"git push origin {GIT_BRANCH}\", shell\u003dTrue, check\u003dTrue)\r\n\r\n    print(\"✅ Backup pushed to GitHub successfully\")\r\n\r\nexcept subprocess.CalledProcessError as e:\r\n    print(f\"❌ Git operation failed: {e}\")\r\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:02:59.598",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "CompletedProcess(args\u003d\u0027rm -rf /tmp/repo\u0027, returncode\u003d0)\n❌ Git operation failed: Command \u0027git clone --single-branch --branch zeppelin_sync https://arjunsharmazetaris:<REDACTED>@github.com/arjunsharmazetaris/zeppelin_pod_sync.git /tmp/repo\u0027 returned non-zero exit status 128.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747740478793_918143744",
+      "id": "paragraph_1747740478793_918143744",
+      "dateCreated": "2025-05-20 11:27:58.794",
+      "dateStarted": "2025-05-20 11:56:30.788",
+      "dateFinished": "2025-05-20 11:56:31.281",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python.conda install git",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 11:47:13.472",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003ePackage Installation\u003c/h4\u003e\n\u003c/div\u003e\u003cbr /\u003e\n\u003cdiv style\u003d\"white-space:pre-wrap;\"\u003e\nRetrieving notices: ...working... done\nChannels:\n - defaults\n - conda-forge\nPlatform: linux-64\nCollecting package metadata (repodata.json): ...working... done\nSolving environment: ...working... done\n\n## Package Plan ##\n\n  environment location: /home/zetaris/zeppelin/python/conda/envs/zeppelin\n\n  added / updated specs:\n    - git\n\n\nThe following packages will be downloaded:\n\n    package                    |            build\n    ---------------------------|-----------------\n    certifi-2025.4.26          |  py311h06a4308_0         156 KB\n    git-2.45.2                 | pl5321ha099dd3_1         8.9 MB  conda-forge\n    perl-5.38.2                | 0_h5eee18b_perl5        11.9 MB\n    ------------------------------------------------------------\n                                           Total:        21.0 MB\n\nThe following NEW packages will be INSTALLED:\n\n  git                conda-forge/linux-64::git-2.45.2-pl5321ha099dd3_1 \n  perl               pkgs/main/linux-64::perl-5.38.2-0_h5eee18b_perl5 \n\nThe following packages will be UPDATED:\n\n  certifi            conda-forge/noarch::certifi-2025.1.31~ --\u003e pkgs/main/linux-64::certifi-2025.4.26-py311h06a4308_0 \n\n\n\nDownloading and Extracting Packages: ...working... done\nPreparing transaction: ...working... done\nVerifying transaction: ...working... done\nExecuting transaction: ...working... done\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747740856282_172752298",
+      "id": "paragraph_1747740856282_172752298",
+      "dateCreated": "2025-05-20 11:34:16.283",
+      "dateStarted": "2025-05-20 11:47:13.474",
+      "dateFinished": "2025-05-20 11:48:07.212",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import github",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 11:49:36.085",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 1: import github\nTraceback (most recent call last):\n  File \"/tmp/python6411903748335008403/zeppelin_python.py\", line 167, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nModuleNotFoundError: No module named \u0027github\u0027\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747741027953_404406207",
+      "id": "paragraph_1747741027953_404406207",
+      "dateCreated": "2025-05-20 11:37:07.953",
+      "dateStarted": "2025-05-20 11:49:36.087",
+      "dateFinished": "2025-05-20 11:49:36.091",
+      "status": "ERROR"
+    },
+    {
+      "text": "\r\n%python.conda install gitpython",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 11:54:02.524",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Interpreter pip not found"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747741758236_708748743",
+      "id": "paragraph_1747741758236_708748743",
+      "dateCreated": "2025-05-20 11:49:18.236",
+      "status": "ERROR"
+    },
+    {
+      "text": "%python.conda install GitPython",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 11:54:46.207",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003ePackage Installation\u003c/h4\u003e\n\u003c/div\u003e\u003cbr /\u003e\n\u003cdiv style\u003d\"white-space:pre-wrap;\"\u003e\nChannels:\n - defaults\n - conda-forge\nPlatform: linux-64\nCollecting package metadata (repodata.json): ...working... done\nSolving environment: ...working... done\n\n# All requested packages already installed.\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747742003556_370751496",
+      "id": "paragraph_1747742003556_370751496",
+      "dateCreated": "2025-05-20 11:53:23.556",
+      "dateStarted": "2025-05-20 11:54:46.209",
+      "dateFinished": "2025-05-20 11:55:27.043",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\n\nfrom git import Repo, GitCommandError\nimport os\n\n# Variables\nnotebook_dir \u003d \"/home/zetaris/zeppelin/notebook\"\nrepo_path \u003d \"/tmp/zeppelin_sync_repo\"\nGIT_TOKEN \u003d \"###############\"\nremote_url \u003d f\"https://arjunsharmazetaris:{GIT_TOKEN}@github.com/arjunsharmazetaris/zeppelin_pod_sync.git\"\ntarget_branch \u003d \"zeppelin_sync\"\ncommit_message \u003d \"Automated Zeppelin notebook commit\"\n\ntry:\n    # Clean up old repo clone\n    if os.path.exists(repo_path):\n        print(\"Removing old repo clone...\")\n        os.system(f\"rm -rf {repo_path}\")\n\n    print(\"Cloning repo...\")\n    repo \u003d Repo.clone_from(remote_url, repo_path)\n\n    # Check if target branch exists remotely\n    if target_branch not in repo.git.branch(\u0027-r\u0027):\n        print(f\"Branch \u0027{target_branch}\u0027 doesn\u0027t exist. Creating it locally...\")\n        new_branch \u003d repo.create_head(target_branch)\n        new_branch.checkout()\n        repo.git.push(\"--set-upstream\", \"origin\", target_branch)\n    else:\n        repo.git.checkout(target_branch)\n\n    # Copy Zeppelin notebooks into repo\n    os.system(f\u0027cp -r {notebook_dir}/* {repo_path}/\u0027)\n\n    # Stage all changes\n    repo.git.add(A\u003dTrue)\n\n    # Commit if any changes\n    if repo.is_dirty():\n        repo.index.commit(commit_message)\n        print(\"Changes committed.\")\n    else:\n        print(\"No changes to commit.\")\n\n    # Push to remote\n    origin \u003d repo.remote(name\u003d\u0027origin\u0027)\n    origin.push(refspec\u003df\u0027{target_branch}:{target_branch}\u0027)\n    print(\"Changes pushed successfully.\")\n\nexcept GitCommandError as e:\n    print(f\"❌ Git operation failed: {e}\")\n\nexcept Exception as e:\n    print(f\"❌ Unexpected error: {e}\")\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:03:14.478",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Cloning repo...\nBranch \u0027zeppelin_sync\u0027 doesn\u0027t exist. Creating it locally...\n\u003cgit.Head \"refs/heads/zeppelin_sync\"\u003e\n\"branch \u0027zeppelin_sync\u0027 set up to track \u0027origin/zeppelin_sync\u0027.\"\n256\n\u0027\u0027\nNo changes to commit.\n[\u003cgit.remote.PushInfo object at 0x7fb8251be660\u003e]\nChanges pushed successfully.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747742086209_368058417",
+      "id": "paragraph_1747742086209_368058417",
+      "dateCreated": "2025-05-20 11:54:46.209",
+      "dateStarted": "2025-05-20 12:02:30.001",
+      "dateFinished": "2025-05-20 12:02:32.445",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import os\n\n# Run the command and print directly to stdout\nos.system(\"ls -ls /home/zetaris/zeppelin/notebook/\")",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 12:18:41.118",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "512\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747742413714_1539524688",
+      "id": "paragraph_1747742413714_1539524688",
+      "dateCreated": "2025-05-20 12:00:13.714",
+      "dateStarted": "2025-05-20 12:18:41.120",
+      "dateFinished": "2025-05-20 12:18:41.126",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import subprocess\r\n\r\n# Run the shell command\r\noutput \u003d subprocess.check_output([\"ls\", \"-la\", \"/home/zetaris/zeppelin/notebook/\"])\r\n\r\n# Decode and print the output\r\nprint(output.decode(\"utf-8\"))",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 12:17:41.860",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 4: output \u003d subprocess.check_output([\"ls\", \"-la\", \"/home/zetaris/zeppelin/notebook/\"])\r\nTraceback (most recent call last):\n  File \"/tmp/python6411903748335008403/zeppelin_python.py\", line 162, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 4, in \u003cmodule\u003e\n  File \"/home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout\u003dPIPE, timeout\u003dtimeout, check\u003dTrue,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command \u0027[\u0027ls\u0027, \u0027-la\u0027, \u0027/home/zetaris/zeppelin/notebook/\u0027]\u0027 returned non-zero exit status 2.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747743409581_649718503",
+      "id": "paragraph_1747743409581_649718503",
+      "dateCreated": "2025-05-20 12:16:49.581",
+      "dateStarted": "2025-05-20 12:17:41.862",
+      "dateFinished": "2025-05-20 12:17:41.868",
+      "status": "ERROR"
+    },
+    {
+      "text": "import subprocess\r\n\r\ntry:\r\n    output \u003d subprocess.check_output([\"ls\", \"-ls\", \"/home/zetaris/zeppelin/\"], stderr\u003dsubprocess.STDOUT)\r\n    print(output.decode(\"utf-8\"))\r\nexcept subprocess.CalledProcessError as e:\r\n    print(\"Error running command:\")\r\n    print(e.output.decode(\"utf-8\"))\r\n    print(\"Exit code:\", e.returncode)\r\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 12:23:48.583",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "total 1904212\n      4 drwxrwsr-x  2 zetaris zetaris       4096 Apr 16 06:08 audio_samples\n   3808 -rwxrwxr-x  1 zetaris zetaris    3898932 Sep 19  2024 dummy_dataset.csv\n      4 drwxrws--- 17 zetaris zetaris       4096 Mar  3 00:22 ffmpeg-7.1.1\n  10764 -rw-rw-r--  1 zetaris zetaris   11019500 Apr 16 09:07 ffmpeg-7.1.1.tar.xz\n     24 drwxrwsr-x  2 zetaris zetaris      24576 May 20 11:27 logs\n     16 drwxrws---  2 root    zetaris      16384 Apr  8  2024 lost+found\n      4 drwxrwsr-x  2 zetaris zetaris       4096 Apr 16 05:55 model_output\n      4 drwxrwsr-x 10 zetaris zetaris       4096 May 20 12:23 notebooks\n      4 drwxrwsr-x  3 zetaris zetaris       4096 Aug  2  2024 python\n      4 drwxrwsr-x  5 zetaris zetaris       4096 May 29  2024 spider\n  46128 -rw-rw-r--  1 zetaris zetaris   47234253 Apr 15 22:33 spider.zip\n      4 drwxrwsr-x  2 root    zetaris       4096 Sep  8  2024 stata\n1843436 -rw-rw-r--  1 root    zetaris 1887672320 Sep  8  2024 stata.tar\n      4 drwxrws---  5 zetaris zetaris       4096 Sep 19  2024 stata2\n      4 drwxrwsrwx  5 root    zetaris       4096 Sep  5  2024 statadir\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747743447650_441117323",
+      "id": "paragraph_1747743447650_441117323",
+      "dateCreated": "2025-05-20 12:17:27.650",
+      "dateStarted": "2025-05-20 12:23:48.585",
+      "dateFinished": "2025-05-20 12:23:48.592",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\r\n\r\nfrom git import Repo, GitCommandError\r\nimport os\r\n\r\nnotebook_dir \u003d \"/home/zetaris/zeppelin/notebooks\"\r\nrepo_path \u003d \"/tmp/zeppelin_sync_repo\"\r\nGIT_TOKEN \u003d \"#########\"\r\nremote_url \u003d f\"https://arjunsharmazetaris:{GIT_TOKEN}@github.com/arjunsharmazetaris/zeppelin_pod_sync.git\"\r\ntarget_branch \u003d \"zeppelin_sync\"\r\ncommit_message \u003d \"Automated Zeppelin notebook commit\"\r\n\r\ntry:\r\n    if os.path.exists(repo_path):\r\n        os.system(f\"rm -rf {repo_path}\")\r\n\r\n    print(\"Cloning repo...\")\r\n    repo \u003d Repo.clone_from(remote_url, repo_path)\r\n\r\n    if target_branch not in repo.git.branch(\u0027-r\u0027):\r\n        print(f\"Branch \u0027{target_branch}\u0027 doesn\u0027t exist. Creating it locally...\")\r\n        new_branch \u003d repo.create_head(target_branch)\r\n        new_branch.checkout()\r\n        repo.git.push(\"--set-upstream\", \"origin\", target_branch)\r\n    else:\r\n        repo.git.checkout(target_branch)\r\n\r\n    print(\"Copying notebooks...\")\r\n    os.system(f\u0027cp -r {notebook_dir}/* {repo_path}/\u0027)\r\n\r\n    print(\"Files in repo after copy:\")\r\n    print(os.listdir(repo_path))\r\n\r\n    repo.git.add(A\u003dTrue)\r\n    if repo.is_dirty():\r\n        repo.index.commit(commit_message)\r\n        print(\"Changes committed.\")\r\n    else:\r\n        print(\"No changes to commit.\")\r\n\r\n    origin \u003d repo.remote(name\u003d\u0027origin\u0027)\r\n    push_results \u003d origin.push(refspec\u003df\u0027{target_branch}:{target_branch}\u0027)\r\n    print(push_results)\r\n    print(\"Changes pushed successfully.\")\r\n\r\nexcept GitCommandError as e:\r\n    print(f\"❌ Git operation failed: {e}\")\r\nexcept Exception as e:\r\n    print(f\"❌ Unexpected error: {e}\")\r\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:03:56.306",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "0\nCloning repo...\n\"branch \u0027zeppelin_sync\u0027 set up to track \u0027origin/zeppelin_sync\u0027.\"\nCopying notebooks...\n0\nFiles in repo after copy:\n[\u0027NY_Taxi_2KQ58ABRK.zpln\u0027, \u0027.git\u0027, \u0027Metabiomics_2JV4YNTX5.zpln\u0027, \u0027Structured\u0027, \u0027Sinopharm\u0027, \u0027Omniomics_2JY4KKV7V.zpln\u0027, \u0027Surveillance\u0027, \u0027Clustering_2KB7NMV2Z.zpln\u0027, \u0027arjun_testing_git_push_2KVAEG4KC.zpln\u0027, \u0027zetaris_class_based_auth_data_fetcher_arjun_2KTYT8PE7.zpln\u0027, \u0027binzi_2KC6UNQST.zpln\u0027, \u0027harshaltest_2KVWXZ5H3.zpln\u0027, \u0027Multiomics_2JY6GXT5G.zpln\u0027, \u0027market_basket_analysis_2KQEPMTWB.zpln\u0027, \u0027Decisioning_2KTVGM2QB.zpln\u0027, \u0027~Trash\u0027, \u0027vicinity_2K4EF5PXP.zpln\u0027, \u0027loan classification and clustering_2KB7X39J1.zpln\u0027, \u0027Patient_2K79W6PBK.zpln\u0027, \u0027git_backup_notebook_2KU4WT554.zpln\u0027, \u0027ScrapeFS_2KSX3TYUZ.zpln\u0027, \u0027premigration_checks_2KPW39AJJ.zpln\u0027, \u0027check_excel_duplication_2KT4A7HEY.zpln\u0027, \u0027first_2JW73JYQG.zpln\u0027, \u0027HADB\u0027, \u0027Bibliomics_2JWUAKMT3.zpln\u0027, \u0027Arjun_patient test_2KT7SE7BS.zpln\u0027, \u0027test_2KTMESEZF.zpln\u0027, \u0027python dev_2JZFF7BU9.zpln\u0027, \u0027Gravity_2K8JJP35R.zpln\u0027, \u0027contagion_2KD9B6ZDR.zpln\u0027, \u0027arjun_analysis_temp_2KRV9BMBV.zpln\u0027, \u0027HarshalDemo_2KAKQV3FE.zpln\u0027, \u0027tirtho_test_2KQ1A49HP.zpln\u0027, \u0027LineageUntitled Note 1_2K8JMEFU2.zpln\u0027, \u0027FHIR_read_2KFPFWH1J.zpln\u0027, \u0027migrate_unstructured_2KVETBFRT.zpln\u0027, \u0027Untitled Note 1_2KT2AHYWK.zpln\u0027, \u0027s3Test_2K9822YSR.zpln\u0027, \u0027Genomics_2JW8Y7TPN.zpln\u0027, \u0027customer_analysis_2KJGXF4G4.zpln\u0027, \u0027pipeline_arjun_2KRZAW1SZ.zpln\u0027, \u0027Decisioning\u0027, \u0027Epigenomics_2JX3TTVGD.zpln\u0027, \u0027stata_check_2K43VB47K.zpln\u0027, \u0027JDBC_Connection_2KT82E2UG.zpln\u0027, \u0027spark_test_2KSZ4SN6C.zpln\u0027, \u0027README.md\u0027, \u0027testingGD\u0027]\n\u0027\u0027\n\u003cgit.Commit \"7507404be436c8da7aaac0694c16b8944b26ed6e\"\u003e\nChanges committed.\nError lines received while fetching: error: failed to push some refs to \u0027https://github.com/arjunsharmazetaris/zeppelin_pod_sync.git\u0027\n[\u003cgit.remote.PushInfo object at 0x7fb8251be200\u003e]\nChanges pushed successfully.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747743589821_2048757972",
+      "id": "paragraph_1747743589821_2048757972",
+      "dateCreated": "2025-05-20 12:19:49.821",
+      "dateStarted": "2025-05-20 12:25:35.988",
+      "dateFinished": "2025-05-20 12:25:39.744",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\nfrom git import Repo, GitCommandError\nimport os\n\nnotebook_dir \u003d \"/home/zetaris/zeppelin/notebooks\"\nrepo_path \u003d \"/tmp/zeppelin_sync_repo\"\nGIT_TOKEN \u003d \"###########\"\nremote_url \u003d f\"https://arjunsharmazetaris:{GIT_TOKEN}@github.com/arjunsharmazetaris/zeppelin_pod_sync.git\"\ntarget_branch \u003d \"zeppelin_sync\"\ncommit_message \u003d \"Automated Zeppelin notebook commit\"\n\ntry:\n    # Clean repo dir if exists\n    if os.path.exists(repo_path):\n        os.system(f\"rm -rf {repo_path}\")\n\n    print(\"Cloning repo...\")\n    repo \u003d Repo.clone_from(remote_url, repo_path)\n\n    # Checkout or create target branch\n    if f\"origin/{target_branch}\" not in repo.git.branch(\u0027-r\u0027):\n        print(f\"Branch \u0027{target_branch}\u0027 doesn\u0027t exist remotely. Creating it locally...\")\n        new_branch \u003d repo.create_head(target_branch)\n        new_branch.checkout()\n        repo.git.push(\"--set-upstream\", \"origin\", target_branch)\n    else:\n        print(f\"Checking out branch \u0027{target_branch}\u0027...\")\n        repo.git.checkout(target_branch)\n\n    print(\"Copying notebooks...\")\n    os.system(f\u0027cp -r {notebook_dir}/* {repo_path}/\u0027)\n\n    print(\"Files in repo after copy:\")\n    print(os.listdir(repo_path))\n\n    repo.git.add(A\u003dTrue)\n\n    if repo.is_dirty():\n        repo.index.commit(commit_message)\n        print(\"Changes committed.\")\n\n        # Pull with rebase before pushing\n        try:\n            print(\"Pulling latest changes with rebase...\")\n            repo.git.pull(\u0027--rebase\u0027, \u0027origin\u0027, target_branch)\n        except GitCommandError as e:\n            print(f\"⚠️ Pull with rebase failed: {e}\")\n            raise\n\n        print(\"Pushing changes to remote...\")\n        push_results \u003d repo.remote(name\u003d\u0027origin\u0027).push(refspec\u003df\u0027{target_branch}:{target_branch}\u0027)\n        print(push_results)\n        print(\"✅ Changes pushed successfully.\")\n    else:\n        print(\"✅ No changes to commit.\")\n\nexcept GitCommandError as e:\n    print(f\"❌ Git command error: {e}\")\nexcept Exception as e:\n    print(f\"❌ Unexpected error: {e}\")\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:04:17.084",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "0\nCloning repo...\nChecking out branch \u0027zeppelin_sync\u0027...\n\"branch \u0027zeppelin_sync\u0027 set up to track \u0027origin/zeppelin_sync\u0027.\"\nCopying notebooks...\n0\nFiles in repo after copy:\n[\u0027NY_Taxi_2KQ58ABRK.zpln\u0027, \u0027.git\u0027, \u0027Metabiomics_2JV4YNTX5.zpln\u0027, \u0027Structured\u0027, \u0027Sinopharm\u0027, \u0027Omniomics_2JY4KKV7V.zpln\u0027, \u0027Surveillance\u0027, \u0027Clustering_2KB7NMV2Z.zpln\u0027, \u0027arjun_testing_git_push_2KVAEG4KC.zpln\u0027, \u0027zetaris_class_based_auth_data_fetcher_arjun_2KTYT8PE7.zpln\u0027, \u0027binzi_2KC6UNQST.zpln\u0027, \u0027harshaltest_2KVWXZ5H3.zpln\u0027, \u0027Multiomics_2JY6GXT5G.zpln\u0027, \u0027market_basket_analysis_2KQEPMTWB.zpln\u0027, \u0027Decisioning_2KTVGM2QB.zpln\u0027, \u0027~Trash\u0027, \u0027vicinity_2K4EF5PXP.zpln\u0027, \u0027loan classification and clustering_2KB7X39J1.zpln\u0027, \u0027Patient_2K79W6PBK.zpln\u0027, \u0027git_backup_notebook_2KU4WT554.zpln\u0027, \u0027ScrapeFS_2KSX3TYUZ.zpln\u0027, \u0027premigration_checks_2KPW39AJJ.zpln\u0027, \u0027check_excel_duplication_2KT4A7HEY.zpln\u0027, \u0027first_2JW73JYQG.zpln\u0027, \u0027HADB\u0027, \u0027Bibliomics_2JWUAKMT3.zpln\u0027, \u0027Arjun_patient test_2KT7SE7BS.zpln\u0027, \u0027test_2KTMESEZF.zpln\u0027, \u0027python dev_2JZFF7BU9.zpln\u0027, \u0027Gravity_2K8JJP35R.zpln\u0027, \u0027contagion_2KD9B6ZDR.zpln\u0027, \u0027arjun_analysis_temp_2KRV9BMBV.zpln\u0027, \u0027HarshalDemo_2KAKQV3FE.zpln\u0027, \u0027tirtho_test_2KQ1A49HP.zpln\u0027, \u0027LineageUntitled Note 1_2K8JMEFU2.zpln\u0027, \u0027FHIR_read_2KFPFWH1J.zpln\u0027, \u0027migrate_unstructured_2KVETBFRT.zpln\u0027, \u0027Untitled Note 1_2KT2AHYWK.zpln\u0027, \u0027s3Test_2K9822YSR.zpln\u0027, \u0027Genomics_2JW8Y7TPN.zpln\u0027, \u0027customer_analysis_2KJGXF4G4.zpln\u0027, \u0027pipeline_arjun_2KRZAW1SZ.zpln\u0027, \u0027Decisioning\u0027, \u0027Epigenomics_2JX3TTVGD.zpln\u0027, \u0027stata_check_2K43VB47K.zpln\u0027, \u0027JDBC_Connection_2KT82E2UG.zpln\u0027, \u0027spark_test_2KSZ4SN6C.zpln\u0027, \u0027README.md\u0027, \u0027testingGD\u0027]\n\u0027\u0027\n\u003cgit.Commit \"24b9849f41dac36784cb1a8fe9f696aebbfaf614\"\u003e\nChanges committed.\nPulling latest changes with rebase...\n\u0027Current branch zeppelin_sync is up to date.\u0027\nPushing changes to remote...\nError lines received while fetching: error: failed to push some refs to \u0027https://github.com/arjunsharmazetaris/zeppelin_pod_sync.git\u0027\n[\u003cgit.remote.PushInfo object at 0x7fb8251fd800\u003e]\n✅ Changes pushed successfully.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747743935988_1002598977",
+      "id": "paragraph_1747743935988_1002598977",
+      "dateCreated": "2025-05-20 12:25:35.988",
+      "dateStarted": "2025-05-20 12:32:30.035",
+      "dateFinished": "2025-05-20 12:32:34.465",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\nfrom git import Repo, GitCommandError\nimport os\n\nnotebook_dir \u003d \"/home/zetaris/zeppelin/notebooks\"\nrepo_path \u003d \"/tmp/zeppelin_sync_repo\"\nGIT_TOKEN \u003d \"###############\"\nremote_url \u003d f\"https://arjunsharmazetaris:{GIT_TOKEN}@github.com/arjunsharmazetaris/zeppelin_pod_sync.git\"\ntarget_branch \u003d \"zeppelin_sync\"\ncommit_message \u003d \"💥 Forced sync: Automated Zeppelin notebook commit\"\n\ntry:\n    # Clean repo if already exists\n    if os.path.exists(repo_path):\n        os.system(f\"rm -rf {repo_path}\")\n\n    print(\"🚀 Cloning repo fresh...\")\n    repo \u003d Repo.clone_from(remote_url, repo_path)\n\n    print(f\"📍 Checking out \u0027{target_branch}\u0027 branch...\")\n    repo.git.checkout(\u0027-B\u0027, target_branch)  # Create or reset local branch to start fresh\n\n    print(\"📂 Copying notebooks...\")\n    os.system(f\u0027cp -r {notebook_dir}/* {repo_path}/\u0027)\n\n    print(\"📄 Files in repo after copy:\")\n    print(os.listdir(repo_path))\n\n    # Stage all changes\n    repo.git.add(A\u003dTrue)\n\n    if repo.is_dirty():\n        repo.index.commit(commit_message)\n        print(\"✅ Changes committed.\")\n    else:\n        print(\"✅ No changes to commit.\")\n\n    print(\"💣 Force pushing to remote...\")\n    repo.git.push(\u0027--force\u0027, \u0027origin\u0027, target_branch)\n    print(\"✅ Force push successful.\")\n\nexcept GitCommandError as e:\n    print(f\"❌ Git command error: {e}\")\nexcept Exception as e:\n    print(f\"❌ Unexpected error: {e}\")\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:04:30.042",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "0\n🚀 Cloning repo fresh...\n📍 Checking out \u0027zeppelin_sync\u0027 branch...\n\u0027\u0027\n📂 Copying notebooks...\n0\n📄 Files in repo after copy:\n[\u0027NY_Taxi_2KQ58ABRK.zpln\u0027, \u0027.git\u0027, \u0027Metabiomics_2JV4YNTX5.zpln\u0027, \u0027Structured\u0027, \u0027Sinopharm\u0027, \u0027Omniomics_2JY4KKV7V.zpln\u0027, \u0027Surveillance\u0027, \u0027Clustering_2KB7NMV2Z.zpln\u0027, \u0027arjun_testing_git_push_2KVAEG4KC.zpln\u0027, \u0027zetaris_class_based_auth_data_fetcher_arjun_2KTYT8PE7.zpln\u0027, \u0027binzi_2KC6UNQST.zpln\u0027, \u0027harshaltest_2KVWXZ5H3.zpln\u0027, \u0027Multiomics_2JY6GXT5G.zpln\u0027, \u0027market_basket_analysis_2KQEPMTWB.zpln\u0027, \u0027Decisioning_2KTVGM2QB.zpln\u0027, \u0027~Trash\u0027, \u0027vicinity_2K4EF5PXP.zpln\u0027, \u0027loan classification and clustering_2KB7X39J1.zpln\u0027, \u0027Patient_2K79W6PBK.zpln\u0027, \u0027git_backup_notebook_2KU4WT554.zpln\u0027, \u0027ScrapeFS_2KSX3TYUZ.zpln\u0027, \u0027premigration_checks_2KPW39AJJ.zpln\u0027, \u0027check_excel_duplication_2KT4A7HEY.zpln\u0027, \u0027first_2JW73JYQG.zpln\u0027, \u0027HADB\u0027, \u0027Bibliomics_2JWUAKMT3.zpln\u0027, \u0027Arjun_patient test_2KT7SE7BS.zpln\u0027, \u0027test_2KTMESEZF.zpln\u0027, \u0027python dev_2JZFF7BU9.zpln\u0027, \u0027Gravity_2K8JJP35R.zpln\u0027, \u0027contagion_2KD9B6ZDR.zpln\u0027, \u0027arjun_analysis_temp_2KRV9BMBV.zpln\u0027, \u0027HarshalDemo_2KAKQV3FE.zpln\u0027, \u0027tirtho_test_2KQ1A49HP.zpln\u0027, \u0027LineageUntitled Note 1_2K8JMEFU2.zpln\u0027, \u0027FHIR_read_2KFPFWH1J.zpln\u0027, \u0027migrate_unstructured_2KVETBFRT.zpln\u0027, \u0027Untitled Note 1_2KT2AHYWK.zpln\u0027, \u0027s3Test_2K9822YSR.zpln\u0027, \u0027Genomics_2JW8Y7TPN.zpln\u0027, \u0027customer_analysis_2KJGXF4G4.zpln\u0027, \u0027pipeline_arjun_2KRZAW1SZ.zpln\u0027, \u0027Decisioning\u0027, \u0027Epigenomics_2JX3TTVGD.zpln\u0027, \u0027stata_check_2K43VB47K.zpln\u0027, \u0027JDBC_Connection_2KT82E2UG.zpln\u0027, \u0027spark_test_2KSZ4SN6C.zpln\u0027, \u0027README.md\u0027, \u0027testingGD\u0027]\n\u0027\u0027\n\u003cgit.Commit \"89a1834aa1b7a8f948a6cb956bc5673ce68d2549\"\u003e\n✅ Changes committed.\n💣 Force pushing to remote...\n❌ Git command error: Cmd(\u0027git\u0027) failed due to: exit code(1)\n  cmdline: git push --force origin zeppelin_sync\n  stderr: \u0027remote: error: GH013: Repository rule violations found for refs/heads/zeppelin_sync.        \nremote: \nremote: - GITHUB PUSH PROTECTION        \nremote:   —————————————————————————————————————————        \nremote:     Resolve the following violations before pushing again        \nremote: \nremote:     - Push cannot contain secrets        \nremote: \nremote:             \nremote:      (?) Learn how to resolve a blocked push        \nremote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        \nremote:             \nremote:             \nremote:       —— OpenAI API Key ————————————————————————————————————        \nremote:        locations:        \nremote:          - commit: 89a1834aa1b7a8f948a6cb956bc5673ce68d2549        \nremote:            path: Clustering_2KB7NMV2Z.zpln:147        \nremote:             \nremote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        \nremote:        https://github.com/arjunsharmazetaris/zeppelin_pod_sync/security/secret-scanning/unblock-secret/2xMNN5KVREbABnLbGaC0TZlnchG        \nremote:             \nremote: \nremote: \nTo https://github.com/arjunsharmazetaris/zeppelin_pod_sync.git\n ! [remote rejected] zeppelin_sync -\u003e zeppelin_sync (push declined due to repository rule violations)\nerror: failed to push some refs to \u0027https://github.com/arjunsharmazetaris/zeppelin_pod_sync.git\u0027\u0027\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747744350035_975702120",
+      "id": "paragraph_1747744350035_975702120",
+      "dateCreated": "2025-05-20 12:32:30.035",
+      "dateStarted": "2025-05-20 12:41:28.335",
+      "dateFinished": "2025-05-20 12:41:32.148",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\nimport os\nimport re\nfrom git import Repo, GitCommandError\n\ndef load_env_file(path):\n    with open(path) as f:\n        for line in f:\n            # Skip empty lines and comments\n            if line.strip() \u003d\u003d \u0027\u0027 or line.strip().startswith(\u0027#\u0027):\n                continue\n            key, value \u003d line.strip().split(\u0027\u003d\u0027, 1)\n            os.environ[key] \u003d value\n\n# Load from /tmp/.env\nload_env_file(\"/tmp/.env\")\n\n\n\nnotebook_dir \u003d \"/home/zetaris/zeppelin/notebooks\"\nrepo_path \u003d \"/tmp/zeppelin_sync_repo\"\n\nGIT_TOKEN \u003d os.getenv(\"GIT_TOKEN\")\nif not GIT_TOKEN:\n    raise ValueError(\"❌ GIT_TOKEN not set in environment.\")\n\nremote_url \u003d f\"https://arjunsharmazetaris:{GIT_TOKEN}@github.com/arjunsharmazetaris/zeppelin_pod_sync.git\"\ntarget_branch \u003d \"zeppelin_sync\"\ncommit_message \u003d \"🔐 Auto-scrubbed sync commit (secrets redacted)\"\n\n# Pattern to detect common GitHub tokens\nsecret_pattern \u003d re.compile(r\"(gh[pus]_[A-Za-z0-9]{36,})|github_pat_[A-Za-z0-9_]{20,}\")\n\ndef scrub_secrets_in_file(filepath):\n    with open(filepath, \"r\") as f:\n        content \u003d f.read()\n\n    scrubbed \u003d secret_pattern.sub(\"\u003cREDACTED\u003e\", content)\n\n    if content !\u003d scrubbed:\n        print(f\"🚨 Secrets found and redacted in: {filepath}\")\n\n    with open(filepath, \"w\") as f:\n        f.write(scrubbed)\n\ndef scrub_all_zpln_files(path):\n    for root, _, files in os.walk(path):\n        for file in files:\n            if file.endswith(\".zpln\"):\n                scrub_secrets_in_file(os.path.join(root, file))\n\ntry:\n    if os.path.exists(repo_path):\n        os.system(f\"rm -rf {repo_path}\")\n\n    print(\"📥 Cloning fresh repo...\")\n    repo \u003d Repo.clone_from(remote_url, repo_path)\n\n    print(f\"📌 Checking out \u0027{target_branch}\u0027...\")\n    repo.git.checkout(\u0027-B\u0027, target_branch)\n\n    print(\"🧹 Cleaning old files from repo...\")\n    for item in os.listdir(repo_path):\n        if item not in [\u0027.git\u0027]:\n            os.system(f\u0027rm -rf \"{os.path.join(repo_path, item)}\"\u0027)\n\n    print(\"📂 Copying notebooks...\")\n    os.system(f\u0027cp -r {notebook_dir}/* {repo_path}/\u0027)\n\n    print(\"🔎 Scrubbing secrets from .zpln files...\")\n    scrub_all_zpln_files(repo_path)\n\n    repo.git.add(A\u003dTrue)\n    if repo.is_dirty():\n        repo.index.commit(commit_message)\n        print(\"✅ Changes committed.\")\n    else:\n        print(\"✅ No changes detected.\")\n\n    print(\"📤 Force pushing to remote...\")\n    repo.git.push(\u0027--force\u0027, \u0027origin\u0027, target_branch)\n    print(\"✅ Push complete.\")\n\nexcept GitCommandError as e:\n    print(f\"❌ Git command error: {e}\")\nexcept Exception as e:\n    print(f\"❌ Unexpected error: {e}\")\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:31:47.458",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747744485194_1447481242",
+      "id": "paragraph_1747744485194_1447481242",
+      "dateCreated": "2025-05-20 12:34:45.194",
+      "dateStarted": "2025-05-20 15:31:47.461",
+      "dateFinished": "2025-05-20 15:28:10.018",
+      "status": "RUNNING"
+    },
+    {
+      "text": "\n\n%python.conda install  python-dotenv\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:23:10.895",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Interpreter pip not found"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747744971352_1290545900",
+      "id": "paragraph_1747744971352_1290545900",
+      "dateCreated": "2025-05-20 12:42:51.352",
+      "dateStarted": "2025-05-20 15:17:57.580",
+      "dateFinished": "2025-05-20 15:17:57.582",
+      "status": "ERROR"
+    },
+    {
+      "text": "%python.conda install request\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:21:47.823",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Not supported command: install request\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747753852095_430273088",
+      "id": "paragraph_1747753852095_430273088",
+      "dateCreated": "2025-05-20 15:10:52.095",
+      "dateStarted": "2025-05-20 15:21:47.825",
+      "dateFinished": "2025-05-20 15:21:47.827",
+      "status": "ERROR"
+    },
+    {
+      "text": "%python.conda install numpy",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:22:49.688",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003ePackage Installation\u003c/h4\u003e\n\u003c/div\u003e\u003cbr /\u003e\n\u003cdiv style\u003d\"white-space:pre-wrap;\"\u003e\nChannels:\n - defaults\n - conda-forge\nPlatform: linux-64\nCollecting package metadata (repodata.json): ...working... done\nSolving environment: ...working... done\n\n# All requested packages already installed.\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747754496078_1718277450",
+      "id": "paragraph_1747754496078_1718277450",
+      "dateCreated": "2025-05-20 15:21:36.079",
+      "dateStarted": "2025-05-20 15:22:49.690",
+      "dateFinished": "2025-05-20 15:23:30.949",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python.conda install  `python-dotenv`\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:25:04.420",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Not supported command: install  `python-dotenv`\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747754569690_2048443169",
+      "id": "paragraph_1747754569690_2048443169",
+      "dateCreated": "2025-05-20 15:22:49.690",
+      "dateStarted": "2025-05-20 15:25:04.422",
+      "dateFinished": "2025-05-20 15:25:04.424",
+      "status": "ERROR"
+    },
+    {
+      "text": "%python.conda\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-05-20 15:23:19.459",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747754599459_433140556",
+      "id": "paragraph_1747754599459_433140556",
+      "dateCreated": "2025-05-20 15:23:19.459",
+      "status": "READY"
+    }
+  ],
+  "name": "git_backup_notebook",
+  "id": "2KU4WT554",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

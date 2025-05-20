@@ -1,0 +1,188 @@
+{
+  "paragraphs": [
+    {
+      "text": "print(\"hello\")\n",
+      "user": "GRAHAM.DUNKLEY@HITACHIVANTARA.COM",
+      "dateUpdated": "2024-12-02 03:28:35.174",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "hello"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1733110097975_479760955",
+      "id": "paragraph_1733110097975_479760955",
+      "dateCreated": "2024-12-02 03:28:17.975",
+      "dateStarted": "2024-12-02 03:28:35.175",
+      "dateFinished": "2024-12-02 03:28:35.323",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python.ipython\n\nimport json",
+      "user": "GRAHAM.DUNKLEY@HITACHIVANTARA.COM",
+      "dateUpdated": "2024-12-02 03:31:44.132",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1733110109091_1573249011",
+      "id": "paragraph_1733110109091_1573249011",
+      "dateCreated": "2024-12-02 03:28:29.091",
+      "dateStarted": "2024-12-02 03:31:44.133",
+      "dateFinished": "2024-12-02 03:31:44.348",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python.ipython\n!pip install pandas\n\nimport pandas as pd",
+      "user": "GRAHAM.DUNKLEY@HITACHIVANTARA.COM",
+      "dateUpdated": "2024-12-02 03:32:36.064",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Requirement already satisfied: pandas in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (2.2.2)\r\nRequirement already satisfied: numpy\u003e\u003d1.23.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (1.26.4)\r\nRequirement already satisfied: python-dateutil\u003e\u003d2.8.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (2.9.0.post0)\r\nRequirement already satisfied: pytz\u003e\u003d2020.1 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (2024.1)\r\nRequirement already satisfied: tzdata\u003e\u003d2022.7 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (2023.3)\r\nRequirement already satisfied: six\u003e\u003d1.5 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from python-dateutil\u003e\u003d2.8.2-\u003epandas) (1.16.0)\r\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1733110132301_444268456",
+      "id": "paragraph_1733110132301_444268456",
+      "dateCreated": "2024-12-02 03:28:52.302",
+      "dateStarted": "2024-12-02 03:32:36.065",
+      "dateFinished": "2024-12-02 03:32:37.825",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\n!pip install pandas\n\nimport pandas as pd\n",
+      "user": "GRAHAM.DUNKLEY@HITACHIVANTARA.COM",
+      "dateUpdated": "2024-12-02 03:32:59.185",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Requirement already satisfied: pandas in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (2.2.2)\r\nRequirement already satisfied: numpy\u003e\u003d1.23.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (1.26.4)\r\nRequirement already satisfied: python-dateutil\u003e\u003d2.8.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (2.9.0.post0)\r\nRequirement already satisfied: pytz\u003e\u003d2020.1 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (2024.1)\r\nRequirement already satisfied: tzdata\u003e\u003d2022.7 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas) (2023.3)\r\nRequirement already satisfied: six\u003e\u003d1.5 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from python-dateutil\u003e\u003d2.8.2-\u003epandas) (1.16.0)\r\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1733110331297_2033915743",
+      "id": "paragraph_1733110331297_2033915743",
+      "dateCreated": "2024-12-02 03:32:11.297",
+      "dateStarted": "2024-12-02 03:32:59.187",
+      "dateFinished": "2024-12-02 03:33:00.947",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\n",
+      "user": "GRAHAM.DUNKLEY@HITACHIVANTARA.COM",
+      "dateUpdated": "2024-12-02 03:32:59.187",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1733110379187_865498323",
+      "id": "paragraph_1733110379187_865498323",
+      "dateCreated": "2024-12-02 03:32:59.187",
+      "status": "READY"
+    }
+  ],
+  "name": "python\u0026spark_testing",
+  "id": "2KETRPSP1",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

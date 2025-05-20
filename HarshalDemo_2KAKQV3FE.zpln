@@ -1,0 +1,112 @@
+{
+  "paragraphs": [
+    {
+      "text": "import requests\nimport json\nimport uuid\nimport os\nfrom base64 import b64encode\nimport base64\n\ndef get_auth():\n  return {\n    \"Authorization\": \"Bearer akd0d8mo5ivbdapvafucgqpb0qe9un5v9bgjvvnuiq4wgzzn7qhr6l3kdflm\",\n    \"X-Request-ID\": str(uuid.uuid1()),\n    \"X-Org-ID\" : \"50702\"\n  }\n\ndef run_sql(sql:str,api_url):\n    auth \u003d get_auth()\n    body \u003d json.dumps({\n        \"sql\": sql,\n        \"source\": \"Generic\",\n        \"queryId\": str(uuid.uuid1())\n    })\n    response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/sql-editor/sqls/run\u0027,headers\u003dauth,data\u003dbody)\n    response \u003d json.loads(response.text)\n    return response",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-04 04:46:21.119",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1727877327352_1849104170",
+      "id": "paragraph_1727877327352_1849104170",
+      "dateCreated": "2024-10-02 13:55:27.352",
+      "dateStarted": "2025-04-04 04:46:21.120",
+      "dateFinished": "2025-04-04 04:46:21.174",
+      "status": "FINISHED"
+    },
+    {
+      "text": "api_url \u003d \u0027https://api.saas.enterprise.zetaris.com/\u0027\nrun_sql(\u0027select * from azure_mssql.customer limit 10\u0027, api_url)",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-04 04:46:24.190",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\u0027msg\u0027: \u0027Not Allowed\u0027}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1727877511558_1899485485",
+      "id": "paragraph_1727877511558_1899485485",
+      "dateCreated": "2024-10-02 13:58:31.558",
+      "dateStarted": "2025-04-04 04:46:24.190",
+      "dateFinished": "2025-04-04 04:46:24.245",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-02 14:00:43.489",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1727877633443_304925319",
+      "id": "paragraph_1727877633443_304925319",
+      "dateCreated": "2024-10-02 14:00:33.443",
+      "status": "READY"
+    }
+  ],
+  "name": "HarshalDemo",
+  "id": "2KAKQV3FE",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

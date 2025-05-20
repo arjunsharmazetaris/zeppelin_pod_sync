@@ -1,0 +1,43 @@
+{
+  "paragraphs": [
+    {
+      "text": "import os\nimport psycopg2\nimport openpyxl\n\ndef load_excel_files_to_db(directory_path):\n    # Connect to PostgreSQL\n    conn \u003d psycopg2.connect(\n        dbname\u003d\"postgres\", user\u003d\"zetaris\", password\u003d\"ndpfabric1.\", host\u003d\"zetdb1.postgres.database.azure.com\", port\u003d\"5432\"\n    )\n    cursor \u003d conn.cursor()\n\n    # Loop through all files in the directory\n    for filename in os.listdir(directory_path):\n        # Only process files that start with \u0027goliath_outlet_sales_\u0027\n        if filename.startswith(\"goliath_outlet_sales_\") and filename.endswith(\".xlsx\"):\n            file_path \u003d os.path.join(directory_path, filename)\n\n            # Open the Excel file and read it as binary\n            with open(file_path, \"rb\") as file:\n                file_data \u003d file.read()\n\n            # Insert the binary data (BLOB) into the table\n            insert_query \u003d \"\"\"\n                INSERT INTO sales_files (file_name, file_data)\n                VALUES (%s, %s)\n            \"\"\"\n            cursor.execute(insert_query, (filename, file_data))\n            print(f\"Loaded {filename} into the database.\")\n\n    # Commit the transaction\n    conn.commit()\n\n    # Close the connection\n    cursor.close()\n    conn.close()\n    print(\"All files have been loaded.\")\n\n# Example usage\nload_excel_files_to_db(\u0027/Users/bentzannes/Documents/Data/duplicate_excels/\u0027)\n",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-27 04:38:39.183",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743050309840_1363796453",
+      "id": "paragraph_1743050309840_1363796453",
+      "dateCreated": "2025-03-27 04:38:29.840",
+      "status": "READY"
+    }
+  ],
+  "name": "check_excel_duplication",
+  "id": "2KT4A7HEY",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

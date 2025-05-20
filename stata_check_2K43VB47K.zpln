@@ -1,0 +1,569 @@
+{
+  "paragraphs": [
+    {
+      "text": "pip install pyinsta",
+      "user": "anonymous",
+      "dateUpdated": "2024-09-19 06:21:31.907",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[33mWARNING: The directory \u0027/home/zetaris/.cache/pip\u0027 or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo\u0027s -H flag.\u001b[0m\u001b[33m\r\n\u001b[0mRequirement already satisfied: pyinsta in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (0.2)\r\nRequirement already satisfied: beautifulsoup4 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pyinsta) (4.12.3)\r\nRequirement already satisfied: Pillow in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pyinsta) (10.4.0)\r\nRequirement already satisfied: requests in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pyinsta) (2.32.3)\r\nRequirement already satisfied: soupsieve\u003e1.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from beautifulsoup4-\u003epyinsta) (2.5)\r\nRequirement already satisfied: charset-normalizer\u003c4,\u003e\u003d2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from requests-\u003epyinsta) (3.3.2)\r\nRequirement already satisfied: idna\u003c4,\u003e\u003d2.5 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from requests-\u003epyinsta) (3.7)\r\nRequirement already satisfied: urllib3\u003c3,\u003e\u003d1.21.1 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from requests-\u003epyinsta) (2.2.2)\r\nRequirement already satisfied: certifi\u003e\u003d2017.4.17 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from requests-\u003epyinsta) (2024.7.4)\r\n\u001b[33mWARNING: Running pip as the \u0027root\u0027 user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\u001b[0m\u001b[33m\r\n\u001b[0mNote: you may need to restart the kernel to use updated packages.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723087056802_163333494",
+      "id": "paragraph_1723087056802_163333494",
+      "dateCreated": "2024-08-08 03:17:36.802",
+      "dateStarted": "2024-09-19 06:21:31.909",
+      "dateFinished": "2024-09-19 06:21:33.770",
+      "status": "FINISHED"
+    },
+    {
+      "text": "pip install stata_setup",
+      "user": "anonymous",
+      "dateUpdated": "2024-09-19 06:21:36.319",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[33mWARNING: The directory \u0027/home/zetaris/.cache/pip\u0027 or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo\u0027s -H flag.\u001b[0m\u001b[33m\r\n\u001b[0mRequirement already satisfied: stata_setup in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (0.1.3)\r\nRequirement already satisfied: numpy in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from stata_setup) (1.26.4)\r\nRequirement already satisfied: pandas in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from stata_setup) (2.2.2)\r\nRequirement already satisfied: ipython in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from stata_setup) (8.25.0)\r\nRequirement already satisfied: decorator in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (5.1.1)\r\nRequirement already satisfied: jedi\u003e\u003d0.16 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (0.19.1)\r\nRequirement already satisfied: matplotlib-inline in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (0.1.6)\r\nRequirement already satisfied: prompt-toolkit\u003c3.1.0,\u003e\u003d3.0.41 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (3.0.43)\r\nRequirement already satisfied: pygments\u003e\u003d2.4.0 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (2.15.1)\r\nRequirement already satisfied: stack-data in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (0.2.0)\r\nRequirement already satisfied: traitlets\u003e\u003d5.13.0 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (5.14.3)\r\nRequirement already satisfied: typing-extensions\u003e\u003d4.6 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (4.11.0)\r\nRequirement already satisfied: pexpect\u003e4.3 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from ipython-\u003estata_setup) (4.8.0)\r\nRequirement already satisfied: python-dateutil\u003e\u003d2.8.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas-\u003estata_setup) (2.9.0.post0)\r\nRequirement already satisfied: pytz\u003e\u003d2020.1 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas-\u003estata_setup) (2024.1)\r\nRequirement already satisfied: tzdata\u003e\u003d2022.7 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas-\u003estata_setup) (2023.3)\r\nRequirement already satisfied: parso\u003c0.9.0,\u003e\u003d0.8.3 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from jedi\u003e\u003d0.16-\u003eipython-\u003estata_setup) (0.8.3)\r\nRequirement already satisfied: ptyprocess\u003e\u003d0.5 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pexpect\u003e4.3-\u003eipython-\u003estata_setup) (0.7.0)\r\nRequirement already satisfied: wcwidth in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from prompt-toolkit\u003c3.1.0,\u003e\u003d3.0.41-\u003eipython-\u003estata_setup) (0.2.5)\r\nRequirement already satisfied: six\u003e\u003d1.5 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from python-dateutil\u003e\u003d2.8.2-\u003epandas-\u003estata_setup) (1.16.0)\r\nRequirement already satisfied: executing in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from stack-data-\u003eipython-\u003estata_setup) (0.8.3)\r\nRequirement already satisfied: asttokens in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from stack-data-\u003eipython-\u003estata_setup) (2.0.5)\r\nRequirement already satisfied: pure-eval in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from stack-data-\u003eipython-\u003estata_setup) (0.2.2)\r\n\u001b[33mWARNING: Running pip as the \u0027root\u0027 user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\u001b[0m\u001b[33m\r\n\u001b[0mNote: you may need to restart the kernel to use updated packages.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1719370959174_1981528278",
+      "id": "paragraph_1719370959174_1981528278",
+      "dateCreated": "2024-06-26 03:02:39.174",
+      "dateStarted": "2024-09-19 06:21:36.321",
+      "dateFinished": "2024-09-19 06:21:38.334",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import stata_setup",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:54:06.276",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1719370990860_163861052",
+      "id": "paragraph_1719370990860_163861052",
+      "dateCreated": "2024-06-26 03:03:10.860",
+      "dateStarted": "2024-09-19 06:54:06.279",
+      "dateFinished": "2024-09-19 06:54:06.350",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\r\nstata_setup.config(\u0027/home/zetaris/zeppelin/stata2\u0027, \u0027mp\u0027)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:54:08.817",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n  ___  ____  ____  ____  ____ ®\n /__    /   ____/   /   ____/      StataNow 18.5\n___/   /   /___/   /   /___/       MP—Parallel Edition\n\n Statistics and Data Science       Copyright 1985-2023 StataCorp LLC\n                                   StataCorp\n                                   4905 Lakeway Drive\n                                   College Station, Texas 77845 USA\n                                   800-782-8272        https://www.stata.com\n                                   979-696-4600        service@stata.com\n\nStata license: Single-user 4-core network, expiring  4 Oct 2024\nSerial number: 501809391362\n  Licensed to: Hello stata\n               This is Saas\n\nNotes:\n      1. Unicode is supported; see help unicode_advice.\n      2. More than 2 billion observations are allowed; see help obs_advice.\n      3. Maximum number of variables is set to 5,000 but can be increased;\n          see help set_maxvar.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1719371027462_1414845951",
+      "id": "paragraph_1719371027462_1414845951",
+      "dateCreated": "2024-06-26 03:03:47.462",
+      "dateStarted": "2024-09-19 06:54:08.820",
+      "dateFinished": "2024-09-19 06:54:09.463",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%%stata?",
+      "user": "anonymous",
+      "dateUpdated": "2024-09-19 06:21:45.440",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1720150888748_1355005524",
+      "id": "paragraph_1720150888748_1355005524",
+      "dateCreated": "2024-07-05 03:41:28.749",
+      "dateStarted": "2024-09-19 06:21:45.442",
+      "dateFinished": "2024-09-19 06:21:45.500",
+      "status": "FINISHED"
+    },
+    {
+      "text": "from pystata import stata",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:54:17.576",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726108851025_1449494823",
+      "id": "paragraph_1726108851025_1449494823",
+      "dateCreated": "2024-09-12 02:40:51.026",
+      "dateStarted": "2024-09-19 06:54:17.581",
+      "dateFinished": "2024-09-19 06:54:17.638",
+      "status": "FINISHED"
+    },
+    {
+      "text": "stata.run(\u0027import delimited \"/home/zetaris/zeppelin/dummy_dataset.csv\"\u0027)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:54:21.692",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "(encoding automatically selected: ISO-8859-1)\n(500 vars, 1,000 obs)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726107537680_419940501",
+      "id": "paragraph_1726107537680_419940501",
+      "dateCreated": "2024-09-12 02:18:57.680",
+      "dateStarted": "2024-09-19 06:54:21.696",
+      "dateFinished": "2024-09-19 06:54:23.214",
+      "status": "FINISHED"
+    },
+    {
+      "text": "stata.run(\u0027\u0027\u0027\nforeach var of varlist  date_var_301 date_var_302 date_var_303 date_var_304 date_var_305 date_var_306 date_var_307 date_var_308 date_var_309 date_var_310 date_var_311 date_var_312 date_var_313 date_var_314 date_var_315 date_var_316 date_var_317 date_var_318 date_var_319 date_var_320 date_var_321 date_var_322 date_var_323 date_var_324 date_var_325 date_var_326 date_var_327 date_var_328 date_var_329 date_var_330 date_var_331 date_var_332 date_var_333 date_var_334 date_var_335 date_var_336 date_var_337 date_var_338 date_var_339 date_var_340 date_var_341 date_var_342 date_var_343 date_var_344 date_var_345 date_var_346 date_var_347 date_var_348 date_var_349 date_var_350 date_var_351 date_var_352 date_var_353 date_var_354 date_var_355 date_var_356 date_var_357 date_var_358 date_var_359 date_var_360 date_var_361 date_var_362 date_var_363 date_var_364 date_var_365 date_var_366 date_var_367 date_var_368 date_var_369 date_var_370 date_var_371 date_var_372 date_var_373 date_var_374 date_var_375 date_var_376 date_var_377 date_var_378 date_var_379 date_var_380 date_var_381 date_var_382 date_var_383 date_var_384 date_var_385 date_var_386 date_var_387 date_var_388 date_var_389 date_var_390 date_var_391 date_var_392 date_var_393 date_var_394 date_var_395 date_var_396 date_var_397 date_var_398 date_var_399 date_var_400 date_var_403 date_var_407 date_var_411 date_var_415 date_var_419 date_var_423 date_var_427 date_var_431 date_var_435 date_var_439 date_var_443 date_var_447 date_var_451 date_var_455 date_var_459 date_var_463 date_var_467 date_var_471 date_var_475 date_var_479 date_var_483 date_var_487 date_var_491 date_var_495 date_var_499{\ngen double DMY_`var\u0027 \u003ddate(`var\u0027, \"MDY\")\nformat DMY_`var\u0027 %td\ndrop `var\u0027\n}\n\u0027\u0027\u0027)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:54:27.157",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n. \n. foreach var of varlist  date_var_301 date_var_302 date_var_303 date_var_304 d\n\u003e ate_var_305 date_var_306 date_var_307 date_var_308 date_var_309 date_var_310 \n\u003e date_var_311 date_var_312 date_var_313 date_var_314 date_var_315 date_var_316\n\u003e  date_var_317 date_var_318 date_var_319 date_var_320 date_var_321 date_var_32\n\u003e 2 date_var_323 date_var_324 date_var_325 date_var_326 date_var_327 date_var_3\n\u003e 28 date_var_329 date_var_330 date_var_331 date_var_332 date_var_333 date_var_\n\u003e 334 date_var_335 date_var_336 date_var_337 date_var_338 date_var_339 date_var\n\u003e _340 date_var_341 date_var_342 date_var_343 date_var_344 date_var_345 date_va\n\u003e r_346 date_var_347 date_var_348 date_var_349 date_var_350 date_var_351 date_v\n\u003e ar_352 date_var_353 date_var_354 date_var_355 date_var_356 date_var_357 date_\n\u003e var_358 date_var_359 date_var_360 date_var_361 date_var_362 date_var_363 date\n\u003e _var_364 date_var_365 date_var_366 date_var_367 date_var_368 date_var_369 dat\n\u003e e_var_370 date_var_371 date_var_372 date_var_373 date_var_374 date_var_375 da\n\u003e te_var_376 date_var_377 date_var_378 date_var_379 date_var_380 date_var_381 d\n\u003e ate_var_382 date_var_383 date_var_384 date_var_385 date_var_386 date_var_387 \n\u003e date_var_388 date_var_389 date_var_390 date_var_391 date_var_392 date_var_393\n\u003e  date_var_394 date_var_395 date_var_396 date_var_397 date_var_398 date_var_39\n\u003e 9 date_var_400 date_var_403 date_var_407 date_var_411 date_var_415 date_var_4\n\u003e 19 date_var_423 date_var_427 date_var_431 date_var_435 date_var_439 date_var_\n\u003e 443 date_var_447 date_var_451 date_var_455 date_var_459 date_var_463 date_var\n\u003e _467 date_var_471 date_var_475 date_var_479 date_var_483 date_var_487 date_va\n\u003e r_491 date_var_495 date_var_499{\n  2. gen double DMY_`var\u0027 \u003ddate(`var\u0027, \"MDY\")\n  3. format DMY_`var\u0027 %td\n  4. drop `var\u0027\n  5. }\n(614 missing values generated)\n(608 missing values generated)\n(557 missing values generated)\n(594 missing values generated)\n(590 missing values generated)\n(625 missing values generated)\n(580 missing values generated)\n(623 missing values generated)\n(610 missing values generated)\n(603 missing values generated)\n(592 missing values generated)\n(592 missing values generated)\n(603 missing values generated)\n(602 missing values generated)\n(611 missing values generated)\n(624 missing values generated)\n(610 missing values generated)\n(615 missing values generated)\n(609 missing values generated)\n(583 missing values generated)\n(561 missing values generated)\n(587 missing values generated)\n(618 missing values generated)\n(578 missing values generated)\n(646 missing values generated)\n(590 missing values generated)\n(607 missing values generated)\n(600 missing values generated)\n(614 missing values generated)\n(621 missing values generated)\n(592 missing values generated)\n(567 missing values generated)\n(596 missing values generated)\n(611 missing values generated)\n(612 missing values generated)\n(625 missing values generated)\n(622 missing values generated)\n(594 missing values generated)\n(611 missing values generated)\n(595 missing values generated)\n(594 missing values generated)\n(601 missing values generated)\n(610 missing values generated)\n(594 missing values generated)\n(606 missing values generated)\n(630 missing values generated)\n(617 missing values generated)\n(596 missing values generated)\n(576 missing values generated)\n(625 missing values generated)\n(596 missing values generated)\n(594 missing values generated)\n(623 missing values generated)\n(627 missing values generated)\n(599 missing values generated)\n(587 missing values generated)\n(613 missing values generated)\n(620 missing values generated)\n(620 missing values generated)\n(623 missing values generated)\n(602 missing values generated)\n(616 missing values generated)\n(581 missing values generated)\n(620 missing values generated)\n(595 missing values generated)\n(610 missing values generated)\n(601 missing values generated)\n(600 missing values generated)\n(610 missing values generated)\n(602 missing values generated)\n(612 missing values generated)\n(607 missing values generated)\n(589 missing values generated)\n(634 missing values generated)\n(625 missing values generated)\n(642 missing values generated)\n(586 missing values generated)\n(605 missing values generated)\n(642 missing values generated)\n(602 missing values generated)\n(610 missing values generated)\n(596 missing values generated)\n(599 missing values generated)\n(592 missing values generated)\n(606 missing values generated)\n(584 missing values generated)\n(603 missing values generated)\n(624 missing values generated)\n(637 missing values generated)\n(613 missing values generated)\n(610 missing values generated)\n(607 missing values generated)\n(605 missing values generated)\n(642 missing values generated)\n(589 missing values generated)\n(602 missing values generated)\n(633 missing values generated)\n(610 missing values generated)\n(618 missing values generated)\n(611 missing values generated)\n(609 missing values generated)\n(602 missing values generated)\n(607 missing values generated)\n(617 missing values generated)\n(621 missing values generated)\n(616 missing values generated)\n(594 missing values generated)\n(587 missing values generated)\n(601 missing values generated)\n(618 missing values generated)\n(590 missing values generated)\n(614 missing values generated)\n(602 missing values generated)\n(582 missing values generated)\n(584 missing values generated)\n(584 missing values generated)\n(602 missing values generated)\n(607 missing values generated)\n(609 missing values generated)\n(614 missing values generated)\n(614 missing values generated)\n(590 missing values generated)\n(604 missing values generated)\n(629 missing values generated)\n(615 missing values generated)\n\n. \n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726117542691_149849862",
+      "id": "paragraph_1726117542691_149849862",
+      "dateCreated": "2024-09-12 05:05:42.691",
+      "dateStarted": "2024-09-19 06:54:27.160",
+      "dateFinished": "2024-09-19 06:54:27.274",
+      "status": "FINISHED"
+    },
+    {
+      "text": "stata.run(\u0027\u0027\u0027\nforeach var of varlist  DMY_date_var_301 DMY_date_var_302 DMY_date_var_303 DMY_date_var_304 DMY_date_var_305 DMY_date_var_306 DMY_date_var_307 DMY_date_var_308 DMY_date_var_309 DMY_date_var_310 DMY_date_var_311 DMY_date_var_312 DMY_date_var_313 DMY_date_var_314 DMY_date_var_315 DMY_date_var_316 DMY_date_var_317 DMY_date_var_318 DMY_date_var_319 DMY_date_var_320 DMY_date_var_321 DMY_date_var_322 DMY_date_var_323 DMY_date_var_324 DMY_date_var_325 DMY_date_var_326 DMY_date_var_327 DMY_date_var_328 DMY_date_var_329 DMY_date_var_330 DMY_date_var_331 DMY_date_var_332 DMY_date_var_333 DMY_date_var_334 DMY_date_var_335 DMY_date_var_336 DMY_date_var_337 DMY_date_var_338 DMY_date_var_339 DMY_date_var_340 DMY_date_var_341 DMY_date_var_342 DMY_date_var_343 DMY_date_var_344 DMY_date_var_345 DMY_date_var_346 DMY_date_var_347 DMY_date_var_348 DMY_date_var_349 DMY_date_var_350 DMY_date_var_351 DMY_date_var_352 DMY_date_var_353 DMY_date_var_354 DMY_date_var_355 DMY_date_var_356 DMY_date_var_357 DMY_date_var_358 DMY_date_var_359 DMY_date_var_360 DMY_date_var_361 DMY_date_var_362 DMY_date_var_363 DMY_date_var_364 DMY_date_var_365 DMY_date_var_366 DMY_date_var_367 DMY_date_var_368 DMY_date_var_369 DMY_date_var_370 DMY_date_var_371 DMY_date_var_372 DMY_date_var_373 DMY_date_var_374 DMY_date_var_375 DMY_date_var_376 DMY_date_var_377 DMY_date_var_378 DMY_date_var_379 DMY_date_var_380 DMY_date_var_381 DMY_date_var_382 DMY_date_var_383 DMY_date_var_384 DMY_date_var_385 DMY_date_var_386 DMY_date_var_387 DMY_date_var_388 DMY_date_var_389 DMY_date_var_390 DMY_date_var_391 DMY_date_var_392 DMY_date_var_393 DMY_date_var_394 DMY_date_var_395 DMY_date_var_396 DMY_date_var_397 DMY_date_var_398 DMY_date_var_399 DMY_date_var_400 DMY_date_var_403 DMY_date_var_407 DMY_date_var_411 DMY_date_var_415 DMY_date_var_419 DMY_date_var_423 DMY_date_var_427 DMY_date_var_431 DMY_date_var_435 DMY_date_var_439 DMY_date_var_443 DMY_date_var_447 DMY_date_var_451 DMY_date_var_455 DMY_date_var_459 DMY_date_var_463 DMY_date_var_467 DMY_date_var_471 DMY_date_var_475 DMY_date_var_479 DMY_date_var_483 DMY_date_var_487 DMY_date_var_491 DMY_date_var_495 DMY_date_var_499 {\n\treplace `var\u0027 \u003d firstdayofmonth(`var\u0027)\n}\n\u0027\u0027\u0027)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:56:25.186",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n. \n. foreach var of varlist  DMY_date_var_301 DMY_date_var_302 DMY_date_var_303 DM\n\u003e Y_date_var_304 DMY_date_var_305 DMY_date_var_306 DMY_date_var_307 DMY_date_va\n\u003e r_308 DMY_date_var_309 DMY_date_var_310 DMY_date_var_311 DMY_date_var_312 DMY\n\u003e _date_var_313 DMY_date_var_314 DMY_date_var_315 DMY_date_var_316 DMY_date_var\n\u003e _317 DMY_date_var_318 DMY_date_var_319 DMY_date_var_320 DMY_date_var_321 DMY_\n\u003e date_var_322 DMY_date_var_323 DMY_date_var_324 DMY_date_var_325 DMY_date_var_\n\u003e 326 DMY_date_var_327 DMY_date_var_328 DMY_date_var_329 DMY_date_var_330 DMY_d\n\u003e ate_var_331 DMY_date_var_332 DMY_date_var_333 DMY_date_var_334 DMY_date_var_3\n\u003e 35 DMY_date_var_336 DMY_date_var_337 DMY_date_var_338 DMY_date_var_339 DMY_da\n\u003e te_var_340 DMY_date_var_341 DMY_date_var_342 DMY_date_var_343 DMY_date_var_34\n\u003e 4 DMY_date_var_345 DMY_date_var_346 DMY_date_var_347 DMY_date_var_348 DMY_dat\n\u003e e_var_349 DMY_date_var_350 DMY_date_var_351 DMY_date_var_352 DMY_date_var_353\n\u003e  DMY_date_var_354 DMY_date_var_355 DMY_date_var_356 DMY_date_var_357 DMY_date\n\u003e _var_358 DMY_date_var_359 DMY_date_var_360 DMY_date_var_361 DMY_date_var_362 \n\u003e DMY_date_var_363 DMY_date_var_364 DMY_date_var_365 DMY_date_var_366 DMY_date_\n\u003e var_367 DMY_date_var_368 DMY_date_var_369 DMY_date_var_370 DMY_date_var_371 D\n\u003e MY_date_var_372 DMY_date_var_373 DMY_date_var_374 DMY_date_var_375 DMY_date_v\n\u003e ar_376 DMY_date_var_377 DMY_date_var_378 DMY_date_var_379 DMY_date_var_380 DM\n\u003e Y_date_var_381 DMY_date_var_382 DMY_date_var_383 DMY_date_var_384 DMY_date_va\n\u003e r_385 DMY_date_var_386 DMY_date_var_387 DMY_date_var_388 DMY_date_var_389 DMY\n\u003e _date_var_390 DMY_date_var_391 DMY_date_var_392 DMY_date_var_393 DMY_date_var\n\u003e _394 DMY_date_var_395 DMY_date_var_396 DMY_date_var_397 DMY_date_var_398 DMY_\n\u003e date_var_399 DMY_date_var_400 DMY_date_var_403 DMY_date_var_407 DMY_date_var_\n\u003e 411 DMY_date_var_415 DMY_date_var_419 DMY_date_var_423 DMY_date_var_427 DMY_d\n\u003e ate_var_431 DMY_date_var_435 DMY_date_var_439 DMY_date_var_443 DMY_date_var_4\n\u003e 47 DMY_date_var_451 DMY_date_var_455 DMY_date_var_459 DMY_date_var_463 DMY_da\n\u003e te_var_467 DMY_date_var_471 DMY_date_var_475 DMY_date_var_479 DMY_date_var_48\n\u003e 3 DMY_date_var_487 DMY_date_var_491 DMY_date_var_495 DMY_date_var_499 {\n  2.         replace `var\u0027 \u003d firstdayofmonth(`var\u0027)\n  3. }\n(357 real changes made)\n(358 real changes made)\n(406 real changes made)\n(368 real changes made)\n(375 real changes made)\n(345 real changes made)\n(379 real changes made)\n(340 real changes made)\n(353 real changes made)\n(364 real changes made)\n(373 real changes made)\n(370 real changes made)\n(359 real changes made)\n(364 real changes made)\n(359 real changes made)\n(342 real changes made)\n(364 real changes made)\n(353 real changes made)\n(361 real changes made)\n(376 real changes made)\n(401 real changes made)\n(378 real changes made)\n(357 real changes made)\n(390 real changes made)\n(324 real changes made)\n(372 real changes made)\n(356 real changes made)\n(365 real changes made)\n(359 real changes made)\n(351 real changes made)\n(367 real changes made)\n(401 real changes made)\n(368 real changes made)\n(355 real changes made)\n(350 real changes made)\n(343 real changes made)\n(342 real changes made)\n(367 real changes made)\n(354 real changes made)\n(366 real changes made)\n(371 real changes made)\n(362 real changes made)\n(357 real changes made)\n(375 real changes made)\n(363 real changes made)\n(334 real changes made)\n(359 real changes made)\n(369 real changes made)\n(393 real changes made)\n(353 real changes made)\n(364 real changes made)\n(379 real changes made)\n(344 real changes made)\n(343 real changes made)\n(358 real changes made)\n(384 real changes made)\n(355 real changes made)\n(348 real changes made)\n(355 real changes made)\n(345 real changes made)\n(359 real changes made)\n(341 real changes made)\n(392 real changes made)\n(350 real changes made)\n(373 real changes made)\n(351 real changes made)\n(360 real changes made)\n(357 real changes made)\n(357 real changes made)\n(357 real changes made)\n(346 real changes made)\n(366 real changes made)\n(374 real changes made)\n(342 real changes made)\n(336 real changes made)\n(326 real changes made)\n(385 real changes made)\n(358 real changes made)\n(335 real changes made)\n(361 real changes made)\n(363 real changes made)\n(368 real changes made)\n(363 real changes made)\n(377 real changes made)\n(355 real changes made)\n(380 real changes made)\n(358 real changes made)\n(346 real changes made)\n(331 real changes made)\n(363 real changes made)\n(356 real changes made)\n(364 real changes made)\n(351 real changes made)\n(328 real changes made)\n(371 real changes made)\n(364 real changes made)\n(342 real changes made)\n(353 real changes made)\n(351 real changes made)\n(357 real changes made)\n(361 real changes made)\n(374 real changes made)\n(368 real changes made)\n(355 real changes made)\n(337 real changes made)\n(351 real changes made)\n(368 real changes made)\n(385 real changes made)\n(371 real changes made)\n(340 real changes made)\n(378 real changes made)\n(355 real changes made)\n(362 real changes made)\n(387 real changes made)\n(374 real changes made)\n(383 real changes made)\n(366 real changes made)\n(356 real changes made)\n(352 real changes made)\n(353 real changes made)\n(355 real changes made)\n(382 real changes made)\n(358 real changes made)\n(341 real changes made)\n(355 real changes made)\n\n. \n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726117588991_1787739758",
+      "id": "paragraph_1726117588991_1787739758",
+      "dateCreated": "2024-09-12 05:06:28.991",
+      "dateStarted": "2024-09-19 06:56:25.189",
+      "dateFinished": "2024-09-19 06:56:25.263",
+      "status": "FINISHED"
+    },
+    {
+      "text": "stata.run(\u0027\u0027\u0027\nforeach var of varlist cat_var_101 cat_var_102 cat_var_103 cat_var_104 cat_var_105 cat_var_106 cat_var_107 cat_var_108 cat_var_109 cat_var_110 cat_var_111 cat_var_112 cat_var_113 cat_var_114 cat_var_115 cat_var_116 cat_var_117 cat_var_118 cat_var_119 cat_var_120 cat_var_121 cat_var_122 cat_var_123 cat_var_124 cat_var_125 cat_var_126 cat_var_127 cat_var_128 cat_var_129 cat_var_130 cat_var_131 cat_var_132 cat_var_133 cat_var_134 cat_var_135 cat_var_136 cat_var_137 cat_var_138 cat_var_139 cat_var_140 cat_var_141 cat_var_142 cat_var_143 cat_var_144 cat_var_145 cat_var_146 cat_var_147 cat_var_148 cat_var_149 cat_var_150 cat_var_151 cat_var_152 cat_var_153 cat_var_154 cat_var_155 cat_var_156 cat_var_157 cat_var_158 cat_var_159 cat_var_160 cat_var_161 cat_var_162 cat_var_163 cat_var_164 cat_var_165 cat_var_166 cat_var_167 cat_var_168 cat_var_169 cat_var_170 cat_var_171 cat_var_172 cat_var_173 cat_var_174 cat_var_175 cat_var_176 cat_var_177 cat_var_178 cat_var_179 cat_var_180 cat_var_181 cat_var_182 cat_var_183 cat_var_184 cat_var_185 cat_var_186 cat_var_187 cat_var_188 cat_var_189 cat_var_190 cat_var_191 cat_var_192 cat_var_193 cat_var_194 cat_var_195 cat_var_196 cat_var_197 cat_var_198 cat_var_199{\n\treplace `var\u0027 \u003d \"1\" if `var\u0027\u003d\u003d\"A\"\n\treplace `var\u0027 \u003d \"2\" if `var\u0027\u003d\u003d\"B\"\n\treplace `var\u0027 \u003d \"3\" if `var\u0027\u003d\u003d\"C\"\n\treplace `var\u0027 \u003d \"4\" if `var\u0027\u003d\u003d\"D\"\n\tdestring `var\u0027, replace\n\tlabel define `var\u0027 1 \"Option A\" 2 \"Option B\" 3 \"Option C\" 4 \"Option D\"\n\tlabel values `var\u0027 `var\u0027\n\t\n}\n\u0027\u0027\u0027)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:56:32.344",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n. \n. foreach var of varlist cat_var_101 cat_var_102 cat_var_103 cat_var_104 cat_va\n\u003e r_105 cat_var_106 cat_var_107 cat_var_108 cat_var_109 cat_var_110 cat_var_111\n\u003e  cat_var_112 cat_var_113 cat_var_114 cat_var_115 cat_var_116 cat_var_117 cat_\n\u003e var_118 cat_var_119 cat_var_120 cat_var_121 cat_var_122 cat_var_123 cat_var_1\n\u003e 24 cat_var_125 cat_var_126 cat_var_127 cat_var_128 cat_var_129 cat_var_130 ca\n\u003e t_var_131 cat_var_132 cat_var_133 cat_var_134 cat_var_135 cat_var_136 cat_var\n\u003e _137 cat_var_138 cat_var_139 cat_var_140 cat_var_141 cat_var_142 cat_var_143 \n\u003e cat_var_144 cat_var_145 cat_var_146 cat_var_147 cat_var_148 cat_var_149 cat_v\n\u003e ar_150 cat_var_151 cat_var_152 cat_var_153 cat_var_154 cat_var_155 cat_var_15\n\u003e 6 cat_var_157 cat_var_158 cat_var_159 cat_var_160 cat_var_161 cat_var_162 cat\n\u003e _var_163 cat_var_164 cat_var_165 cat_var_166 cat_var_167 cat_var_168 cat_var_\n\u003e 169 cat_var_170 cat_var_171 cat_var_172 cat_var_173 cat_var_174 cat_var_175 c\n\u003e at_var_176 cat_var_177 cat_var_178 cat_var_179 cat_var_180 cat_var_181 cat_va\n\u003e r_182 cat_var_183 cat_var_184 cat_var_185 cat_var_186 cat_var_187 cat_var_188\n\u003e  cat_var_189 cat_var_190 cat_var_191 cat_var_192 cat_var_193 cat_var_194 cat_\n\u003e var_195 cat_var_196 cat_var_197 cat_var_198 cat_var_199{\n  2.         replace `var\u0027 \u003d \"1\" if `var\u0027\u003d\u003d\"A\"\n  3.         replace `var\u0027 \u003d \"2\" if `var\u0027\u003d\u003d\"B\"\n  4.         replace `var\u0027 \u003d \"3\" if `var\u0027\u003d\u003d\"C\"\n  5.         replace `var\u0027 \u003d \"4\" if `var\u0027\u003d\u003d\"D\"\n  6.         destring `var\u0027, replace\n  7.         label define `var\u0027 1 \"Option A\" 2 \"Option B\" 3 \"Option C\" 4 \"Optio\n\u003e n D\"\n  8.         label values `var\u0027 `var\u0027\n  9.         \n. }\n(255 real changes made)\n(254 real changes made)\n(222 real changes made)\n(269 real changes made)\ncat_var_101: all characters numeric; replaced as byte\n(240 real changes made)\n(264 real changes made)\n(272 real changes made)\n(224 real changes made)\ncat_var_102: all characters numeric; replaced as byte\n(234 real changes made)\n(253 real changes made)\n(266 real changes made)\n(247 real changes made)\ncat_var_103: all characters numeric; replaced as byte\n(248 real changes made)\n(261 real changes made)\n(258 real changes made)\n(233 real changes made)\ncat_var_104: all characters numeric; replaced as byte\n(245 real changes made)\n(239 real changes made)\n(265 real changes made)\n(251 real changes made)\ncat_var_105: all characters numeric; replaced as byte\n(231 real changes made)\n(262 real changes made)\n(258 real changes made)\n(249 real changes made)\ncat_var_106: all characters numeric; replaced as byte\n(265 real changes made)\n(261 real changes made)\n(254 real changes made)\n(220 real changes made)\ncat_var_107: all characters numeric; replaced as byte\n(263 real changes made)\n(254 real changes made)\n(268 real changes made)\n(215 real changes made)\ncat_var_108: all characters numeric; replaced as byte\n(224 real changes made)\n(262 real changes made)\n(249 real changes made)\n(265 real changes made)\ncat_var_109: all characters numeric; replaced as byte\n(283 real changes made)\n(234 real changes made)\n(247 real changes made)\n(236 real changes made)\ncat_var_110: all characters numeric; replaced as byte\n(252 real changes made)\n(245 real changes made)\n(255 real changes made)\n(248 real changes made)\ncat_var_111: all characters numeric; replaced as byte\n(276 real changes made)\n(243 real changes made)\n(230 real changes made)\n(251 real changes made)\ncat_var_112: all characters numeric; replaced as byte\n(254 real changes made)\n(245 real changes made)\n(249 real changes made)\n(252 real changes made)\ncat_var_113: all characters numeric; replaced as byte\n(272 real changes made)\n(238 real changes made)\n(247 real changes made)\n(243 real changes made)\ncat_var_114: all characters numeric; replaced as byte\n(227 real changes made)\n(236 real changes made)\n(278 real changes made)\n(259 real changes made)\ncat_var_115: all characters numeric; replaced as byte\n(260 real changes made)\n(234 real changes made)\n(257 real changes made)\n(249 real changes made)\ncat_var_116: all characters numeric; replaced as byte\n(247 real changes made)\n(263 real changes made)\n(264 real changes made)\n(226 real changes made)\ncat_var_117: all characters numeric; replaced as byte\n(247 real changes made)\n(249 real changes made)\n(260 real changes made)\n(244 real changes made)\ncat_var_118: all characters numeric; replaced as byte\n(230 real changes made)\n(244 real changes made)\n(258 real changes made)\n(268 real changes made)\ncat_var_119: all characters numeric; replaced as byte\n(245 real changes made)\n(259 real changes made)\n(243 real changes made)\n(253 real changes made)\ncat_var_120: all characters numeric; replaced as byte\n(243 real changes made)\n(256 real changes made)\n(254 real changes made)\n(247 real changes made)\ncat_var_121: all characters numeric; replaced as byte\n(250 real changes made)\n(244 real changes made)\n(261 real changes made)\n(245 real changes made)\ncat_var_122: all characters numeric; replaced as byte\n(256 real changes made)\n(251 real changes made)\n(257 real changes made)\n(236 real changes made)\ncat_var_123: all characters numeric; replaced as byte\n(248 real changes made)\n(275 real changes made)\n(242 real changes made)\n(235 real changes made)\ncat_var_124: all characters numeric; replaced as byte\n(250 real changes made)\n(249 real changes made)\n(255 real changes made)\n(246 real changes made)\ncat_var_125: all characters numeric; replaced as byte\n(218 real changes made)\n(268 real changes made)\n(266 real changes made)\n(248 real changes made)\ncat_var_126: all characters numeric; replaced as byte\n(251 real changes made)\n(243 real changes made)\n(242 real changes made)\n(264 real changes made)\ncat_var_127: all characters numeric; replaced as byte\n(268 real changes made)\n(241 real changes made)\n(244 real changes made)\n(247 real changes made)\ncat_var_128: all characters numeric; replaced as byte\n(268 real changes made)\n(237 real changes made)\n(248 real changes made)\n(247 real changes made)\ncat_var_129: all characters numeric; replaced as byte\n(242 real changes made)\n(266 real changes made)\n(260 real changes made)\n(232 real changes made)\ncat_var_130: all characters numeric; replaced as byte\n(236 real changes made)\n(255 real changes made)\n(245 real changes made)\n(264 real changes made)\ncat_var_131: all characters numeric; replaced as byte\n(249 real changes made)\n(247 real changes made)\n(239 real changes made)\n(265 real changes made)\ncat_var_132: all characters numeric; replaced as byte\n(255 real changes made)\n(223 real changes made)\n(265 real changes made)\n(257 real changes made)\ncat_var_133: all characters numeric; replaced as byte\n(260 real changes made)\n(242 real changes made)\n(250 real changes made)\n(248 real changes made)\ncat_var_134: all characters numeric; replaced as byte\n(250 real changes made)\n(258 real changes made)\n(261 real changes made)\n(231 real changes made)\ncat_var_135: all characters numeric; replaced as byte\n(254 real changes made)\n(262 real changes made)\n(242 real changes made)\n(242 real changes made)\ncat_var_136: all characters numeric; replaced as byte\n(249 real changes made)\n(259 real changes made)\n(239 real changes made)\n(253 real changes made)\ncat_var_137: all characters numeric; replaced as byte\n(247 real changes made)\n(261 real changes made)\n(239 real changes made)\n(253 real changes made)\ncat_var_138: all characters numeric; replaced as byte\n(256 real changes made)\n(255 real changes made)\n(256 real changes made)\n(233 real changes made)\ncat_var_139: all characters numeric; replaced as byte\n(287 real changes made)\n(244 real changes made)\n(223 real changes made)\n(246 real changes made)\ncat_var_140: all characters numeric; replaced as byte\n(261 real changes made)\n(259 real changes made)\n(262 real changes made)\n(218 real changes made)\ncat_var_141: all characters numeric; replaced as byte\n(256 real changes made)\n(252 real changes made)\n(246 real changes made)\n(246 real changes made)\ncat_var_142: all characters numeric; replaced as byte\n(234 real changes made)\n(282 real changes made)\n(237 real changes made)\n(247 real changes made)\ncat_var_143: all characters numeric; replaced as byte\n(267 real changes made)\n(257 real changes made)\n(245 real changes made)\n(231 real changes made)\ncat_var_144: all characters numeric; replaced as byte\n(240 real changes made)\n(235 real changes made)\n(260 real changes made)\n(265 real changes made)\ncat_var_145: all characters numeric; replaced as byte\n(252 real changes made)\n(231 real changes made)\n(260 real changes made)\n(257 real changes made)\ncat_var_146: all characters numeric; replaced as byte\n(272 real changes made)\n(239 real changes made)\n(239 real changes made)\n(250 real changes made)\ncat_var_147: all characters numeric; replaced as byte\n(261 real changes made)\n(238 real changes made)\n(247 real changes made)\n(254 real changes made)\ncat_var_148: all characters numeric; replaced as byte\n(247 real changes made)\n(241 real changes made)\n(264 real changes made)\n(248 real changes made)\ncat_var_149: all characters numeric; replaced as byte\n(249 real changes made)\n(254 real changes made)\n(258 real changes made)\n(239 real changes made)\ncat_var_150: all characters numeric; replaced as byte\n(254 real changes made)\n(247 real changes made)\n(272 real changes made)\n(227 real changes made)\ncat_var_151: all characters numeric; replaced as byte\n(233 real changes made)\n(252 real changes made)\n(261 real changes made)\n(254 real changes made)\ncat_var_152: all characters numeric; replaced as byte\n(219 real changes made)\n(247 real changes made)\n(275 real changes made)\n(259 real changes made)\ncat_var_153: all characters numeric; replaced as byte\n(244 real changes made)\n(240 real changes made)\n(256 real changes made)\n(260 real changes made)\ncat_var_154: all characters numeric; replaced as byte\n(274 real changes made)\n(249 real changes made)\n(249 real changes made)\n(228 real changes made)\ncat_var_155: all characters numeric; replaced as byte\n(244 real changes made)\n(236 real changes made)\n(266 real changes made)\n(254 real changes made)\ncat_var_156: all characters numeric; replaced as byte\n(230 real changes made)\n(284 real changes made)\n(236 real changes made)\n(250 real changes made)\ncat_var_157: all characters numeric; replaced as byte\n(243 real changes made)\n(218 real changes made)\n(258 real changes made)\n(281 real changes made)\ncat_var_158: all characters numeric; replaced as byte\n(225 real changes made)\n(263 real changes made)\n(257 real changes made)\n(255 real changes made)\ncat_var_159: all characters numeric; replaced as byte\n(240 real changes made)\n(285 real changes made)\n(251 real changes made)\n(224 real changes made)\ncat_var_160: all characters numeric; replaced as byte\n(246 real changes made)\n(252 real changes made)\n(253 real changes made)\n(249 real changes made)\ncat_var_161: all characters numeric; replaced as byte\n(242 real changes made)\n(270 real changes made)\n(262 real changes made)\n(226 real changes made)\ncat_var_162: all characters numeric; replaced as byte\n(260 real changes made)\n(246 real changes made)\n(250 real changes made)\n(244 real changes made)\ncat_var_163: all characters numeric; replaced as byte\n(271 real changes made)\n(247 real changes made)\n(242 real changes made)\n(240 real changes made)\ncat_var_164: all characters numeric; replaced as byte\n(217 real changes made)\n(265 real changes made)\n(259 real changes made)\n(259 real changes made)\ncat_var_165: all characters numeric; replaced as byte\n(273 real changes made)\n(265 real changes made)\n(228 real changes made)\n(234 real changes made)\ncat_var_166: all characters numeric; replaced as byte\n(240 real changes made)\n(235 real changes made)\n(243 real changes made)\n(282 real changes made)\ncat_var_167: all characters numeric; replaced as byte\n(272 real changes made)\n(244 real changes made)\n(225 real changes made)\n(259 real changes made)\ncat_var_168: all characters numeric; replaced as byte\n(260 real changes made)\n(258 real changes made)\n(237 real changes made)\n(245 real changes made)\ncat_var_169: all characters numeric; replaced as byte\n(246 real changes made)\n(270 real changes made)\n(237 real changes made)\n(247 real changes made)\ncat_var_170: all characters numeric; replaced as byte\n(227 real changes made)\n(273 real changes made)\n(243 real changes made)\n(257 real changes made)\ncat_var_171: all characters numeric; replaced as byte\n(246 real changes made)\n(258 real changes made)\n(261 real changes made)\n(235 real changes made)\ncat_var_172: all characters numeric; replaced as byte\n(236 real changes made)\n(250 real changes made)\n(283 real changes made)\n(231 real changes made)\ncat_var_173: all characters numeric; replaced as byte\n(245 real changes made)\n(270 real changes made)\n(246 real changes made)\n(239 real changes made)\ncat_var_174: all characters numeric; replaced as byte\n(255 real changes made)\n(251 real changes made)\n(264 real changes made)\n(230 real changes made)\ncat_var_175: all characters numeric; replaced as byte\n(242 real changes made)\n(263 real changes made)\n(253 real changes made)\n(242 real changes made)\ncat_var_176: all characters numeric; replaced as byte\n(239 real changes made)\n(260 real changes made)\n(259 real changes made)\n(242 real changes made)\ncat_var_177: all characters numeric; replaced as byte\n(255 real changes made)\n(252 real changes made)\n(241 real changes made)\n(252 real changes made)\ncat_var_178: all characters numeric; replaced as byte\n(253 real changes made)\n(265 real changes made)\n(229 real changes made)\n(253 real changes made)\ncat_var_179: all characters numeric; replaced as byte\n(259 real changes made)\n(238 real changes made)\n(263 real changes made)\n(240 real changes made)\ncat_var_180: all characters numeric; replaced as byte\n(264 real changes made)\n(252 real changes made)\n(248 real changes made)\n(236 real changes made)\ncat_var_181: all characters numeric; replaced as byte\n(228 real changes made)\n(269 real changes made)\n(245 real changes made)\n(258 real changes made)\ncat_var_182: all characters numeric; replaced as byte\n(238 real changes made)\n(267 real changes made)\n(234 real changes made)\n(261 real changes made)\ncat_var_183: all characters numeric; replaced as byte\n(246 real changes made)\n(246 real changes made)\n(271 real changes made)\n(237 real changes made)\ncat_var_184: all characters numeric; replaced as byte\n(271 real changes made)\n(260 real changes made)\n(238 real changes made)\n(231 real changes made)\ncat_var_185: all characters numeric; replaced as byte\n(263 real changes made)\n(251 real changes made)\n(252 real changes made)\n(234 real changes made)\ncat_var_186: all characters numeric; replaced as byte\n(255 real changes made)\n(271 real changes made)\n(242 real changes made)\n(232 real changes made)\ncat_var_187: all characters numeric; replaced as byte\n(248 real changes made)\n(265 real changes made)\n(243 real changes made)\n(244 real changes made)\ncat_var_188: all characters numeric; replaced as byte\n(235 real changes made)\n(267 real changes made)\n(245 real changes made)\n(253 real changes made)\ncat_var_189: all characters numeric; replaced as byte\n(250 real changes made)\n(261 real changes made)\n(254 real changes made)\n(235 real changes made)\ncat_var_190: all characters numeric; replaced as byte\n(233 real changes made)\n(270 real changes made)\n(264 real changes made)\n(233 real changes made)\ncat_var_191: all characters numeric; replaced as byte\n(261 real changes made)\n(216 real changes made)\n(254 real changes made)\n(269 real changes made)\ncat_var_192: all characters numeric; replaced as byte\n(241 real changes made)\n(243 real changes made)\n(253 real changes made)\n(263 real changes made)\ncat_var_193: all characters numeric; replaced as byte\n(258 real changes made)\n(232 real changes made)\n(265 real changes made)\n(245 real changes made)\ncat_var_194: all characters numeric; replaced as byte\n(244 real changes made)\n(250 real changes made)\n(251 real changes made)\n(255 real changes made)\ncat_var_195: all characters numeric; replaced as byte\n(279 real changes made)\n(235 real changes made)\n(239 real changes made)\n(247 real changes made)\ncat_var_196: all characters numeric; replaced as byte\n(256 real changes made)\n(224 real changes made)\n(264 real changes made)\n(256 real changes made)\ncat_var_197: all characters numeric; replaced as byte\n(254 real changes made)\n(242 real changes made)\n(272 real changes made)\n(232 real changes made)\ncat_var_198: all characters numeric; replaced as byte\n(248 real changes made)\n(250 real changes made)\n(260 real changes made)\n(242 real changes made)\ncat_var_199: all characters numeric; replaced as byte\n\n. \n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726117590990_350618831",
+      "id": "paragraph_1726117590990_350618831",
+      "dateCreated": "2024-09-12 05:06:30.990",
+      "dateStarted": "2024-09-19 06:56:32.347",
+      "dateFinished": "2024-09-19 06:56:33.013",
+      "status": "FINISHED"
+    },
+    {
+      "text": "stata.run(\u0027\u0027\u0027\nforeach var of varlist str_var_201 str_var_202 str_var_203 str_var_204 str_var_205 str_var_206 str_var_207 str_var_208 str_var_209 str_var_210 str_var_211 str_var_212 str_var_213 str_var_214 str_var_215 str_var_216 str_var_217 str_var_218 str_var_219 str_var_220 str_var_221 str_var_222 str_var_223 str_var_224 str_var_225 str_var_226 str_var_227 str_var_228 str_var_229 str_var_230 str_var_231 str_var_232 str_var_233 str_var_234 str_var_235 str_var_236 str_var_237 str_var_238 str_var_239 str_var_240 str_var_241 str_var_242 str_var_243 str_var_244 str_var_245 str_var_246 str_var_247 str_var_248 str_var_249 str_var_250 str_var_251 str_var_252 str_var_253 str_var_254 str_var_255 str_var_256 str_var_257 str_var_258 str_var_259 str_var_260 str_var_261 str_var_262 str_var_263 str_var_264 str_var_265 str_var_266 str_var_267 str_var_268 str_var_269 str_var_270 str_var_271 str_var_272 str_var_273 str_var_274 str_var_275 str_var_276 str_var_277 str_var_278 str_var_279 str_var_280 str_var_281 str_var_282 str_var_283 str_var_284 str_var_285 str_var_286 str_var_287 str_var_288 str_var_289 str_var_290 str_var_291 str_var_292 str_var_293 str_var_294 str_var_295 str_var_296 str_var_297 str_var_298 str_var_299 str_var_300 str_var_402 str_var_406 str_var_410 str_var_414 str_var_418 str_var_422 str_var_426 str_var_430 str_var_434 str_var_438 str_var_442 str_var_446 str_var_450 str_var_454 str_var_458 str_var_462 str_var_466 str_var_470 str_var_474 str_var_478 str_var_482 str_var_486 str_var_490 str_var_494 str_var_498{\n\t\n\treplace `var\u0027 \u003d \"\" if `var\u0027 \u003d\u003d \".\"\n\treplace `var\u0027 \u003d ustrtrim(`var\u0027)\n\treplace `var\u0027 \u003d strupper(`var\u0027)\n}\n\u0027\u0027\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2024-09-12 05:08:22.290",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n. \n. foreach var of varlist str_var_201 str_var_202 str_var_203 str_var_204 str_va\n\u003e r_205 str_var_206 str_var_207 str_var_208 str_var_209 str_var_210 str_var_211\n\u003e  str_var_212 str_var_213 str_var_214 str_var_215 str_var_216 str_var_217 str_\n\u003e var_218 str_var_219 str_var_220 str_var_221 str_var_222 str_var_223 str_var_2\n\u003e 24 str_var_225 str_var_226 str_var_227 str_var_228 str_var_229 str_var_230 st\n\u003e r_var_231 str_var_232 str_var_233 str_var_234 str_var_235 str_var_236 str_var\n\u003e _237 str_var_238 str_var_239 str_var_240 str_var_241 str_var_242 str_var_243 \n\u003e str_var_244 str_var_245 str_var_246 str_var_247 str_var_248 str_var_249 str_v\n\u003e ar_250 str_var_251 str_var_252 str_var_253 str_var_254 str_var_255 str_var_25\n\u003e 6 str_var_257 str_var_258 str_var_259 str_var_260 str_var_261 str_var_262 str\n\u003e _var_263 str_var_264 str_var_265 str_var_266 str_var_267 str_var_268 str_var_\n\u003e 269 str_var_270 str_var_271 str_var_272 str_var_273 str_var_274 str_var_275 s\n\u003e tr_var_276 str_var_277 str_var_278 str_var_279 str_var_280 str_var_281 str_va\n\u003e r_282 str_var_283 str_var_284 str_var_285 str_var_286 str_var_287 str_var_288\n\u003e  str_var_289 str_var_290 str_var_291 str_var_292 str_var_293 str_var_294 str_\n\u003e var_295 str_var_296 str_var_297 str_var_298 str_var_299 str_var_300 str_var_4\n\u003e 02 str_var_406 str_var_410 str_var_414 str_var_418 str_var_422 str_var_426 st\n\u003e r_var_430 str_var_434 str_var_438 str_var_442 str_var_446 str_var_450 str_var\n\u003e _454 str_var_458 str_var_462 str_var_466 str_var_470 str_var_474 str_var_478 \n\u003e str_var_482 str_var_486 str_var_490 str_var_494 str_var_498{\n  2.         \n.         replace `var\u0027 \u003d \"\" if `var\u0027 \u003d\u003d \".\"\n  3.         replace `var\u0027 \u003d ustrtrim(`var\u0027)\n  4.         replace `var\u0027 \u003d strupper(`var\u0027)\n  5. }\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(992 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(1,000 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(1,000 real changes made)\n(0 real changes made)\n(0 real changes made)\n(990 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(992 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(989 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(994 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(999 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(998 real changes made)\n(0 real changes made)\n(0 real changes made)\n(997 real changes made)\n(0 real changes made)\n(0 real changes made)\n(992 real changes made)\n(0 real changes made)\n(0 real changes made)\n(996 real changes made)\n(0 real changes made)\n(0 real changes made)\n(1,000 real changes made)\n(0 real changes made)\n(0 real changes made)\n(995 real changes made)\n(0 real changes made)\n(0 real changes made)\n(993 real changes made)\n\n. \n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726117591258_353514263",
+      "id": "paragraph_1726117591258_353514263",
+      "dateCreated": "2024-09-12 05:06:31.258",
+      "dateStarted": "2024-09-12 05:08:22.292",
+      "dateFinished": "2024-09-12 05:08:22.398",
+      "status": "FINISHED"
+    },
+    {
+      "text": "stata.run(\u0027\u0027\u0027\nforeach var of varlist cat_var_101 cat_var_102 cat_var_103 cat_var_104 cat_var_105 cat_var_106 cat_var_107 cat_var_108 cat_var_109 cat_var_110 cat_var_111 cat_var_112 cat_var_113 cat_var_114 cat_var_115 cat_var_116 cat_var_117 cat_var_118 cat_var_119 cat_var_120 cat_var_121 cat_var_122 cat_var_123 cat_var_124 cat_var_125 cat_var_126 cat_var_127 cat_var_128 cat_var_129 cat_var_130 cat_var_131 cat_var_132 cat_var_133 cat_var_134 cat_var_135 cat_var_136 cat_var_137 cat_var_138 cat_var_139 cat_var_140 cat_var_141 cat_var_142 cat_var_143 cat_var_144 cat_var_145 cat_var_146 cat_var_147 cat_var_148 cat_var_149 cat_var_150 cat_var_151 cat_var_152 cat_var_153 cat_var_154 cat_var_155 cat_var_156 cat_var_157 cat_var_158 cat_var_159 cat_var_160 cat_var_161 cat_var_162 cat_var_163 cat_var_164 cat_var_165 cat_var_166 cat_var_167 cat_var_168 cat_var_169 cat_var_170 cat_var_171 cat_var_172 cat_var_173 cat_var_174 cat_var_175 cat_var_176 cat_var_177 cat_var_178 cat_var_179 cat_var_180 cat_var_181 cat_var_182 cat_var_183 cat_var_184 cat_var_185 cat_var_186 cat_var_187 cat_var_188 cat_var_189 cat_var_190 cat_var_191 cat_var_192 cat_var_193 cat_var_194 cat_var_195 cat_var_196 cat_var_197 cat_var_198 cat_var_199{\n\treplace `var\u0027 \u003d \"1\" if `var\u0027\u003d\u003d\"A\"\n\treplace `var\u0027 \u003d \"2\" if `var\u0027\u003d\u003d\"B\"\n\treplace `var\u0027 \u003d \"3\" if `var\u0027\u003d\u003d\"C\"\n\treplace `var\u0027 \u003d \"4\" if `var\u0027\u003d\u003d\"D\"\n\tdestring `var\u0027, replace\n\tlabel define `var\u0027 1 \"Option A\" 2 \"Option B\" 3 \"Option C\" 4 \"Option D\"\n\tlabel values `var\u0027 `var\u0027\n\t\n}\n\u0027\u0027\u0027)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:56:49.716",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "title": false,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mSystemError\u001b[0m                               Traceback (most recent call last)\nCell \u001b[0;32mIn[12], line 1\u001b[0m\n\u001b[0;32m----\u003e 1\u001b[0m stata\u001b[38;5;241m.\u001b[39mrun(\u001b[38;5;124m\u0027\u0027\u0027\u001b[39m\n\u001b[1;32m      2\u001b[0m \u001b[38;5;124mforeach var of varlist cat_var_101 cat_var_102 cat_var_103 cat_var_104 cat_var_105 cat_var_106 cat_var_107 cat_var_108 cat_var_109 cat_var_110 cat_var_111 cat_var_112 cat_var_113 cat_var_114 cat_var_115 cat_var_116 cat_var_117 cat_var_118 cat_var_119 cat_var_120 cat_var_121 cat_var_122 cat_var_123 cat_var_124 cat_var_125 cat_var_126 cat_var_127 cat_var_128 cat_var_129 cat_var_130 cat_var_131 cat_var_132 cat_var_133 cat_var_134 cat_var_135 cat_var_136 cat_var_137 cat_var_138 cat_var_139 cat_var_140 cat_var_141 cat_var_142 cat_var_143 cat_var_144 cat_var_145 cat_var_146 cat_var_147 cat_var_148 cat_var_149 cat_var_150 cat_var_151 cat_var_152 cat_var_153 cat_var_154 cat_var_155 cat_var_156 cat_var_157 cat_var_158 cat_var_159 cat_var_160 cat_var_161 cat_var_162 cat_var_163 cat_var_164 cat_var_165 cat_var_166 cat_var_167 cat_var_168 cat_var_169 cat_var_170 cat_var_171 cat_var_172 cat_var_173 cat_var_174 cat_var_175 cat_var_176 cat_var_177 cat_var_178 cat_var_179 cat_var_180 cat_var_181 cat_var_182 cat_var_183 cat_var_184 cat_var_185 cat_var_186 cat_var_187 cat_var_188 cat_var_189 cat_var_190 cat_var_191 cat_var_192 cat_var_193 cat_var_194 cat_var_195 cat_var_196 cat_var_197 cat_var_198 cat_var_199\u001b[39m\u001b[38;5;124m{\u001b[39m\n\u001b[1;32m      3\u001b[0m \u001b[38;5;124m\treplace `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m \u003d \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m1\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m if `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m\u003d\u003d\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mA\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m      4\u001b[0m \u001b[38;5;124m\treplace `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m \u003d \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m2\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m if `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m\u003d\u003d\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mB\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m      5\u001b[0m \u001b[38;5;124m\treplace `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m \u003d \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m3\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m if `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m\u003d\u003d\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mC\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m      6\u001b[0m \u001b[38;5;124m\treplace `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m \u003d \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m4\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m if `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m\u003d\u003d\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mD\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m      7\u001b[0m \u001b[38;5;124m\tdestring `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m, replace\u001b[39m\n\u001b[1;32m      8\u001b[0m \u001b[38;5;124m\tlabel define `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m 1 \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mOption A\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m 2 \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mOption B\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m 3 \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mOption C\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m 4 \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mOption D\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m      9\u001b[0m \u001b[38;5;124m\tlabel values `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m `var\u001b[39m\u001b[38;5;124m\u0027\u001b[39m\n\u001b[1;32m     10\u001b[0m \u001b[38;5;124m\t\u001b[39m\n\u001b[1;32m     11\u001b[0m \u001b[38;5;124m}\u001b[39m\n\u001b[1;32m     12\u001b[0m \u001b[38;5;124m\u0027\u0027\u0027\u001b[39m)\n\nFile \u001b[0;32m~/zeppelin/stata2/utilities/pystata/stata.py:341\u001b[0m, in \u001b[0;36mrun\u001b[0;34m(cmd, quietly, echo, inline)\u001b[0m\n\u001b[1;32m    339\u001b[0m \u001b[38;5;124m        _stata_wrk2(\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mqui include \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m + tmpf, None, False, 1, echo)\u001b[39m\n\u001b[1;32m    340\u001b[0m \u001b[38;5;124m    else:\u001b[39m\n\u001b[0;32m--\u003e 341\u001b[0m \u001b[38;5;124m        _stata_wrk2(\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124minclude \u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m + tmpf, None, False, 1, echo)\u001b[39m\n\u001b[1;32m    343\u001b[0m \u001b[38;5;124mif inline:\u001b[39m\n\u001b[1;32m    344\u001b[0m \u001b[38;5;124m    if config.get_stipython()\u003e\u003d3:\u001b[39m\n\nFile \u001b[0;32m~/zeppelin/stata2/utilities/pystata/stata.py:116\u001b[0m, in \u001b[0;36m_stata_wrk2\u001b[0;34m(cmd, real_cmd, colon, mode, echo)\u001b[0m\n\u001b[1;32m    114\u001b[0m         err \u001b[38;5;241m\u003d\u001b[39m callback[\u001b[38;5;241m0\u001b[39m]\n\u001b[1;32m    115\u001b[0m         callback\u001b[38;5;241m.\u001b[39mclear()\n\u001b[0;32m--\u003e 116\u001b[0m         \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mSystemError\u001b[39;00m(err)\n\u001b[1;32m    117\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mKeyboardInterrupt\u001b[39;00m:\n\u001b[1;32m    118\u001b[0m     outputter\u001b[38;5;241m.\u001b[39mdone()\n\n\u001b[0;31mSystemError\u001b[0m: \n. \n. foreach var of varlist cat_var_101 cat_var_102 cat_var_103 cat_var_104 cat_va\n\u003e r_105 cat_var_106 cat_var_107 cat_var_108 cat_var_109 cat_var_110 cat_var_111\n\u003e  cat_var_112 cat_var_113 cat_var_114 cat_var_115 cat_var_116 cat_var_117 cat_\n\u003e var_118 cat_var_119 cat_var_120 cat_var_121 cat_var_122 cat_var_123 cat_var_1\n\u003e 24 cat_var_125 cat_var_126 cat_var_127 cat_var_128 cat_var_129 cat_var_130 ca\n\u003e t_var_131 cat_var_132 cat_var_133 cat_var_134 cat_var_135 cat_var_136 cat_var\n\u003e _137 cat_var_138 cat_var_139 cat_var_140 cat_var_141 cat_var_142 cat_var_143 \n\u003e cat_var_144 cat_var_145 cat_var_146 cat_var_147 cat_var_148 cat_var_149 cat_v\n\u003e ar_150 cat_var_151 cat_var_152 cat_var_153 cat_var_154 cat_var_155 cat_var_15\n\u003e 6 cat_var_157 cat_var_158 cat_var_159 cat_var_160 cat_var_161 cat_var_162 cat\n\u003e _var_163 cat_var_164 cat_var_165 cat_var_166 cat_var_167 cat_var_168 cat_var_\n\u003e 169 cat_var_170 cat_var_171 cat_var_172 cat_var_173 cat_var_174 cat_var_175 c\n\u003e at_var_176 cat_var_177 cat_var_178 cat_var_179 cat_var_180 cat_var_181 cat_va\n\u003e r_182 cat_var_183 cat_var_184 cat_var_185 cat_var_186 cat_var_187 cat_var_188\n\u003e  cat_var_189 cat_var_190 cat_var_191 cat_var_192 cat_var_193 cat_var_194 cat_\n\u003e var_195 cat_var_196 cat_var_197 cat_var_198 cat_var_199{\n  2.         replace `var\u0027 \u003d \"1\" if `var\u0027\u003d\u003d\"A\"\n  3.         replace `var\u0027 \u003d \"2\" if `var\u0027\u003d\u003d\"B\"\n  4.         replace `var\u0027 \u003d \"3\" if `var\u0027\u003d\u003d\"C\"\n  5.         replace `var\u0027 \u003d \"4\" if `var\u0027\u003d\u003d\"D\"\n  6.         destring `var\u0027, replace\n  7.         label define `var\u0027 1 \"Option A\" 2 \"Option B\" 3 \"Option C\" 4 \"Optio\n\u003e n D\"\n  8.         label values `var\u0027 `var\u0027\n  9.         \n. }\ntype mismatch\nr(109);\nr(109);\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726110155896_1231982141",
+      "id": "paragraph_1726110155896_1231982141",
+      "dateCreated": "2024-09-12 03:02:35.897",
+      "dateStarted": "2024-09-19 06:56:49.719",
+      "dateFinished": "2024-09-19 06:56:49.886",
+      "status": "ERROR"
+    },
+    {
+      "text": "stata.run(\u0027\u0027\u0027\nrename cont_var_1 variable1\nrename cont_var_2 variable2\nrename cont_var_3 variable3\nrename cont_var_4 variable4\nrename cont_var_5 variable5\nrename cont_var_6 variable6\nrename cont_var_7 variable7\nrename cont_var_8 variable8\nrename cont_var_9 variable9\nrename cont_var_10 variable10\nrename cont_var_11 variable11\nrename cont_var_12 variable12\nrename cont_var_13 variable13\nrename cont_var_14 variable14\nrename cont_var_15 variable15\nrename cont_var_16 variable16\nrename cont_var_17 variable17\nrename cont_var_18 variable18\nrename cont_var_19 variable19\nrename cont_var_20 variable20\nrename cont_var_21 variable21\nrename cont_var_22 variable22\nrename cont_var_23 variable23\nrename cont_var_24 variable24\nrename cont_var_25 variable25\nrename cont_var_26 variable26\nrename cont_var_27 variable27\nrename cont_var_28 variable28\nrename cont_var_29 variable29\nrename cont_var_30 variable30\nrename cont_var_31 variable31\nrename cont_var_32 variable32\nrename cont_var_33 variable33\nrename cont_var_34 variable34\nrename cont_var_35 variable35\nrename cont_var_36 variable36\nrename cont_var_37 variable37\nrename cont_var_38 variable38\nrename cont_var_39 variable39\nrename cont_var_40 variable40\nrename cont_var_41 variable41\nrename cont_var_42 variable42\nrename cont_var_43 variable43\nrename cont_var_44 variable44\nrename cont_var_45 variable45\nrename cont_var_46 variable46\nrename cont_var_47 variable47\nrename cont_var_48 variable48\nrename cont_var_49 variable49\nrename cont_var_50 variable50\nrename cont_var_51 variable51\nrename cont_var_52 variable52\nrename cont_var_53 variable53\nrename cont_var_54 variable54\nrename cont_var_55 variable55\nrename cont_var_56 variable56\nrename cont_var_57 variable57\nrename cont_var_58 variable58\nrename cont_var_59 variable59\nrename cont_var_60 variable60\nrename cont_var_61 variable61\nrename cont_var_62 variable62\nrename cont_var_63 variable63\nrename cont_var_64 variable64\nrename cont_var_65 variable65\nrename cont_var_66 variable66\nrename cont_var_67 variable67\nrename cont_var_68 variable68\nrename cont_var_69 variable69\nrename cont_var_70 variable70\nrename cont_var_71 variable71\nrename cont_var_72 variable72\nrename cont_var_73 variable73\nrename cont_var_74 variable74\nrename cont_var_75 variable75\nrename cont_var_76 variable76\nrename cont_var_77 variable77\nrename cont_var_78 variable78\nrename cont_var_79 variable79\nrename cont_var_80 variable80\nrename cont_var_81 variable81\nrename cont_var_82 variable82\nrename cont_var_83 variable83\nrename cont_var_84 variable84\nrename cont_var_85 variable85\nrename cont_var_86 variable86\nrename cont_var_87 variable87\nrename cont_var_88 variable88\nrename cont_var_89 variable89\nrename cont_var_90 variable90\nrename cont_var_91 variable91\nrename cont_var_92 variable92\nrename cont_var_93 variable93\nrename cont_var_94 variable94\nrename cont_var_95 variable95\nrename cont_var_96 variable96\nrename cont_var_97 variable97\nrename cont_var_98 variable98\nrename cont_var_99 variable99\nrename cont_var_100 variable100\n\n\nlabel variable variable1 \"VARIABLE1\"\nlabel variable variable2 \"VARIABLE2\"\nlabel variable variable3 \"VARIABLE3\"\nlabel variable variable4 \"VARIABLE4\"\nlabel variable variable5 \"VARIABLE5\"\nlabel variable variable6 \"VARIABLE6\"\nlabel variable variable7 \"VARIABLE7\"\nlabel variable variable8 \"VARIABLE8\"\nlabel variable variable9 \"VARIABLE9\"\nlabel variable variable10 \"VARIABLE10\"\nlabel variable variable11 \"VARIABLE11\"\nlabel variable variable12 \"VARIABLE12\"\nlabel variable variable13 \"VARIABLE13\"\nlabel variable variable14 \"VARIABLE14\"\nlabel variable variable15 \"VARIABLE15\"\nlabel variable variable16 \"VARIABLE16\"\nlabel variable variable17 \"VARIABLE17\"\nlabel variable variable18 \"VARIABLE18\"\nlabel variable variable19 \"VARIABLE19\"\nlabel variable variable20 \"VARIABLE20\"\nlabel variable variable21 \"VARIABLE21\"\nlabel variable variable22 \"VARIABLE22\"\nlabel variable variable23 \"VARIABLE23\"\nlabel variable variable24 \"VARIABLE24\"\nlabel variable variable25 \"VARIABLE25\"\nlabel variable variable26 \"VARIABLE26\"\nlabel variable variable27 \"VARIABLE27\"\nlabel variable variable28 \"VARIABLE28\"\nlabel variable variable29 \"VARIABLE29\"\nlabel variable variable30 \"VARIABLE30\"\nlabel variable variable31 \"VARIABLE31\"\nlabel variable variable32 \"VARIABLE32\"\nlabel variable variable33 \"VARIABLE33\"\nlabel variable variable34 \"VARIABLE34\"\nlabel variable variable35 \"VARIABLE35\"\nlabel variable variable36 \"VARIABLE36\"\nlabel variable variable37 \"VARIABLE37\"\nlabel variable variable38 \"VARIABLE38\"\nlabel variable variable39 \"VARIABLE39\"\nlabel variable variable40 \"VARIABLE40\"\nlabel variable variable41 \"VARIABLE41\"\nlabel variable variable42 \"VARIABLE42\"\nlabel variable variable43 \"VARIABLE43\"\nlabel variable variable44 \"VARIABLE44\"\nlabel variable variable45 \"VARIABLE45\"\nlabel variable variable46 \"VARIABLE46\"\nlabel variable variable47 \"VARIABLE47\"\nlabel variable variable48 \"VARIABLE48\"\nlabel variable variable49 \"VARIABLE49\"\nlabel variable variable50 \"VARIABLE50\"\nlabel variable variable51 \"VARIABLE51\"\nlabel variable variable52 \"VARIABLE52\"\nlabel variable variable53 \"VARIABLE53\"\nlabel variable variable54 \"VARIABLE54\"\nlabel variable variable55 \"VARIABLE55\"\nlabel variable variable56 \"VARIABLE56\"\nlabel variable variable57 \"VARIABLE57\"\nlabel variable variable58 \"VARIABLE58\"\nlabel variable variable59 \"VARIABLE59\"\nlabel variable variable60 \"VARIABLE60\"\nlabel variable variable61 \"VARIABLE61\"\nlabel variable variable62 \"VARIABLE62\"\nlabel variable variable63 \"VARIABLE63\"\nlabel variable variable64 \"VARIABLE64\"\nlabel variable variable65 \"VARIABLE65\"\nlabel variable variable66 \"VARIABLE66\"\nlabel variable variable67 \"VARIABLE67\"\nlabel variable variable68 \"VARIABLE68\"\nlabel variable variable69 \"VARIABLE69\"\nlabel variable variable70 \"VARIABLE70\"\nlabel variable variable71 \"VARIABLE71\"\nlabel variable variable72 \"VARIABLE72\"\nlabel variable variable73 \"VARIABLE73\"\nlabel variable variable74 \"VARIABLE74\"\nlabel variable variable75 \"VARIABLE75\"\nlabel variable variable76 \"VARIABLE76\"\nlabel variable variable77 \"VARIABLE77\"\nlabel variable variable78 \"VARIABLE78\"\nlabel variable variable79 \"VARIABLE79\"\nlabel variable variable80 \"VARIABLE80\"\nlabel variable variable81 \"VARIABLE81\"\nlabel variable variable82 \"VARIABLE82\"\nlabel variable variable83 \"VARIABLE83\"\nlabel variable variable84 \"VARIABLE84\"\nlabel variable variable85 \"VARIABLE85\"\nlabel variable variable86 \"VARIABLE86\"\nlabel variable variable87 \"VARIABLE87\"\nlabel variable variable88 \"VARIABLE88\"\nlabel variable variable89 \"VARIABLE89\"\nlabel variable variable90 \"VARIABLE90\"\nlabel variable variable91 \"VARIABLE91\"\nlabel variable variable92 \"VARIABLE92\"\nlabel variable variable93 \"VARIABLE93\"\nlabel variable variable94 \"VARIABLE94\"\nlabel variable variable95 \"VARIABLE95\"\nlabel variable variable96 \"VARIABLE96\"\nlabel variable variable97 \"VARIABLE97\"\nlabel variable variable98 \"VARIABLE98\"\nlabel variable variable99 \"VARIABLE99\"\nlabel variable variable100 \"VARIABLE100\"\n\n\u0027\u0027\u0027)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-19 06:57:22.360",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n. \n. rename cont_var_1 variable1\n\n. rename cont_var_2 variable2\n\n. rename cont_var_3 variable3\n\n. rename cont_var_4 variable4\n\n. rename cont_var_5 variable5\n\n. rename cont_var_6 variable6\n\n. rename cont_var_7 variable7\n\n. rename cont_var_8 variable8\n\n. rename cont_var_9 variable9\n\n. rename cont_var_10 variable10\n\n. rename cont_var_11 variable11\n\n. rename cont_var_12 variable12\n\n. rename cont_var_13 variable13\n\n. rename cont_var_14 variable14\n\n. rename cont_var_15 variable15\n\n. rename cont_var_16 variable16\n\n. rename cont_var_17 variable17\n\n. rename cont_var_18 variable18\n\n. rename cont_var_19 variable19\n\n. rename cont_var_20 variable20\n\n. rename cont_var_21 variable21\n\n. rename cont_var_22 variable22\n\n. rename cont_var_23 variable23\n\n. rename cont_var_24 variable24\n\n. rename cont_var_25 variable25\n\n. rename cont_var_26 variable26\n\n. rename cont_var_27 variable27\n\n. rename cont_var_28 variable28\n\n. rename cont_var_29 variable29\n\n. rename cont_var_30 variable30\n\n. rename cont_var_31 variable31\n\n. rename cont_var_32 variable32\n\n. rename cont_var_33 variable33\n\n. rename cont_var_34 variable34\n\n. rename cont_var_35 variable35\n\n. rename cont_var_36 variable36\n\n. rename cont_var_37 variable37\n\n. rename cont_var_38 variable38\n\n. rename cont_var_39 variable39\n\n. rename cont_var_40 variable40\n\n. rename cont_var_41 variable41\n\n. rename cont_var_42 variable42\n\n. rename cont_var_43 variable43\n\n. rename cont_var_44 variable44\n\n. rename cont_var_45 variable45\n\n. rename cont_var_46 variable46\n\n. rename cont_var_47 variable47\n\n. rename cont_var_48 variable48\n\n. rename cont_var_49 variable49\n\n. rename cont_var_50 variable50\n\n. rename cont_var_51 variable51\n\n. rename cont_var_52 variable52\n\n. rename cont_var_53 variable53\n\n. rename cont_var_54 variable54\n\n. rename cont_var_55 variable55\n\n. rename cont_var_56 variable56\n\n. rename cont_var_57 variable57\n\n. rename cont_var_58 variable58\n\n. rename cont_var_59 variable59\n\n. rename cont_var_60 variable60\n\n. rename cont_var_61 variable61\n\n. rename cont_var_62 variable62\n\n. rename cont_var_63 variable63\n\n. rename cont_var_64 variable64\n\n. rename cont_var_65 variable65\n\n. rename cont_var_66 variable66\n\n. rename cont_var_67 variable67\n\n. rename cont_var_68 variable68\n\n. rename cont_var_69 variable69\n\n. rename cont_var_70 variable70\n\n. rename cont_var_71 variable71\n\n. rename cont_var_72 variable72\n\n. rename cont_var_73 variable73\n\n. rename cont_var_74 variable74\n\n. rename cont_var_75 variable75\n\n. rename cont_var_76 variable76\n\n. rename cont_var_77 variable77\n\n. rename cont_var_78 variable78\n\n. rename cont_var_79 variable79\n\n. rename cont_var_80 variable80\n\n. rename cont_var_81 variable81\n\n. rename cont_var_82 variable82\n\n. rename cont_var_83 variable83\n\n. rename cont_var_84 variable84\n\n. rename cont_var_85 variable85\n\n. rename cont_var_86 variable86\n\n. rename cont_var_87 variable87\n\n. rename cont_var_88 variable88\n\n. rename cont_var_89 variable89\n\n. rename cont_var_90 variable90\n\n. rename cont_var_91 variable91\n\n. rename cont_var_92 variable92\n\n. rename cont_var_93 variable93\n\n. rename cont_var_94 variable94\n\n. rename cont_var_95 variable95\n\n. rename cont_var_96 variable96\n\n. rename cont_var_97 variable97\n\n. rename cont_var_98 variable98\n\n. rename cont_var_99 variable99\n\n. rename cont_var_100 variable100\n\n. \n. \n. label variable variable1 \"VARIABLE1\"\n\n. label variable variable2 \"VARIABLE2\"\n\n. label variable variable3 \"VARIABLE3\"\n\n. label variable variable4 \"VARIABLE4\"\n\n. label variable variable5 \"VARIABLE5\"\n\n. label variable variable6 \"VARIABLE6\"\n\n. label variable variable7 \"VARIABLE7\"\n\n. label variable variable8 \"VARIABLE8\"\n\n. label variable variable9 \"VARIABLE9\"\n\n. label variable variable10 \"VARIABLE10\"\n\n. label variable variable11 \"VARIABLE11\"\n\n. label variable variable12 \"VARIABLE12\"\n\n. label variable variable13 \"VARIABLE13\"\n\n. label variable variable14 \"VARIABLE14\"\n\n. label variable variable15 \"VARIABLE15\"\n\n. label variable variable16 \"VARIABLE16\"\n\n. label variable variable17 \"VARIABLE17\"\n\n. label variable variable18 \"VARIABLE18\"\n\n. label variable variable19 \"VARIABLE19\"\n\n. label variable variable20 \"VARIABLE20\"\n\n. label variable variable21 \"VARIABLE21\"\n\n. label variable variable22 \"VARIABLE22\"\n\n. label variable variable23 \"VARIABLE23\"\n\n. label variable variable24 \"VARIABLE24\"\n\n. label variable variable25 \"VARIABLE25\"\n\n. label variable variable26 \"VARIABLE26\"\n\n. label variable variable27 \"VARIABLE27\"\n\n. label variable variable28 \"VARIABLE28\"\n\n. label variable variable29 \"VARIABLE29\"\n\n. label variable variable30 \"VARIABLE30\"\n\n. label variable variable31 \"VARIABLE31\"\n\n. label variable variable32 \"VARIABLE32\"\n\n. label variable variable33 \"VARIABLE33\"\n\n. label variable variable34 \"VARIABLE34\"\n\n. label variable variable35 \"VARIABLE35\"\n\n. label variable variable36 \"VARIABLE36\"\n\n. label variable variable37 \"VARIABLE37\"\n\n. label variable variable38 \"VARIABLE38\"\n\n. label variable variable39 \"VARIABLE39\"\n\n. label variable variable40 \"VARIABLE40\"\n\n. label variable variable41 \"VARIABLE41\"\n\n. label variable variable42 \"VARIABLE42\"\n\n. label variable variable43 \"VARIABLE43\"\n\n. label variable variable44 \"VARIABLE44\"\n\n. label variable variable45 \"VARIABLE45\"\n\n. label variable variable46 \"VARIABLE46\"\n\n. label variable variable47 \"VARIABLE47\"\n\n. label variable variable48 \"VARIABLE48\"\n\n. label variable variable49 \"VARIABLE49\"\n\n. label variable variable50 \"VARIABLE50\"\n\n. label variable variable51 \"VARIABLE51\"\n\n. label variable variable52 \"VARIABLE52\"\n\n. label variable variable53 \"VARIABLE53\"\n\n. label variable variable54 \"VARIABLE54\"\n\n. label variable variable55 \"VARIABLE55\"\n\n. label variable variable56 \"VARIABLE56\"\n\n. label variable variable57 \"VARIABLE57\"\n\n. label variable variable58 \"VARIABLE58\"\n\n. label variable variable59 \"VARIABLE59\"\n\n. label variable variable60 \"VARIABLE60\"\n\n. label variable variable61 \"VARIABLE61\"\n\n. label variable variable62 \"VARIABLE62\"\n\n. label variable variable63 \"VARIABLE63\"\n\n. label variable variable64 \"VARIABLE64\"\n\n. label variable variable65 \"VARIABLE65\"\n\n. label variable variable66 \"VARIABLE66\"\n\n. label variable variable67 \"VARIABLE67\"\n\n. label variable variable68 \"VARIABLE68\"\n\n. label variable variable69 \"VARIABLE69\"\n\n. label variable variable70 \"VARIABLE70\"\n\n. label variable variable71 \"VARIABLE71\"\n\n. label variable variable72 \"VARIABLE72\"\n\n. label variable variable73 \"VARIABLE73\"\n\n. label variable variable74 \"VARIABLE74\"\n\n. label variable variable75 \"VARIABLE75\"\n\n. label variable variable76 \"VARIABLE76\"\n\n. label variable variable77 \"VARIABLE77\"\n\n. label variable variable78 \"VARIABLE78\"\n\n. label variable variable79 \"VARIABLE79\"\n\n. label variable variable80 \"VARIABLE80\"\n\n. label variable variable81 \"VARIABLE81\"\n\n. label variable variable82 \"VARIABLE82\"\n\n. label variable variable83 \"VARIABLE83\"\n\n. label variable variable84 \"VARIABLE84\"\n\n. label variable variable85 \"VARIABLE85\"\n\n. label variable variable86 \"VARIABLE86\"\n\n. label variable variable87 \"VARIABLE87\"\n\n. label variable variable88 \"VARIABLE88\"\n\n. label variable variable89 \"VARIABLE89\"\n\n. label variable variable90 \"VARIABLE90\"\n\n. label variable variable91 \"VARIABLE91\"\n\n. label variable variable92 \"VARIABLE92\"\n\n. label variable variable93 \"VARIABLE93\"\n\n. label variable variable94 \"VARIABLE94\"\n\n. label variable variable95 \"VARIABLE95\"\n\n. label variable variable96 \"VARIABLE96\"\n\n. label variable variable97 \"VARIABLE97\"\n\n. label variable variable98 \"VARIABLE98\"\n\n. label variable variable99 \"VARIABLE99\"\n\n. label variable variable100 \"VARIABLE100\"\n\n. \n. \n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1726117768592_467367242",
+      "id": "paragraph_1726117768592_467367242",
+      "dateCreated": "2024-09-12 05:09:28.592",
+      "dateStarted": "2024-09-19 06:57:22.362",
+      "dateFinished": "2024-09-19 06:57:22.439",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-13 03:28:50.240",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1720150956082_1970297025",
+      "id": "paragraph_1720150956082_1970297025",
+      "dateCreated": "2024-07-05 03:42:36.082",
+      "dateStarted": "2024-07-29 17:58:02.658",
+      "dateFinished": "2024-07-29 17:58:02.712",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-06 03:46:26.245",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1720151042253_1766046642",
+      "id": "paragraph_1720151042253_1766046642",
+      "dateCreated": "2024-07-05 03:44:02.253",
+      "status": "READY"
+    }
+  ],
+  "name": "stata_check",
+  "id": "2K43VB47K",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.0-SNAPSHOT",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

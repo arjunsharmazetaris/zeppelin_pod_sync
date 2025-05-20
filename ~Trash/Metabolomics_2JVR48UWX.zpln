@@ -1,0 +1,74 @@
+{
+  "paragraphs": [
+    {
+      "text": "import os",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-29 02:03:15.836",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1714356191464_1039672865",
+      "id": "paragraph_1714356191464_1039672865",
+      "dateCreated": "2024-04-29 02:03:11.464",
+      "dateStarted": "2024-04-29 02:03:15.837",
+      "dateFinished": "2024-04-29 02:03:15.893",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-09-12 05:15:08.240",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1714356195837_1309988572",
+      "id": "paragraph_1714356195837_1309988572",
+      "dateCreated": "2024-04-29 02:03:15.837",
+      "status": "READY"
+    }
+  ],
+  "name": "Metabolomics",
+  "id": "2JVR48UWX",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.0-SNAPSHOT",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

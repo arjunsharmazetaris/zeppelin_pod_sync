@@ -1,0 +1,129 @@
+{
+  "paragraphs": [
+    {
+      "text": "# API Calls for Authentication and Query\n!#Import required libraries\nimport requests\nimport json\nimport uuid\nimport os\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom base64 import b64encode\n\ndef get_auth():\n  return {\n    \"Authorization\": \"Bearer akqws10ki4ism7aqby10xdqgumbfufqz1wxzvanuvr6kizcbvduef7xujgt0\",\n    \"X-Request-ID\": str(uuid.uuid1()),\n    \"X-Org-ID\" : \"7\"\n  }\n\ndef run_sql(sql:str,api_url):\n    auth \u003d get_auth()\n    body \u003d json.dumps({\n        \"sql\": sql,\n        \"source\": \"Generic\",\n        \"queryId\": str(uuid.uuid1())\n    })\n    try:\n        response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/sql-editor/sqls/run\u0027,headers\u003dauth,data\u003dbody)\n        response \u003d json.loads(response.text)\n        return response\n    except requests.exceptions.RequestException as e:\n        print(f\"Error executing SQL query: {e}\")\n        return []",
+      "user": "PHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 20:34:24.625",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743021197205_303426466",
+      "id": "paragraph_1743021197205_303426466",
+      "dateCreated": "2025-03-26 20:33:17.205",
+      "dateStarted": "2025-03-26 20:34:24.626",
+      "dateFinished": "2025-03-26 20:34:25.534",
+      "status": "FINISHED"
+    },
+    {
+      "text": "def process_api_keys_and_register_endpoints(data_zetaris):\n    \"\"\"\n    Processes API keys from the data and registers endpoints by creating Lightning REST tables.\n\n    Args:\n        data_zetaris (list): List of dictionaries containing trip_distance and dropoff date.\n    \"\"\"\n    for record in data_zetaris:\n        headers \u003d data_zetaris[\u0027headers\u0027]\n        rows \u003d data_zetaris[\u0027data\u0027]\n        records \u003d [{headers[i]: row[i] for i in range(len(headers))} for row in rows]\n        updated_data \u003d {\u0027data\u0027: records}\n        df \u003d pd.DataFrame(updated_data[\u0027data\u0027])\n        df \u003d df[[\"trip_distance\", \"tpep_dropoff_datetime\"]]\n        df \u003d df.dropna()\n\n        # Data Cleaning\n        df[\"trip_distance\"] \u003d df[\"trip_distance\"].astype(str).str.strip()\n        df[\"tpep_dropoff_datetime\"] \u003d df[\"tpep_dropoff_datetime\"].astype(str).str.strip()\n        df[\u0027tpep_dropoff_datetime\u0027] \u003d pd.to_datetime(df[\u0027tpep_dropoff_datetime\u0027])\n\n        # Extract hour and weekday\n        df[\u0027dropoff_hour\u0027] \u003d df[\u0027tpep_dropoff_datetime\u0027].dt.hour\n        df[\u0027dropoff_weekday\u0027] \u003d df[\u0027tpep_dropoff_datetime\u0027].dt.weekday\n\n        # HEATMAP: Taxi Dropoff Density by Hour and Weekday\n        heatmap_data \u003d df.pivot_table(index\u003d\u0027dropoff_weekday\u0027, columns\u003d\u0027dropoff_hour\u0027, values\u003d\u0027trip_distance\u0027, aggfunc\u003d\u0027count\u0027)\n\n        plt.figure(figsize\u003d(12, 6))\n        sns.heatmap(heatmap_data, cmap\u003d\"YlGnBu\", linewidths\u003d0.5, annot\u003dTrue)\n        plt.title(\"Taxi Dropoff Density by Hour and Weekday\")\n        plt.xlabel(\"Hour of Day\")\n        plt.ylabel(\"Day of Week\")\n        plt.tight_layout()\n        z.show(plt)  # Show the first plot\n\n        # BAR PLOT: Hourly Trip Counts\n        trip_counts \u003d df[\u0027dropoff_hour\u0027].value_counts().sort_index()\n        plt.figure(figsize\u003d(10, 5))\n        sns.barplot(x\u003dtrip_counts.index, y\u003dtrip_counts.values, palette\u003d\"viridis\")\n        plt.title(\"Number of Trips per Hour\")\n        plt.xlabel(\"Hour of Day\")\n        plt.ylabel(\"Trip Count\")\n        plt.tight_layout()\n        z.show(plt)  # Show the second plot\n\n        # HISTOGRAM: Trip Distance Distribution\n        plt.figure(figsize\u003d(10, 5))\n        sns.histplot(df[\u0027trip_distance\u0027].astype(float), bins\u003d30, kde\u003dTrue)\n        plt.title(\"Trip Distance Distribution\")\n        plt.xlabel(\"Trip Distance (miles)\")\n        plt.ylabel(\"Frequency\")\n        plt.tight_layout()\n        z.show(plt)  # Show the third plot\n",
+      "user": "PHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 20:34:28.020",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743021210545_1594953791",
+      "id": "paragraph_1743021210545_1594953791",
+      "dateCreated": "2025-03-26 20:33:30.545",
+      "dateStarted": "2025-03-26 20:34:28.021",
+      "dateFinished": "2025-03-26 20:34:28.076",
+      "status": "FINISHED"
+    },
+    {
+      "text": "if __name__ \u003d\u003d \"__main__\":\n    # Zetaris API details - please change this URL to refer to your DNS name\n    api_url \u003d \u0027https://api.zetaris-uat.enterprise.zetaris.com/\u0027\n    query \u003d \u0027SELECT VendorId, tpep_dropoff_datetime , passenger_count, trip_distance, RatecodeID, store_and_fwd_flag , PULocationID ,DOLocationID  , payment_type , fare_amount , extra, mta_tax , tip_amount, tolls_amount,total_amount  , year FROM HA_DB_nytaxi.YELLOW_TRIPDATA  limit 50000\u0027\n\n    # Retrieve API keys from Zetaris\n    data_zetaris \u003d run_sql(query, api_url)",
+      "user": "PHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 20:34:31.631",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743021237417_1040474188",
+      "id": "paragraph_1743021237417_1040474188",
+      "dateCreated": "2025-03-26 20:33:57.417",
+      "dateStarted": "2025-03-26 20:34:31.633",
+      "dateFinished": "2025-03-26 20:35:01.742",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "PHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 20:34:41.651",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743021271632_1561093961",
+      "id": "paragraph_1743021271632_1561093961",
+      "dateCreated": "2025-03-26 20:34:31.632",
+      "status": "READY"
+    }
+  ],
+  "name": "NY_Taxi",
+  "id": "2KPNAUG8V",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,113 @@
+{
+  "paragraphs": [
+    {
+      "text": "import requests\r\nimport json\r\nfrom urllib3.exceptions import InsecureRequestWarning\r\n# Suppress only the single InsecureRequestWarning from urllib3\r\nrequests.packages.urllib3.disable_warnings(category\u003dInsecureRequestWarning)\r\nurl \u003d \"https://3.235.157.249/accessx/api/external/transfer\"\r\npayload \u003d json.dumps({\r\n  \"srcPaths\": [\r\n    \"/home/cloud-user/mfolder_source/abc.csv\"\r\n  ],\r\n  \"srcSite\": \"ultxv1\",\r\n  \"srcNode\": \"ultxv1\",\r\n  \"srcNodeIp\": \"10.60.10.11\",\r\n  \"destPaths\": [\r\n    \"/home/cloud-user/mfolder_dest/\"\r\n  ],\r\n  \"destSite\": \"ultxv2\",\r\n  \"destNode\": \"ultxv2\",\r\n  \"destNodeIp\": \"10.60.20.11\"\r\n})\r\nheaders \u003d {\r\n  \u0027Content-Type\u0027: \u0027application/json\u0027,\r\n  \u0027Authorization\u0027: \u0027Basic YWRtaW46emV0YXJpcw\u003d\u003d\u0027\r\n}\r\nresponse \u003d requests.post(url, headers\u003dheaders, data\u003dpayload, verify\u003dFalse)\r\nprint(response.text)\r\n\r\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-08-13 23:40:33.608",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\"status\":\"SUCCESS\",\"type\":\"JOB_START\",\"webSocketInfo\":{\"url\":\"wss://3.235.157.249:8553/accessx/ws/external\",\"subscriptionRequest\":{\"type\":\"subscribe\",\"id\":\"588156307\"}},\"job\":{\"id\":588156307,\"userAccountId\":\"a466b108-89ef-4dd4-9f55-0f519eae7eaa\",\"name\":\"ExternalTransferRequest\",\"type\":\"basic\",\"priority\":\"medium\",\"contents\":false,\"jobId\":2030940577,\"startTime\":1723592434367,\"viewState\":\"expand\",\"progress\":\"0%\",\"tasks\":{\"588156307_437390430_1720919787\":{\"id\":896327587,\"jobId\":2030940577,\"srcFile\":\"/home/cloud-user/mfolder_source/abc.csv\",\"srcNodeIp\":\"10.50.10.11\",\"srcSiteId\":2,\"srcLocal\":true,\"destNodeIp\":\"10.50.20.11\",\"destSiteId\":3,\"destLocal\":false,\"destFile\":\"/home/cloud-user/mfolder_dest/\",\"jobProgressId\":588156307,\"operationId\":\"588156307_437390430_1720919787\",\"status\":\"queued\",\"group\":\"basic\",\"fileSize\":\"\",\"progress\":\"0%\",\"remaningTime\":\"00:00:00\",\"elapsedTime\":\"0\",\"speed\":\"\",\"chartPoints\":[],\"drawChart\":false,\"fake\":false,\"notRestartable\":false}}}}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723592423187_392457265",
+      "id": "paragraph_1723592423187_392457265",
+      "dateCreated": "2024-08-13 23:40:23.187",
+      "dateStarted": "2024-08-13 23:40:33.613",
+      "dateFinished": "2024-08-13 23:40:34.528",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import requests\r\nurl \u003d \"https://3.235.157.249/accessx/api/external/information/jobs/588156307\"\r\npayload \u003d {}\r\nheaders \u003d {\r\n  \u0027Authorization\u0027: \u0027Basic YWRtaW46emV0YXJpcw\u003d\u003d\u0027\r\n}\r\nresponse \u003d requests.request(\"GET\", url, headers\u003dheaders, data\u003dpayload, verify\u003dFalse)\r\nprint(response.text)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-08-13 23:41:09.659",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[{\"status\":\"SUCCESS\",\"type\":\"JOB_INFO\",\"message\":\"Job Info\",\"job\":{\"id\":588156307,\"userAccountId\":\"a466b108-89ef-4dd4-9f55-0f519eae7eaa\",\"name\":\"ExternalTransferRequest\",\"type\":\"basic\",\"priority\":\"medium\",\"contents\":false,\"jobId\":2030940577,\"startTime\":1723592434367,\"viewState\":\"expand\",\"progress\":\"100%\",\"tasks\":{\"588156307_437390430_1720919787\":{\"id\":896327587,\"jobId\":2030940577,\"srcFile\":\"/home/cloud-user/mfolder_source/abc.csv\",\"srcNodeIp\":\"10.50.10.11\",\"srcSiteId\":2,\"srcLocal\":true,\"destNodeIp\":\"10.50.20.11\",\"destSiteId\":3,\"destLocal\":false,\"destFile\":\"/home/cloud-user/mfolder_dest\",\"jobProgressId\":588156307,\"operationId\":\"588156307_437390430_1720919787\",\"status\":\"successful\",\"type\":\"rftp\",\"group\":\"basic\",\"startOfCopy\":1723592433410,\"fileSize\":\"475.01 KB\",\"progress\":\"100%\",\"progressStatus\":\"OK\",\"remaningTime\":\"00:00:00\",\"elapsedTime\":\"4009\",\"sent\":\"475.01 KB\",\"speed\":\"647.58 Kb/s\",\"chartPointMax\":0.97137,\"chartPoints\":[[\"1723592434412\",\"0.0\"],[\"1723592435413\",\"0.0\"],[\"1723592436416\",\"0.97137\"]],\"drawChart\":true,\"fake\":false,\"notRestartable\":false}}}}]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723592433612_216111288",
+      "id": "paragraph_1723592433612_216111288",
+      "dateCreated": "2024-08-13 23:40:33.612",
+      "dateStarted": "2024-08-13 23:41:09.661",
+      "dateFinished": "2024-08-13 23:41:10.321",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-08-13 23:41:19.747",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723592469660_1059700177",
+      "id": "paragraph_1723592469660_1059700177",
+      "dateCreated": "2024-08-13 23:41:09.660",
+      "status": "READY"
+    }
+  ],
+  "name": "vicinity",
+  "id": "2K4EF5PXP",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

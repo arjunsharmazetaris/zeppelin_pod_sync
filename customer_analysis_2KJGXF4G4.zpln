@@ -1,0 +1,39 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-01-28 07:32:35.203",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738049550835_36003340",
+      "id": "paragraph_1738049550835_36003340",
+      "dateCreated": "2025-01-28 07:32:30.835",
+      "status": "READY"
+    }
+  ],
+  "name": "customer_analysis",
+  "id": "2KJGXF4G4",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

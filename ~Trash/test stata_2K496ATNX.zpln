@@ -1,0 +1,102 @@
+{
+  "paragraphs": [
+    {
+      "text": "pip install pystata",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-12 02:13:39.600",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[33mWARNING: The directory \u0027/home/zetaris/.cache/pip\u0027 or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo\u0027s -H flag.\u001b[0m\u001b[33m\r\n\u001b[0mRequirement already satisfied: pystata in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (0.0.1)\r\nRequirement already satisfied: pandas in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pystata) (2.2.2)\r\nRequirement already satisfied: numpy\u003e\u003d1.23.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas-\u003epystata) (1.26.4)\r\nRequirement already satisfied: python-dateutil\u003e\u003d2.8.2 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas-\u003epystata) (2.9.0.post0)\r\nRequirement already satisfied: pytz\u003e\u003d2020.1 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas-\u003epystata) (2024.1)\r\nRequirement already satisfied: tzdata\u003e\u003d2022.7 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from pandas-\u003epystata) (2023.3)\r\nRequirement already satisfied: six\u003e\u003d1.5 in /home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages (from python-dateutil\u003e\u003d2.8.2-\u003epandas-\u003epystata) (1.16.0)\r\n\u001b[33mWARNING: Running pip as the \u0027root\u0027 user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\u001b[0m\u001b[33m\r\n\u001b[0mNote: you may need to restart the kernel to use updated packages.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723087745253_2081703058",
+      "id": "paragraph_1723087745253_2081703058",
+      "dateCreated": "2024-08-08 03:29:05.253",
+      "dateStarted": "2024-09-12 02:13:39.602",
+      "dateFinished": "2024-09-12 02:13:41.468",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-08 03:29:43.496",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723087772938_1052809367",
+      "id": "paragraph_1723087772938_1052809367",
+      "dateCreated": "2024-08-08 03:29:32.938",
+      "status": "READY"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-09-12 02:13:47.067",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1725763245107_1029867511",
+      "id": "paragraph_1725763245107_1029867511",
+      "dateCreated": "2024-09-08 02:40:45.107",
+      "status": "READY"
+    }
+  ],
+  "name": "test stata",
+  "id": "2K496ATNX",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

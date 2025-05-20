@@ -1,0 +1,156 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.ipyspark\n\nfrom pyspark.sql import SparkSession\nfrom pyspark.sql.functions import col\nfrom pyspark.ml.fpm import FPGrowth\n\nsales_order_detail_df \u003d spark.sql(\"SELECT * FROM LIGHTNING_DB.SalesOrderDetail LIMIT 200\")\n#product_df \u003d spark.sql(\"SELECT * FROM LIGHTNING_DB.Product LIMIT 200\")\n\n# Show the structure of the SalesOrderDetail dataset\nsales_order_detail_df.show(5)",
+      "user": "JIM@LIGHTNING.COM",
+      "dateUpdated": "2025-03-26 12:01:51.329",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "tableHide": false,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------+------------------+--------+---------+--------------------+--------------------+--------------------+--------------------+-------------------+\n|SalesOrderID|SalesOrderDetailID|OrderQty|ProductID|           UnitPrice|   UnitPriceDiscount|           LineTotal|             rowguid|       ModifiedDate|\n+------------+------------------+--------+---------+--------------------+--------------------+--------------------+--------------------+-------------------+\n|       71774|            110562|       1|      836|356.8980000000000...|0.000000000000000000|356.8980000000000...|E3A1994C-7A68-4CE...|2008-06-01 00:00:00|\n|       71774|            110563|       1|      822|356.8980000000000...|0.000000000000000000|356.8980000000000...|5C77F557-FDB6-43B...|2008-06-01 00:00:00|\n|       71776|            110567|       1|      907|63.90000000000000...|0.000000000000000000|63.90000000000000...|6DBFE398-D15D-425...|2008-06-01 00:00:00|\n|       71780|            110616|       4|      905|218.4540000000000...|0.000000000000000000|873.8160000000000...|377246C9-4483-48E...|2008-06-01 00:00:00|\n|       71780|            110617|       2|      983|461.6940000000000...|0.000000000000000000|923.3880000000000...|43A54BCD-536D-4A1...|2008-06-01 00:00:00|\n+------------+------------------+--------+---------+--------------------+--------------------+--------------------+--------------------+-------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1742821540095_1415762570",
+      "id": "paragraph_1742821540095_1415762570",
+      "dateCreated": "2025-03-24 13:05:40.095",
+      "dateStarted": "2025-03-26 12:01:51.330",
+      "dateFinished": "2025-03-26 12:01:53.673",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.ipyspark\n\nsales_order_detail_df \u003d spark.sql(\"SELECT * FROM LIGHTNING_DB.SalesOrderDetail LIMIT 200\")\nproduct_df \u003d spark.sql(\"SELECT * FROM LEGACY_DB.Product LIMIT 200\")\n\n# Show the structure of the SalesOrderDetail dataset\nsales_order_detail_df.show(5)\n\n# Clean and preprocess the data:\n# We need to create transactions for market basket analysis, \n# which means each row should represent a single transaction with a list of product IDs.\n\n# Join SalesOrderDetail with Product to get product names (optional)\ntransactions_df \u003d sales_order_detail_df.join(\n    product_df, sales_order_detail_df.ProductID \u003d\u003d product_df.ProductID, how\u003d\"inner\"\n)\n\n# Create a list of products bought in each order\n# Group by SalesOrderID and collect all the product names as a list\ntransactions_df \u003d transactions_df.groupBy(\"SalesOrderID\").agg(collect_list(\"ProductName\").alias(\"items\"))\n\n# DataFrame with a column of items bought in each transaction\ntransactions_df.show(5)\n\n# Apply FPGrowth to find frequent itemsets\nfp_growth \u003d FPGrowth(itemsCol\u003d\"items\", minSupport\u003d0.01, minConfidence\u003d0.5)\nmodel \u003d fp_growth.fit(transactions_df)\n\n# Get frequent itemsets\nfrequent_itemsets \u003d model.freqItemsets\nfrequent_itemsets.show(5)\n\n# Get association rules\nassociation_rules \u003d model.associationRules\nassociation_rules.show(5)\n\nhigh_confidence_rules \u003d association_rules.filter(col(\"confidence\") \u003e 0.7)\nhigh_confidence_rules.show(5)\n",
+      "user": "JIM@LIGHTNING.COM",
+      "dateUpdated": "2025-03-26 13:09:12.914",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------+------------------+--------+---------+--------------------+--------------------+--------------------+--------------------+-------------------+\n|SalesOrderID|SalesOrderDetailID|OrderQty|ProductID|           UnitPrice|   UnitPriceDiscount|           LineTotal|             rowguid|       ModifiedDate|\n+------------+------------------+--------+---------+--------------------+--------------------+--------------------+--------------------+-------------------+\n|       71774|            110562|       1|      836|356.8980000000000...|0.000000000000000000|356.8980000000000...|E3A1994C-7A68-4CE...|2008-06-01 00:00:00|\n|       71774|            110563|       1|      822|356.8980000000000...|0.000000000000000000|356.8980000000000...|5C77F557-FDB6-43B...|2008-06-01 00:00:00|\n|       71776|            110567|       1|      907|63.90000000000000...|0.000000000000000000|63.90000000000000...|6DBFE398-D15D-425...|2008-06-01 00:00:00|\n|       71780|            110616|       4|      905|218.4540000000000...|0.000000000000000000|873.8160000000000...|377246C9-4483-48E...|2008-06-01 00:00:00|\n|       71780|            110617|       2|      983|461.6940000000000...|0.000000000000000000|923.3880000000000...|43A54BCD-536D-4A1...|2008-06-01 00:00:00|\n+------------+------------------+--------+---------+--------------------+--------------------+--------------------+--------------------+-------------------+\nonly showing top 5 rows\n\n\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)\nCell \u001b[0;32mIn[40], line 22\u001b[0m\n\u001b[1;32m     16\u001b[0m transactions_df \u001b[38;5;241m\u003d\u001b[39m sales_order_detail_df\u001b[38;5;241m.\u001b[39mjoin(\n\u001b[1;32m     17\u001b[0m     product_df, sales_order_detail_df\u001b[38;5;241m.\u001b[39mProductID \u001b[38;5;241m\u003d\u003d\u001b[39m product_df\u001b[38;5;241m.\u001b[39mProductID, how\u001b[38;5;241m\u003d\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124minner\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m     18\u001b[0m )\n\u001b[1;32m     20\u001b[0m \u001b[38;5;66;03m# Create a list of products bought in each order\u001b[39;00m\n\u001b[1;32m     21\u001b[0m \u001b[38;5;66;03m# Group by SalesOrderID and collect all the product names as a list\u001b[39;00m\n\u001b[0;32m---\u003e 22\u001b[0m transactions_df \u001b[38;5;241m\u003d\u001b[39m transactions_df\u001b[38;5;241m.\u001b[39mgroupBy(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mSalesOrderID\u001b[39m\u001b[38;5;124m\"\u001b[39m)\u001b[38;5;241m.\u001b[39magg(collect_list(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mProductName\u001b[39m\u001b[38;5;124m\"\u001b[39m)\u001b[38;5;241m.\u001b[39malias(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mitems\u001b[39m\u001b[38;5;124m\"\u001b[39m))\n\u001b[1;32m     24\u001b[0m \u001b[38;5;66;03m# DataFrame with a column of items bought in each transaction\u001b[39;00m\n\u001b[1;32m     25\u001b[0m transactions_df\u001b[38;5;241m.\u001b[39mshow(\u001b[38;5;241m5\u001b[39m)\n\n\u001b[0;31mNameError\u001b[0m: name \u0027collect_list\u0027 is not defined"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1742822224648_1469674958",
+      "id": "paragraph_1742822224648_1469674958",
+      "dateCreated": "2025-03-24 13:17:04.648",
+      "dateStarted": "2025-03-26 12:55:48.514",
+      "dateFinished": "2025-03-26 12:55:50.333",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark.ipyspark\n\n# Get frequent itemsets\nfrequent_itemsets \u003d model.freqItemsets\nfrequent_itemsets.show(2)",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 02:55:16.355",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1742822481485_1195693181",
+      "id": "paragraph_1742822481485_1195693181",
+      "dateCreated": "2025-03-24 13:21:21.485",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.ipyspark\n\n# Get association rules\nassociation_rules \u003d model.associationRules\nassociation_rules.show(2)",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 02:55:22.755",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1742823755262_1638477019",
+      "id": "paragraph_1742823755262_1638477019",
+      "dateCreated": "2025-03-24 13:42:35.262",
+      "status": "READY"
+    }
+  ],
+  "name": "market_basket_analysis",
+  "id": "2KQEPMTWB",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

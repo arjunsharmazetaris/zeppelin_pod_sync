@@ -1,0 +1,107 @@
+{
+  "paragraphs": [
+    {
+      "text": "# Clinical Decision Support: Cardiac Risk Triage\n\n## Benefit\nEnhanced diagnostic accuracy, personalised treatment recommendations, improved patient flow.\n\n## Use Case\nA data platform that integrates AI models with patient records to provide real-time risk predictions, drug interactions, and treatment suggestions. \nIn this scenario cardiac risk scores are generated in real-time and used by clinicals to identify patients that can be safely fast-tracked for discharge.\n\n## Outcome\nImproved hospital flow and resource utlization, reduced misdiagnoses, early detection of diseases, and optimized treatment plans.\n\n### Average ED Discharge rates by region\n\nRegion/Country          % Discharged Without Admission\nUnited States\t        ~80% (CDC, 2021)\nUnited Kingdom (NHS)\t~75–85%\nAustralia\t            ~70–80% (AIHW data)\nCanada\t                ~75–80%\nEurope (average)\t    ~65–80%, depending on healthcare system",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 14:30:10.693",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743658415758_1453870142",
+      "id": "paragraph_1743658415758_1453870142",
+      "dateCreated": "2025-04-03 05:33:35.758",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.ipyspark\n\n# data acquisition\npatients \u003d spark.sql(\"SELECT * FROM patient360.patient\")",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 16:01:20.148",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mPy4JJavaError\u001b[0m                             Traceback (most recent call last)\nCell \u001b[0;32mIn[48], line 2\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[38;5;66;03m# data acquisition\u001b[39;00m\n\u001b[0;32m----\u003e 2\u001b[0m patients \u001b[38;5;241m\u003d\u001b[39m spark\u001b[38;5;241m.\u001b[39msql(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mSELECT * FROM patient360.patient\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/sql/session.py:1631\u001b[0m, in \u001b[0;36mSparkSession.sql\u001b[0;34m(self, sqlQuery, args, **kwargs)\u001b[0m\n\u001b[1;32m   1627\u001b[0m         \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m   1628\u001b[0m         litArgs \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm\u001b[38;5;241m.\u001b[39mPythonUtils\u001b[38;5;241m.\u001b[39mtoArray(\n\u001b[1;32m   1629\u001b[0m             [_to_java_column(lit(v)) \u001b[38;5;28;01mfor\u001b[39;00m v \u001b[38;5;129;01min\u001b[39;00m (args \u001b[38;5;129;01mor\u001b[39;00m [])]\n\u001b[1;32m   1630\u001b[0m         )\n\u001b[0;32m-\u003e 1631\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m DataFrame(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jsparkSession\u001b[38;5;241m.\u001b[39msql(sqlQuery, litArgs), \u001b[38;5;28mself\u001b[39m)\n\u001b[1;32m   1632\u001b[0m \u001b[38;5;28;01mfinally\u001b[39;00m:\n\u001b[1;32m   1633\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mlen\u001b[39m(kwargs) \u001b[38;5;241m\u003e\u001b[39m \u001b[38;5;241m0\u001b[39m:\n\nFile \u001b[0;32m/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py:1322\u001b[0m, in \u001b[0;36mJavaMember.__call__\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m   1316\u001b[0m command \u001b[38;5;241m\u003d\u001b[39m proto\u001b[38;5;241m.\u001b[39mCALL_COMMAND_NAME \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1317\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mcommand_header \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1318\u001b[0m     args_command \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1319\u001b[0m     proto\u001b[38;5;241m.\u001b[39mEND_COMMAND_PART\n\u001b[1;32m   1321\u001b[0m answer \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client\u001b[38;5;241m.\u001b[39msend_command(command)\n\u001b[0;32m-\u003e 1322\u001b[0m return_value \u001b[38;5;241m\u003d\u001b[39m get_return_value(\n\u001b[1;32m   1323\u001b[0m     answer, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mtarget_id, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mname)\n\u001b[1;32m   1325\u001b[0m \u001b[38;5;28;01mfor\u001b[39;00m temp_arg \u001b[38;5;129;01min\u001b[39;00m temp_args:\n\u001b[1;32m   1326\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mhasattr\u001b[39m(temp_arg, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m_detach\u001b[39m\u001b[38;5;124m\"\u001b[39m):\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py:179\u001b[0m, in \u001b[0;36mcapture_sql_exception.\u003clocals\u003e.deco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m    177\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mdeco\u001b[39m(\u001b[38;5;241m*\u001b[39ma: Any, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkw: Any) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m\u003e\u001b[39m Any:\n\u001b[1;32m    178\u001b[0m     \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[0;32m--\u003e 179\u001b[0m         \u001b[38;5;28;01mreturn\u001b[39;00m f(\u001b[38;5;241m*\u001b[39ma, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkw)\n\u001b[1;32m    180\u001b[0m     \u001b[38;5;28;01mexcept\u001b[39;00m Py4JJavaError \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[1;32m    181\u001b[0m         converted \u001b[38;5;241m\u003d\u001b[39m convert_exception(e\u001b[38;5;241m.\u001b[39mjava_exception)\n\nFile \u001b[0;32m/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py:326\u001b[0m, in \u001b[0;36mget_return_value\u001b[0;34m(answer, gateway_client, target_id, name)\u001b[0m\n\u001b[1;32m    324\u001b[0m value \u001b[38;5;241m\u003d\u001b[39m OUTPUT_CONVERTER[\u001b[38;5;28mtype\u001b[39m](answer[\u001b[38;5;241m2\u001b[39m:], gateway_client)\n\u001b[1;32m    325\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m answer[\u001b[38;5;241m1\u001b[39m] \u001b[38;5;241m\u003d\u003d\u001b[39m REFERENCE_TYPE:\n\u001b[0;32m--\u003e 326\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m Py4JJavaError(\n\u001b[1;32m    327\u001b[0m         \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mAn error occurred while calling \u001b[39m\u001b[38;5;132;01m{0}\u001b[39;00m\u001b[38;5;132;01m{1}\u001b[39;00m\u001b[38;5;132;01m{2}\u001b[39;00m\u001b[38;5;124m.\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m    328\u001b[0m         \u001b[38;5;28mformat\u001b[39m(target_id, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m.\u001b[39m\u001b[38;5;124m\"\u001b[39m, name), value)\n\u001b[1;32m    329\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    330\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m Py4JError(\n\u001b[1;32m    331\u001b[0m         \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mAn error occurred while calling \u001b[39m\u001b[38;5;132;01m{0}\u001b[39;00m\u001b[38;5;132;01m{1}\u001b[39;00m\u001b[38;5;132;01m{2}\u001b[39;00m\u001b[38;5;124m. Trace:\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{3}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m    332\u001b[0m         \u001b[38;5;28mformat\u001b[39m(target_id, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m.\u001b[39m\u001b[38;5;124m\"\u001b[39m, name, value))\n\n\u001b[0;31mPy4JJavaError\u001b[0m: An error occurred while calling o80.sql.\n: java.lang.RuntimeException: Unknown relation: `Hospital2`.`patient`\n\tat org.apache.spark.sql.LightningSparkSession.$anonfun$getRelation$4(LightningSparkSession.scala:510)\n\tat scala.util.Failure.getOrElse(Try.scala:222)\n\tat org.apache.spark.sql.LightningSparkSession.getRelation(LightningSparkSession.scala:510)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.getAnalyzedDataSourceRelation(PipeLineCatalog.scala:171)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildDataSource(PipeLineCatalog.scala:176)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildNodePlan(PipeLineCatalog.scala:847)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.$anonfun$buildPipelineLogicalPlanForNode$3(PipeLineCatalog.scala:1042)\n\tat scala.collection.TraversableLike.$anonfun$map$1(TraversableLike.scala:286)\n\tat scala.collection.immutable.HashSet$HashSet1.foreach(HashSet.scala:335)\n\tat scala.collection.immutable.HashSet$HashTrieSet.foreach(HashSet.scala:1111)\n\tat scala.collection.TraversableLike.map(TraversableLike.scala:286)\n\tat scala.collection.TraversableLike.map$(TraversableLike.scala:279)\n\tat scala.collection.AbstractSet.scala$collection$SetLike$$super$map(Set.scala:53)\n\tat scala.collection.SetLike.map(SetLike.scala:105)\n\tat scala.collection.SetLike.map$(SetLike.scala:105)\n\tat scala.collection.AbstractSet.map(Set.scala:53)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildPipelineLogicalPlanForNode(PipeLineCatalog.scala:1039)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildPipelineLogicalPlanV2(PipeLineCatalog.scala:1007)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildPipelineLogicalPlan(PipeLineCatalog.scala:886)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildPipeLineRelation(PipeLineCatalog.scala:1061)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildPipeLinePlan(PipeLineCatalog.scala:1177)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.buildPipeLinePlan$(PipeLineCatalog.scala:1170)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.buildPipeLinePlan(LightningExternalCatalog.scala:59)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.getPipeLineCatalog(PipeLineCatalog.scala:101)\n\tat com.zetaris.lightning.sql.catalog.PipeLineCatalog.getPipeLineCatalog$(PipeLineCatalog.scala:100)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.getPipeLineCatalog(LightningExternalCatalog.scala:59)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.findPipeLineCatalog(LightningExternalCatalog.scala:496)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.$anonfun$findLightningTable$4(LightningExternalCatalog.scala:535)\n\tat scala.Option.orElse(Option.scala:447)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.findLightningTable(LightningExternalCatalog.scala:535)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.getTable(LightningExternalCatalog.scala:543)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.getTable(LightningExternalCatalog.scala:450)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.getTableRawMetadata(SessionCatalog.scala:542)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.getTableMetadata(SessionCatalog.scala:526)\n\tat org.apache.spark.sql.hive.LightningSessionCatalog.fallbackGetTableMetadata(LightningSessionCatalog.scala:150)\n\tat org.apache.spark.sql.hive.LightningSessionCatalog.$anonfun$getTableMetadata$2(LightningSessionCatalog.scala:136)\n\tat scala.Option.getOrElse(Option.scala:189)\n\tat org.apache.spark.sql.hive.LightningSessionCatalog.getTableMetadata(LightningSessionCatalog.scala:136)\n\tat org.apache.spark.sql.execution.datasources.v2.V2SessionCatalog.loadTable(V2SessionCatalog.scala:75)\n\tat org.apache.spark.sql.connector.catalog.CatalogV2Util$.getTable(CatalogV2Util.scala:355)\n\tat org.apache.spark.sql.connector.catalog.CatalogV2Util$.loadTable(CatalogV2Util.scala:336)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.$anonfun$resolveRelation$3(Analyzer.scala:1271)\n\tat scala.Option.orElse(Option.scala:447)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.$anonfun$resolveRelation$1(Analyzer.scala:1270)\n\tat scala.Option.orElse(Option.scala:447)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.org$apache$spark$sql$catalyst$analysis$Analyzer$ResolveRelations$$resolveRelation(Analyzer.scala:1262)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$$anonfun$apply$14.applyOrElse(Analyzer.scala:1126)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$$anonfun$apply$14.applyOrElse(Analyzer.scala:1090)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$3(AnalysisHelper.scala:138)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$1(AnalysisHelper.scala:138)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.allowInvokingTransformsInAnalyzer(AnalysisHelper.scala:323)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning(AnalysisHelper.scala:134)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning$(AnalysisHelper.scala:130)\n\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveOperatorsUpWithPruning(LogicalPlan.scala:32)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$2(AnalysisHelper.scala:135)\n\tat org.apache.spark.sql.catalyst.trees.UnaryLike.mapChildren(TreeNode.scala:1215)\n\tat org.apache.spark.sql.catalyst.trees.UnaryLike.mapChildren$(TreeNode.scala:1214)\n\tat org.apache.spark.sql.catalyst.plans.logical.Project.mapChildren(basicLogicalOperators.scala:71)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$1(AnalysisHelper.scala:135)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.allowInvokingTransformsInAnalyzer(AnalysisHelper.scala:323)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning(AnalysisHelper.scala:134)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning$(AnalysisHelper.scala:130)\n\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveOperatorsUpWithPruning(LogicalPlan.scala:32)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.apply(Analyzer.scala:1090)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.apply(Analyzer.scala:1049)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$2(RuleExecutor.scala:222)\n\tat scala.collection.LinearSeqOptimized.foldLeft(LinearSeqOptimized.scala:126)\n\tat scala.collection.LinearSeqOptimized.foldLeft$(LinearSeqOptimized.scala:122)\n\tat scala.collection.immutable.List.foldLeft(List.scala:91)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$1(RuleExecutor.scala:219)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$1$adapted(RuleExecutor.scala:211)\n\tat scala.collection.immutable.List.foreach(List.scala:431)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:211)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:226)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$execute$1(Analyzer.scala:222)\n\tat org.apache.spark.sql.catalyst.analysis.AnalysisContext$.withNewAnalysisContext(Analyzer.scala:173)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:222)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:188)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$executeAndTrack$1(RuleExecutor.scala:182)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:89)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.executeAndTrack(RuleExecutor.scala:182)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$executeAndCheck$1(Analyzer.scala:209)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.markInAnalyzer(AnalysisHelper.scala:330)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:208)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$analyzed$1(QueryExecution.scala:77)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker.measurePhase(QueryPlanningTracker.scala:138)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$2(QueryExecution.scala:219)\n\tat org.apache.spark.sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:546)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$1(QueryExecution.scala:219)\n\tat org.apache.spark.sql.LightningSparkSession.withActive(LightningSparkSession.scala:541)\n\tat org.apache.spark.sql.execution.QueryExecution.executePhase(QueryExecution.scala:218)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:77)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:74)\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:66)\n\tat org.apache.spark.sql.LightningDataset$.$anonfun$ofAuditableRows$1(LightningDataset.scala:114)\n\tat org.apache.spark.sql.LightningSparkSession.withActive(LightningSparkSession.scala:541)\n\tat org.apache.spark.sql.LightningDataset$.ofAuditableRows(LightningDataset.scala:111)\n\tat org.apache.spark.sql.LightningSparkSession.sparkSQL(LightningSparkSession.scala:257)\n\tat org.apache.spark.sql.LightningSparkSession.sql(LightningSparkSession.scala:336)\n\tat org.apache.spark.sql.LightningSparkSession.sql(LightningSparkSession.scala:354)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:568)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.GatewayConnection.run(GatewayConnection.java:238)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743658656420_1304523208",
+      "id": "paragraph_1743658656420_1304523208",
+      "dateCreated": "2025-04-03 05:37:36.420",
+      "dateStarted": "2025-04-06 16:01:20.149",
+      "dateFinished": "2025-04-06 16:01:21.567",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 14:29:21.166",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743949758931_1382209995",
+      "id": "paragraph_1743949758931_1382209995",
+      "dateCreated": "2025-04-06 14:29:18.931",
+      "status": "READY"
+    }
+  ],
+  "name": "CardiacTriage",
+  "id": "2KQ3Y4TTK",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

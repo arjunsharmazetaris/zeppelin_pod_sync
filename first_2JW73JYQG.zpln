@@ -1,0 +1,192 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.pyspark\ndf\u003dspark.sql(\"SELECT * FROM metastore.adaptive_offsite_cache_policy\")",
+      "user": "FINANCIALSERVICES@ZETARIS.COM",
+      "dateUpdated": "2024-09-04 04:14:45.326",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mPy4JJavaError\u001b[0m                             Traceback (most recent call last)\nCell \u001b[0;32mIn[12], line 1\u001b[0m\n\u001b[0;32m----\u003e 1\u001b[0m df\u001b[38;5;241m\u003d\u001b[39mspark\u001b[38;5;241m.\u001b[39msql(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mSELECT * FROM metastore.adaptive_offsite_cache_policy\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/sql/session.py:1631\u001b[0m, in \u001b[0;36mSparkSession.sql\u001b[0;34m(self, sqlQuery, args, **kwargs)\u001b[0m\n\u001b[1;32m   1627\u001b[0m         \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m   1628\u001b[0m         litArgs \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm\u001b[38;5;241m.\u001b[39mPythonUtils\u001b[38;5;241m.\u001b[39mtoArray(\n\u001b[1;32m   1629\u001b[0m             [_to_java_column(lit(v)) \u001b[38;5;28;01mfor\u001b[39;00m v \u001b[38;5;129;01min\u001b[39;00m (args \u001b[38;5;129;01mor\u001b[39;00m [])]\n\u001b[1;32m   1630\u001b[0m         )\n\u001b[0;32m-\u003e 1631\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m DataFrame(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jsparkSession\u001b[38;5;241m.\u001b[39msql(sqlQuery, litArgs), \u001b[38;5;28mself\u001b[39m)\n\u001b[1;32m   1632\u001b[0m \u001b[38;5;28;01mfinally\u001b[39;00m:\n\u001b[1;32m   1633\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mlen\u001b[39m(kwargs) \u001b[38;5;241m\u003e\u001b[39m \u001b[38;5;241m0\u001b[39m:\n\nFile \u001b[0;32m/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py:1322\u001b[0m, in \u001b[0;36mJavaMember.__call__\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m   1316\u001b[0m command \u001b[38;5;241m\u003d\u001b[39m proto\u001b[38;5;241m.\u001b[39mCALL_COMMAND_NAME \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1317\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mcommand_header \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1318\u001b[0m     args_command \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1319\u001b[0m     proto\u001b[38;5;241m.\u001b[39mEND_COMMAND_PART\n\u001b[1;32m   1321\u001b[0m answer \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client\u001b[38;5;241m.\u001b[39msend_command(command)\n\u001b[0;32m-\u003e 1322\u001b[0m return_value \u001b[38;5;241m\u003d\u001b[39m get_return_value(\n\u001b[1;32m   1323\u001b[0m     answer, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mtarget_id, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mname)\n\u001b[1;32m   1325\u001b[0m \u001b[38;5;28;01mfor\u001b[39;00m temp_arg \u001b[38;5;129;01min\u001b[39;00m temp_args:\n\u001b[1;32m   1326\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mhasattr\u001b[39m(temp_arg, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m_detach\u001b[39m\u001b[38;5;124m\"\u001b[39m):\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py:179\u001b[0m, in \u001b[0;36mcapture_sql_exception.\u003clocals\u003e.deco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m    177\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mdeco\u001b[39m(\u001b[38;5;241m*\u001b[39ma: Any, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkw: Any) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m\u003e\u001b[39m Any:\n\u001b[1;32m    178\u001b[0m     \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[0;32m--\u003e 179\u001b[0m         \u001b[38;5;28;01mreturn\u001b[39;00m f(\u001b[38;5;241m*\u001b[39ma, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkw)\n\u001b[1;32m    180\u001b[0m     \u001b[38;5;28;01mexcept\u001b[39;00m Py4JJavaError \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[1;32m    181\u001b[0m         converted \u001b[38;5;241m\u003d\u001b[39m convert_exception(e\u001b[38;5;241m.\u001b[39mjava_exception)\n\nFile \u001b[0;32m/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py:326\u001b[0m, in \u001b[0;36mget_return_value\u001b[0;34m(answer, gateway_client, target_id, name)\u001b[0m\n\u001b[1;32m    324\u001b[0m value \u001b[38;5;241m\u003d\u001b[39m OUTPUT_CONVERTER[\u001b[38;5;28mtype\u001b[39m](answer[\u001b[38;5;241m2\u001b[39m:], gateway_client)\n\u001b[1;32m    325\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m answer[\u001b[38;5;241m1\u001b[39m] \u001b[38;5;241m\u003d\u003d\u001b[39m REFERENCE_TYPE:\n\u001b[0;32m--\u003e 326\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m Py4JJavaError(\n\u001b[1;32m    327\u001b[0m         \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mAn error occurred while calling \u001b[39m\u001b[38;5;132;01m{0}\u001b[39;00m\u001b[38;5;132;01m{1}\u001b[39;00m\u001b[38;5;132;01m{2}\u001b[39;00m\u001b[38;5;124m.\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m    328\u001b[0m         \u001b[38;5;28mformat\u001b[39m(target_id, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m.\u001b[39m\u001b[38;5;124m\"\u001b[39m, name), value)\n\u001b[1;32m    329\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    330\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m Py4JError(\n\u001b[1;32m    331\u001b[0m         \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mAn error occurred while calling \u001b[39m\u001b[38;5;132;01m{0}\u001b[39;00m\u001b[38;5;132;01m{1}\u001b[39;00m\u001b[38;5;132;01m{2}\u001b[39;00m\u001b[38;5;124m. Trace:\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{3}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m    332\u001b[0m         \u001b[38;5;28mformat\u001b[39m(target_id, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m.\u001b[39m\u001b[38;5;124m\"\u001b[39m, name, value))\n\n\u001b[0;31mPy4JJavaError\u001b[0m: An error occurred while calling o79.sql.\n: org.springframework.beans.factory.BeanCreationException: Error creating bean with name \u0027entityManagerFactory\u0027 defined in class path resource [META-INF/fusiondb/zeppeline-app-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: fusionDBUnit] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [PIPELINE_LLM_TOKENIZER]\n\tat org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)\n\tat org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)\n\tat org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)\n\tat org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336)\n\tat org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)\n\tat org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334)\n\tat org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:209)\n\tat org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1171)\n\tat org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:922)\n\tat org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)\n\tat org.springframework.context.support.ClassPathXmlApplicationContext.\u003cinit\u003e(ClassPathXmlApplicationContext.java:144)\n\tat org.springframework.context.support.ClassPathXmlApplicationContext.\u003cinit\u003e(ClassPathXmlApplicationContext.java:85)\n\tat com.zetaris.lightning.sql.jpa.LightningDaos$.instance(LightningDaos.scala:82)\n\tat com.zetaris.lightning.sql.jpa.LightningDaos$.daoInstance$lzycompute(LightningDaos.scala:96)\n\tat com.zetaris.lightning.sql.jpa.LightningDaos$.daoInstance(LightningDaos.scala:96)\n\tat com.zetaris.lightning.LightningEnv$._daos$lzycompute(LightningEnv.scala:111)\n\tat com.zetaris.lightning.LightningEnv$._daos(LightningEnv.scala:111)\n\tat com.zetaris.lightning.LightningEnv$.roleAndUserDAO(LightningEnv.scala:43)\n\tat com.zetaris.lightning.sql.catalog.UserRoleCatalog.findUserInfo(UserRoleCatalog.scala:126)\n\tat com.zetaris.lightning.sql.catalog.UserRoleCatalog.findUserInfo$(UserRoleCatalog.scala:125)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.findUserInfo(LightningExternalCatalog.scala:56)\n\tat com.zetaris.lightning.sql.catalog.UserRoleCatalog.getUserInfo(UserRoleCatalog.scala:130)\n\tat com.zetaris.lightning.sql.catalog.UserRoleCatalog.getUserInfo$(UserRoleCatalog.scala:129)\n\tat com.zetaris.lightning.sql.catalog.LightningExternalCatalog.getUserInfo(LightningExternalCatalog.scala:56)\n\tat org.apache.spark.sql.LightningSparkSession.setCurrentUserByCallBack(LightningSparkSession.scala:276)\n\tat org.apache.spark.sql.LightningSparkSession.$anonfun$sql$1(LightningSparkSession.scala:320)\n\tat org.apache.spark.sql.LightningSparkSession.$anonfun$sql$1$adapted(LightningSparkSession.scala:320)\n\tat scala.Option.foreach(Option.scala:407)\n\tat org.apache.spark.sql.LightningSparkSession.sql(LightningSparkSession.scala:320)\n\tat org.apache.spark.sql.LightningSparkSession.sql(LightningSparkSession.scala:344)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:568)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.GatewayConnection.run(GatewayConnection.java:238)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\nCaused by: javax.persistence.PersistenceException: [PersistenceUnit: fusionDBUnit] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [PIPELINE_LLM_TOKENIZER]\n\tat org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)\n\tat org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)\n\tat org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:343)\n\tat org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)\n\tat org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)\n\t... 40 more\nCaused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [PIPELINE_LLM_TOKENIZER]\n\tat org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:129)\n\tat org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:42)\n\tat org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)\n\tat org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:76)\n\tat org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:204)\n\tat org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85)\n\tat org.hibernate.internal.SessionFactoryImpl.\u003cinit\u003e(SessionFactoryImpl.java:335)\n\tat org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)\n\tat org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)\n\tat org.hibernate.jpa.HibernatePersistenceProvider.createContainerEntityManagerFactory(HibernatePersistenceProvider.java:141)\n\tat org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:367)\n\tat org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)\n\t... 44 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1712642328437_1740842779",
+      "id": "paragraph_1712642328437_1740842779",
+      "dateCreated": "2024-04-09 05:58:48.437",
+      "dateStarted": "2024-09-04 04:14:45.327",
+      "dateFinished": "2024-09-04 04:14:50.081",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark.pyspark\ndf.show()\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-16 23:07:32.157",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+-------------+------+--------+------------------+\n|table_type|cache_storage|policy|baseline|fk_organisation_id|\n+----------+-------------+------+--------+------------------+\n| dimension|         file|  scan|       3|             50702|\n|      fact|         file|  scan|       3|             50702|\n+----------+-------------+------+--------+------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1712642366902_1842680248",
+      "id": "paragraph_1712642366902_1842680248",
+      "dateCreated": "2024-04-09 05:59:26.902",
+      "dateStarted": "2024-05-16 23:07:32.159",
+      "dateFinished": "2024-05-16 23:07:32.626",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\npdf \u003d df.toPandas()",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-16 23:07:53.091",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715900813280_597093563",
+      "id": "paragraph_1715900813280_597093563",
+      "dateCreated": "2024-05-16 23:06:53.280",
+      "dateStarted": "2024-05-16 23:07:53.092",
+      "dateFinished": "2024-05-16 23:07:53.557",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\nprint(pdf)\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-16 23:08:05.145",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "  table_type cache_storage policy  baseline  fk_organisation_id\n0  dimension          file   scan         3               50702\n1       fact          file   scan         3               50702\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715900873092_2120034025",
+      "id": "paragraph_1715900873092_2120034025",
+      "dateCreated": "2024-05-16 23:07:53.092",
+      "dateStarted": "2024-05-16 23:08:05.147",
+      "dateFinished": "2024-05-16 23:08:05.360",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-05-16 23:08:05.146",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1715900885146_1688747820",
+      "id": "paragraph_1715900885146_1688747820",
+      "dateCreated": "2024-05-16 23:08:05.146",
+      "status": "READY"
+    }
+  ],
+  "name": "first",
+  "id": "2JW73JYQG",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.0-SNAPSHOT",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

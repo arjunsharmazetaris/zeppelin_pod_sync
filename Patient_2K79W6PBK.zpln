@@ -1,0 +1,180 @@
+{
+  "paragraphs": [
+    {
+      "text": "import requests\nimport json\nimport uuid\nimport os\nfrom base64 import b64encode\nimport base64\n\ndef set_api_base_url(url:str):\n  global api_url\n  api_url \u003d url\n\ndef get_auth(token:str\u003dNone):\n  if token \u003d\u003d None:\n    global bearer_token\n    token \u003d bearer_token\n  return {\n    \"Authorization\": token,\n    \"X-Request-ID\": str(uuid.uuid1()),\n    \"X-Org-ID\" : \"50702\"\n  }\n\ndef basic_auth(username:str,password:str):\n  token \u003d b64encode(f\"{username}:{password}\".encode(\u0027utf-8\u0027)).decode(\"ascii\")\n  return f\u0027Basic {token}\u0027\n\ndef login(username:str,password:str):\n  global bearer_token\n  global refresh_token\n  auth\u003dget_auth(basic_auth(username, password))\n\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/auth/login\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  bearer_token \u003d f\"Bearer {response[\u0027idToken\u0027]}\"\n  refresh_token \u003d f\"Bearer {response[\u0027refreshToken\u0027]}\"\n\ndef refresh_tokens():\n  global bearer_token\n  global refresh_token\n  auth \u003d get_auth(refresh_token)\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/auth/refresh\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  bearer_token \u003d f\"Bearer {response[\u0027idToken\u0027]}\"\n  refresh_token \u003d f\"Bearer {response[\u0027refreshToken\u0027]}\"\n\ndef get_pipeline_containers():\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef get_pipeline_relations(pipeline_container_id:int):\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers/{pipeline_container_id}/relations\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef execute_pipeline(pipeline_container_id:int, pipeline_relation_id:int, pageLimit:int):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"pageLimit\": pageLimit\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers/{pipeline_container_id}/relations/{pipeline_relation_id}/execute\u0027,headers\u003dauth,data\u003dbody)\n  print(response.text)\n  response \u003d json.loads(response.text)\n  return response\n\ndef open_sql_query(sql_query:str, pageLimit:int):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"select\": sql_query,\n    \"pageLimit\": pageLimit\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/start\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef register_table(datasource_name:str, table_name:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"dataSourceName\": datasource_name,\n      \"tableName\": table_name\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/register-table\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef generic_query(sql_query:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"sql\": sql_query\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/generic-query\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef run_sql(sql:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"sql\": sql\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/sql-editor/sqls/run\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef page_sql_query(queryToken:str, pageLimit:int, pageNumber:int):\n  auth \u003d get_auth()\n  params \u003d {\n    \"queryToken\": queryToken,\n    \"pageLimit\": pageLimit,\n    \"pageNumber\": pageNumber\n  }\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/query/sql/page\u0027,headers\u003dauth,params\u003dparams)\n  response \u003d json.loads(response.text)\n  return response\n\ndef close_sql_query(query_token:str):\n  auth \u003d get_auth()\n  requests.delete(url\u003df\u0027{api_url}/api/v1.0/query/sql/close/{query_token}\u0027,headers\u003dauth)\n\ndef clear_query_cache(username:str):\n  auth \u003d get_auth()\n  requests.delete(url\u003df\u0027{api_url}/api/v1.0/query/sql/clear/{username}\u0027,headers\u003dauth)\n    \ndef get_table_cbac(table_type:str,datbase_name:str,table_name:str):\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/access-control/cbac/generic/{table_type}/{datbase_name}/{table_name}\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef update_table_cbac(table_type:str,database_name:str,table_name:str,policyname:str,filtername:str, userlist:list, rolelist:list):\n  auth \u003d get_auth()\n  body \u003d {\n        \"version\": 0,\n        \"id\": database_name + \u0027.\u0027 + table_name,\n        \"partitionColumns\":[],\n        \"users\":userlist,\n        \"policies\": [\n            {\n                \"policyName\": policyname,\n                \"filter\": filtername,\n                \"fields\": []\n            }\n        ],          \n      \"roles\": rolelist\n    }\n  print(body)  \n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/access-control/cbac/generic/{table_type}/{database_name}/{table_name}\u0027,headers\u003dauth,json\u003dbody)\n  return response",
+      "user": "TIRTHANKAR.DEBNATH@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 18:10:21.508",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724892085171_9898657",
+      "id": "paragraph_1724892085171_9898657",
+      "dateCreated": "2024-08-29 00:41:25.171",
+      "dateStarted": "2025-04-06 18:10:21.509",
+      "dateFinished": "2025-04-06 18:10:21.563",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Function to get data from Zetaris by passing the select query.\n\ndef SelectQuery(select_query):\n    page_limit \u003d 100\n    x \u003d open_sql_query(select_query,page_limit)\n    data \u003d x[\u0027records\u0027]\n    query_token \u003d x[\u0027queryToken\u0027]\n    max_pages \u003d x[\u0027totalPages\u0027]\n    for i in range(2,max_pages+1):\n        page_data\u003dpage_sql_query(query_token,page_limit,i)\n        data +\u003d page_data[\u0027records\u0027]\n    return data",
+      "user": "TIRTHANKAR.DEBNATH@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 18:10:43.855",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724892703779_1341233586",
+      "id": "paragraph_1724892703779_1341233586",
+      "dateCreated": "2024-08-29 00:51:43.779",
+      "dateStarted": "2025-04-06 18:10:43.856",
+      "dateFinished": "2025-04-06 18:10:43.910",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Get the relevent data mart tables and store the relevant data as csv or json\n\ndef process_selected_dm_tables(apiurl, username, password):\n    \n    dmfull\u003d\"tirtho_new\"\n    dmtables\u003d[\u0027tirtho_pipeline\u0027]\n    try:\n        set_api_base_url(apiurl)\n        login(username, password)\n        for table in dmtables:\n            select_query_initial \u003d f\"SELECT * FROM {dmfull}.{table} limit 10\"\n            csv_filename \u003d f\"{dmfull}_{table}.csv\"\n            print(\u0027Printing Select Query\u0027)\n            print(select_query_initial)  \n            data_zetaris \u003d SelectQuery(select_query_initial)\n            updated_data \u003d {\u0027data\u0027: data_zetaris}\n            print(updated_data)\n        return \u0027Process completed successfully\u0027\n\n    except Exception as e:\n        return f\"An error occurred: {str(e)}\"",
+      "user": "TIRTHANKAR.DEBNATH@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 18:51:47.604",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724893393757_1136844362",
+      "id": "paragraph_1724893393757_1136844362",
+      "dateCreated": "2024-08-29 01:03:13.757",
+      "dateStarted": "2025-04-06 18:10:48.016",
+      "dateFinished": "2025-04-06 18:10:48.070",
+      "status": "FINISHED"
+    },
+    {
+      "text": "process_selected_dm_tables(\u0027https://api.saas.enterprise.zetaris.com/\u0027,\u0027rainathomas@gmail.com\u0027,\u0027P@55word\u0027)",
+      "user": "TIRTHANKAR.DEBNATH@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 18:10:51.276",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Printing Select Query\nSELECT * FROM PatientDM.Patients limit 10\n{\u0027data\u0027: [{\u0027ADDRESS\u0027: \u0027KOdBahG3WBzkyki0eBiMGxBTIpVQDt/8B4FZpwthLHU\u003d\u0027, \u0027PATIENTID\u0027: \u00271\u0027, \u0027GENDER\u0027: \u0027Male\u0027, \u0027DATEOFBIRTH\u0027: \u00271980-06-12\u0027, \u0027EMAIL\u0027: \u00273QBiXHTnr+k7QOydUJQe10ICiAt0ETbT0pc8wWc7KoE\u003d\u0027, \u0027PHONE\u0027: \u0027WMKgobRRmOqZD1ri+dVQzw\u003d\u003d\u0027, \u0027FIRSTNAME\u0027: \u00275/bSUeIUWjLGp0pstGGmyQ\u003d\u003d\u0027, \u0027LASTNAME\u0027: \u0027/msgl4WSLf9T/pPVWItmSQ\u003d\u003d\u0027}, {\u0027ADDRESS\u0027: \u0027/LxhK27v8g2gdjfZ6rjPvRp0nCqnpFKaysAOoc4klJI\u003d\u0027, \u0027PATIENTID\u0027: \u00272\u0027, \u0027GENDER\u0027: \u0027Female\u0027, \u0027DATEOFBIRTH\u0027: \u00271995-02-20\u0027, \u0027EMAIL\u0027: \u0027LyrTLG6SZT1TEwgYMz7A3XZ4lf1u2s9H//s6pajMadk\u003d\u0027, \u0027PHONE\u0027: \u0027b9ub7bJ7NptIMsKz16mHKg\u003d\u003d\u0027, \u0027FIRSTNAME\u0027: \u0027iIEUu7KEH4kp4gX+mvHZ2Q\u003d\u003d\u0027, \u0027LASTNAME\u0027: \u0027CFnr0jkNmL1D/iRfcb3rqw\u003d\u003d\u0027}]}\nPrinting Select Query\nSELECT * FROM PatientDM.Visits limit 10\n{\u0027data\u0027: [{\u0027PATIENTID\u0027: \u00271\u0027, \u0027PRESCRIPTION\u0027: \u0027Ibuprofen 200mg, 2 tablets every 6 hours as needed for fever or pain\u0027, \u0027VISITID\u0027: \u00271\u0027, \u0027DOCTORNAME\u0027: \u0027Dr. Johnson\u0027, \u0027VISITDATE\u0027: \u00272022-01-01\u0027, \u0027DIAGNOSIS\u0027: \u0027Common cold\u0027}, {\u0027PATIENTID\u0027: \u00271\u0027, \u0027PRESCRIPTION\u0027: \u0027Naproxen 500mg, 1 tablet twice daily for 7 days\u0027, \u0027VISITID\u0027: \u00272\u0027, \u0027DOCTORNAME\u0027: \u0027Dr. Lee\u0027, \u0027VISITDATE\u0027: \u00272022-02-15\u0027, \u0027DIAGNOSIS\u0027: \u0027Sprained ankle\u0027}, {\u0027PATIENTID\u0027: \u00272\u0027, \u0027PRESCRIPTION\u0027: \u0027Oseltamivir 75mg, 1 capsule twice daily for 5 days\u0027, \u0027VISITID\u0027: \u00273\u0027, \u0027DOCTORNAME\u0027: \u0027Dr. Garcia\u0027, \u0027VISITDATE\u0027: \u00272022-02-20\u0027, \u0027DIAGNOSIS\u0027: \u0027Flu\u0027}]}\n\u0027Process completed successfully\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724893404891_1068206250",
+      "id": "paragraph_1724893404891_1068206250",
+      "dateCreated": "2024-08-29 01:03:24.891",
+      "dateStarted": "2025-04-06 18:10:51.277",
+      "dateFinished": "2025-04-06 18:10:54.090",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:18:38.276",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894308224_2013013003",
+      "id": "paragraph_1724894308224_2013013003",
+      "dateCreated": "2024-08-29 01:18:28.224",
+      "status": "READY"
+    }
+  ],
+  "name": "Patient",
+  "id": "2K79W6PBK",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

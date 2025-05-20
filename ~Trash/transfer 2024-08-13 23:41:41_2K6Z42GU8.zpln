@@ -1,0 +1,152 @@
+{
+  "paragraphs": [
+    {
+      "text": "%python\r\nimport requests\r\nimport json\r\n\r\nurl \u003d \"https://3.235.157.249/accessx/api/external/transfer\"\r\n\r\npayload \u003d json.dumps({\r\n  \"srcPaths\": [\r\n    \"/home/cloud-user/mfolder_source/abc.csv\"\r\n  ],\r\n  \"srcSite\": \"ultxv1\",\r\n  \"srcNode\": \"ultxv1\",\r\n  \"srcNodeIp\": \"10.60.10.11\",\r\n  \"destPaths\": [\r\n    \"/home/cloud-user/mfolder_dest/abc.csv\"\r\n  ],\r\n  \"destSite\": \"ultxv2\",\r\n  \"destNode\": \"ultxv2\",\r\n  \"destNodeIp\": \"10.60.20.11\"\r\n})\r\nheaders \u003d {\r\n  \u0027Content-Type\u0027: \u0027application/json\u0027,\r\n  \u0027Authorization\u0027: \u0027Basic YWRtaW46emV0YXJpcw\u003d\u003d\u0027\r\n}\r\n\r\nresponse \u003d requests.request(\"POST\", url, headers\u003dheaders, data\u003dpayload)\r\n\r\nprint(response.text)",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-08 00:08:59.735",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.RuntimeException: java.lang.reflect.InaccessibleObjectException: Unable to make field private final java.lang.Object java.util.Optional.value accessible: module java.base does not \"opens java.util\" to unnamed module @24274cee\n\tat org.apache.zeppelin.interpreter.remote.PooledRemoteClient.callRemoteFunction(PooledRemoteClient.java:123)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.callRemoteFunction(RemoteInterpreterProcess.java:100)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:207)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:474)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:68)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:186)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:135)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:186)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723075250902_1970405685",
+      "id": "paragraph_1723075250902_1970405685",
+      "dateCreated": "2024-08-08 00:00:50.902",
+      "dateStarted": "2024-08-08 00:08:59.738",
+      "dateFinished": "2024-08-08 00:08:59.741",
+      "status": "ERROR"
+    },
+    {
+      "text": "!curl -k -u admin:zetaris -X POST -H \"Content-Type: application/json\" \\\r\n-d \"{\\\"srcPaths\\\": [\\\"/home/cloud-user/mfolder_source/abc.csv\\\"], \\\r\n\\\"srcSite\\\": \\\"ultxv1\\\", \\\r\n\\\"srcNode\\\": \\\"ultxv1\\\", \\\r\n\\\"destPaths\\\": [\\\"/ultxvfs2/mfolder_dest/\\\"], \\\r\n\\\"destSite\\\": \\\"ultxv2\\\", \\\r\n\\\"destNode\\\": \\\"ultxv2\\\"}\" \\\r\nhttps://3.235.157.249/accessx/api/external/transfer",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-08 00:02:47.560",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.RuntimeException: java.lang.reflect.InaccessibleObjectException: Unable to make field private final java.lang.Object java.util.Optional.value accessible: module java.base does not \"opens java.util\" to unnamed module @24274cee\n\tat org.apache.zeppelin.interpreter.remote.PooledRemoteClient.callRemoteFunction(PooledRemoteClient.java:123)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.callRemoteFunction(RemoteInterpreterProcess.java:100)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:207)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:474)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:68)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:186)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:135)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:186)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723075303208_1238752075",
+      "id": "paragraph_1723075303208_1238752075",
+      "dateCreated": "2024-08-08 00:01:43.208",
+      "dateStarted": "2024-08-08 00:02:47.562",
+      "dateFinished": "2024-08-08 00:02:47.566",
+      "status": "ERROR"
+    },
+    {
+      "text": "%python\r\n1+1",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-08 00:09:14.893",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.RuntimeException: java.lang.reflect.InaccessibleObjectException: Unable to make field private final java.lang.Object java.util.Optional.value accessible: module java.base does not \"opens java.util\" to unnamed module @24274cee\n\tat org.apache.zeppelin.interpreter.remote.PooledRemoteClient.callRemoteFunction(PooledRemoteClient.java:123)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.callRemoteFunction(RemoteInterpreterProcess.java:100)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:207)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:474)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:68)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:186)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:135)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:186)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723075367561_153179094",
+      "id": "paragraph_1723075367561_153179094",
+      "dateCreated": "2024-08-08 00:02:47.561",
+      "dateStarted": "2024-08-08 00:09:14.895",
+      "dateFinished": "2024-08-08 00:09:14.899",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-08 00:07:53.447",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723075663400_643726500",
+      "id": "paragraph_1723075663400_643726500",
+      "dateCreated": "2024-08-08 00:07:43.401",
+      "status": "READY"
+    }
+  ],
+  "name": "transfer 2024-08-13 23:41:41",
+  "id": "2K6Z42GU8",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

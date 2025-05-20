@@ -1,0 +1,151 @@
+{
+  "paragraphs": [
+    {
+      "text": "%python.conda install GitPython",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-05-20 11:52:40.553",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003ePackage Installation\u003c/h4\u003e\n\u003c/div\u003e\u003cbr /\u003e\n\u003cdiv style\u003d\"white-space:pre-wrap;\"\u003e\nChannels:\n - defaults\n - conda-forge\nPlatform: linux-64\nCollecting package metadata (repodata.json): ...working... done\nSolving environment: ...working... done\n\n## Package Plan ##\n\n  environment location: /home/zetaris/zeppelin/python/conda/envs/zeppelin\n\n  added / updated specs:\n    - gitpython\n\n\nThe following packages will be downloaded:\n\n    package                    |            build\n    ---------------------------|-----------------\n    gitdb-4.0.7                |     pyhd3eb1b0_0          50 KB\n    gitpython-3.1.43           |  py311h06a4308_0         372 KB\n    smmap-4.0.0                |     pyhd3eb1b0_0          23 KB\n    ------------------------------------------------------------\n                                           Total:         445 KB\n\nThe following NEW packages will be INSTALLED:\n\n  gitdb              pkgs/main/noarch::gitdb-4.0.7-pyhd3eb1b0_0 \n  gitpython          pkgs/main/linux-64::gitpython-3.1.43-py311h06a4308_0 \n  smmap              pkgs/main/noarch::smmap-4.0.0-pyhd3eb1b0_0 \n\n\n\nDownloading and Extracting Packages: ...working... done\nPreparing transaction: ...working... done\nVerifying transaction: ...working... done\nExecuting transaction: ...working... done\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747741870513_1604505287",
+      "id": "paragraph_1747741870513_1604505287",
+      "dateCreated": "2025-05-20 11:51:10.513",
+      "dateStarted": "2025-05-20 11:52:40.554",
+      "dateFinished": "2025-05-20 11:53:23.241",
+      "status": "FINISHED"
+    },
+    {
+      "text": "from git import Repo\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-05-20 11:53:34.088",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747741993183_484689156",
+      "id": "paragraph_1747741993183_484689156",
+      "dateCreated": "2025-05-20 11:53:13.183",
+      "dateStarted": "2025-05-20 11:53:34.090",
+      "dateFinished": "2025-05-20 11:53:34.093",
+      "status": "FINISHED"
+    },
+    {
+      "text": "from git import Repo\n\n# Local repository path\nrepo_path \u003d \"/path/to/your/repo\"  # Change this\n\n# Commit message\ncommit_message \u003d \"Automated commit using GitPython\"\n\n# Remote repository URL with token (for HTTPS)\nremote_url \u003d \"https://\u003cyour_token\u003e@github.com/yourusername/your-repo.git\"\nbranch \u003d \"main\"  # or \"master\"\n\n# Load the repo\nrepo \u003d Repo(repo_path)\n\n# Stage all changes\nrepo.git.add(all\u003dTrue)\n\n# Commit\nrepo.index.commit(commit_message)\n\n# Set up remote (if not set already)\nif \"origin\" not in [remote.name for remote in repo.remotes]:\n    repo.create_remote(\u0027origin\u0027, remote_url)\nelse:\n    repo.remote(\u0027origin\u0027).set_url(remote_url)\n\n# Push to remote\norigin \u003d repo.remote(name\u003d\u0027origin\u0027)\norigin.push(refspec\u003df\u0027{branch}:{branch}\u0027)\n\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-05-20 11:53:43.743",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 14: repo \u003d Repo(repo_path)\nTraceback (most recent call last):\n  File \"/tmp/python6411903748335008403/zeppelin_python.py\", line 162, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 14, in \u003cmodule\u003e\n  File \"/home/zetaris/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/git/repo/base.py\", line 236, in __init__\n    raise NoSuchPathError(epath)\ngit.exc.NoSuchPathError: /path/to/your/repo\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747741881000_2093455403",
+      "id": "paragraph_1747741881000_2093455403",
+      "dateCreated": "2025-05-20 11:51:21.000",
+      "dateStarted": "2025-05-20 11:53:43.745",
+      "dateFinished": "2025-05-20 11:53:43.751",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-05-20 11:53:53.794",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1747742023745_515469144",
+      "id": "paragraph_1747742023745_515469144",
+      "dateCreated": "2025-05-20 11:53:43.745",
+      "status": "READY"
+    }
+  ],
+  "name": "harshaltest",
+  "id": "2KVWXZ5H3",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

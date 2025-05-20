@@ -1,0 +1,313 @@
+{
+  "paragraphs": [
+    {
+      "text": "import requests\nimport json\nimport uuid\nimport os\nfrom base64 import b64encode\nimport base64\n\ndef set_api_base_url(url:str):\n  global api_url\n  api_url \u003d url\n\ndef get_auth(token:str\u003dNone):\n  if token \u003d\u003d None:\n    global bearer_token\n    token \u003d bearer_token\n  return {\n    \"Authorization\": token,\n    \"X-Request-ID\": str(uuid.uuid1()),\n    \"X-Org-ID\" : \"50702\"\n  }\n\ndef basic_auth(username:str,password:str):\n  token \u003d b64encode(f\"{username}:{password}\".encode(\u0027utf-8\u0027)).decode(\"ascii\")\n  return f\u0027Basic {token}\u0027\n\ndef login(username:str,password:str):\n  global bearer_token\n  global refresh_token\n  auth\u003dget_auth(basic_auth(username, password))\n\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/auth/login\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  bearer_token \u003d f\"Bearer {response[\u0027idToken\u0027]}\"\n  refresh_token \u003d f\"Bearer {response[\u0027refreshToken\u0027]}\"\n\ndef refresh_tokens():\n  global bearer_token\n  global refresh_token\n  auth \u003d get_auth(refresh_token)\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/auth/refresh\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  bearer_token \u003d f\"Bearer {response[\u0027idToken\u0027]}\"\n  refresh_token \u003d f\"Bearer {response[\u0027refreshToken\u0027]}\"\n\ndef get_pipeline_containers():\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef get_pipeline_relations(pipeline_container_id:int):\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers/{pipeline_container_id}/relations\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef execute_pipeline(pipeline_container_id:int, pipeline_relation_id:int, pageLimit:int):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"pageLimit\": pageLimit\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers/{pipeline_container_id}/relations/{pipeline_relation_id}/execute\u0027,headers\u003dauth,data\u003dbody)\n  print(response.text)\n  response \u003d json.loads(response.text)\n  return response\n\ndef open_sql_query(sql_query:str, pageLimit:int):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"select\": sql_query,\n    \"pageLimit\": pageLimit\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/start\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef register_table(datasource_name:str, table_name:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"dataSourceName\": datasource_name,\n      \"tableName\": table_name\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/register-table\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef generic_query(sql_query:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"sql\": sql_query\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/generic-query\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef run_sql(sql:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"sql\": sql\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/sql-editor/sqls/run\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef page_sql_query(queryToken:str, pageLimit:int, pageNumber:int):\n  auth \u003d get_auth()\n  params \u003d {\n    \"queryToken\": queryToken,\n    \"pageLimit\": pageLimit,\n    \"pageNumber\": pageNumber\n  }\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/query/sql/page\u0027,headers\u003dauth,params\u003dparams)\n  response \u003d json.loads(response.text)\n  return response\n\ndef close_sql_query(query_token:str):\n  auth \u003d get_auth()\n  requests.delete(url\u003df\u0027{api_url}/api/v1.0/query/sql/close/{query_token}\u0027,headers\u003dauth)\n\ndef clear_query_cache(username:str):\n  auth \u003d get_auth()\n  requests.delete(url\u003df\u0027{api_url}/api/v1.0/query/sql/clear/{username}\u0027,headers\u003dauth)\n    \ndef get_table_cbac(table_type:str,datbase_name:str,table_name:str):\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/access-control/cbac/generic/{table_type}/{datbase_name}/{table_name}\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef update_table_cbac(table_type:str,database_name:str,table_name:str,policyname:str,filtername:str, userlist:list, rolelist:list):\n  auth \u003d get_auth()\n  body \u003d {\n        \"version\": 0,\n        \"id\": database_name + \u0027.\u0027 + table_name,\n        \"partitionColumns\":[],\n        \"users\":userlist,\n        \"policies\": [\n            {\n                \"policyName\": policyname,\n                \"filter\": filtername,\n                \"fields\": []\n            }\n        ],\n      \"roles\": rolelist\n    }\n  print(body)  \n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/access-control/cbac/generic/{table_type}/{database_name}/{table_name}\u0027,headers\u003dauth,json\u003dbody)\n  return response",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-04 04:43:09.865",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894892898_361133696",
+      "id": "paragraph_1724894892898_361133696",
+      "dateCreated": "2024-08-29 01:28:12.898",
+      "dateStarted": "2025-04-04 04:43:09.866",
+      "dateFinished": "2025-04-04 04:43:09.922",
+      "status": "FINISHED"
+    },
+    {
+      "text": "pip install langchain_community",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:46:09.220",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724895412704_1035419743",
+      "id": "paragraph_1724895412704_1035419743",
+      "dateCreated": "2024-08-29 01:36:52.704",
+      "dateStarted": "2024-08-29 01:46:09.221",
+      "dateFinished": "2024-08-29 01:46:13.194",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import requests\nimport logging\nimport pandas as pd\nimport json\nimport uuid\nimport base64\nimport os\nfrom base64 import b64encode\nfrom datetime import datetime\nfrom pathlib import Path\nfrom typing import List\nimport csv\nimport re\n\nimport openai\nfrom langchain import PromptTemplate, LLMChain\nfrom langchain.chains import ConversationalRetrievalChain, RetrievalQA, load_qa_chain, SequentialChain, TransformChain\nfrom langchain.chains.question_answering import load_qa_chain\nfrom langchain.document_loaders import JSONLoader, CSVLoader, DirectoryLoader\nfrom langchain.embeddings import OpenAIEmbeddings\nfrom langchain.vectorstores import Chroma, FAISS\nfrom langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter\nfrom langchain.retrievers.multi_query import MultiQueryRetriever\nfrom langchain.retrievers import ParentDocumentRetriever\nfrom langchain.memory import ConversationBufferMemory\nfrom langchain.output_parsers import PydanticOutputParser\nfrom langchain.callbacks import get_openai_callback\nfrom langchain.storage import InMemoryStore\nfrom langchain.llms import OpenAI\nfrom langchain.agents import create_pandas_dataframe_agent, create_csv_agent\nfrom langchain.agents.agent_types import AgentType\nfrom pydantic import BaseModel, Field\n\n# Community libraries\nfrom langchain_community.embeddings import HuggingFaceInstructEmbeddings\nfrom langchain_community.llms import HuggingFaceHub\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:58:30.750",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894668045_861640346",
+      "id": "paragraph_1724894668045_861640346",
+      "dateCreated": "2024-08-29 01:24:28.045",
+      "dateStarted": "2024-08-29 01:53:22.679",
+      "dateFinished": "2024-08-29 01:53:22.736",
+      "status": "ERROR"
+    },
+    {
+      "text": "#Adding the OPENAI KEY in the Environment\n\nos.environ[\"OPENAI_API_KEY\"] \u003d \"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\"",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:29:23.744",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894684745_1531570450",
+      "id": "paragraph_1724894684745_1531570450",
+      "dateCreated": "2024-08-29 01:24:44.745",
+      "dateStarted": "2024-08-29 01:29:23.746",
+      "dateFinished": "2024-08-29 01:29:23.802",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Function to get data from Zetaris by passing the select query.\n\ndef SelectQuery(select_query):\n    page_limit \u003d 100\n    x \u003d open_sql_query(select_query,page_limit)\n    data \u003d x[\u0027records\u0027]\n    query_token \u003d x[\u0027queryToken\u0027]\n    max_pages \u003d x[\u0027totalPages\u0027]\n    for i in range(2,max_pages+1):\n        page_data\u003dpage_sql_query(query_token,page_limit,i)\n        data +\u003d page_data[\u0027records\u0027]\n    return data",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:29:25.802",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894696322_1998506930",
+      "id": "paragraph_1724894696322_1998506930",
+      "dateCreated": "2024-08-29 01:24:56.322",
+      "dateStarted": "2024-08-29 01:29:25.804",
+      "dateFinished": "2024-08-29 01:29:25.860",
+      "status": "FINISHED"
+    },
+    {
+      "text": "def process_selected_dm_tables(apiurl, username, password):\n    container_name\u003d\u0027zetarisgenzstorage\u0027\n    \n    dmfull\u003d\"ProjectManagementDM\"\n    dmtables\u003d[\u0027projects\u0027,\u0027capabilities\u0027]\n    try:\n        set_api_base_url(apiurl)\n        login(username, password)\n        for table in dmtables:\n            select_query_initial \u003d f\"SELECT * FROM {dmfull}.{table}\"\n            csv_filename \u003d f\"{dmfull}_{table}.csv\"\n            print(\u0027Printing Select Query\u0027)\n            print(select_query_initial)  \n            data_zetaris \u003d SelectQuery(select_query_initial)\n            updated_data \u003d {\u0027data\u0027: data_zetaris}\n            df \u003d pd.DataFrame(updated_data)\n            df.to_csv(f\"abfs://{container_name}@{container_name}.dfs.core.windows.net/{csv_filename}\",storage_options \u003d {\u0027account_key\u0027 : \u0027qG9NdPf1UjqzsDB09SKNDPhwGsUv44hSuzhPsqtBkzs1RPMnqQFv4bgtD6mBcjtj8UcHivXsnGNr+AStUiQsfg\u003d\u003d\u0027})\n        return \u0027Process completed successfully\u0027\n\n    except Exception as e:\n        return f\"An error occurred: {str(e)}\"",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:30:35.346",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894704455_568814432",
+      "id": "paragraph_1724894704455_568814432",
+      "dateCreated": "2024-08-29 01:25:04.455",
+      "dateStarted": "2024-08-29 01:30:35.348",
+      "dateFinished": "2024-08-29 01:30:35.403",
+      "status": "FINISHED"
+    },
+    {
+      "text": "process_selected_dm_tables(\u0027https://api.saas.enterprise.zetaris.com/\u0027,\u0027rainathomas@gmail.com\u0027,\u0027P@55word\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:29:37.522",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Printing Select Query\nSELECT * FROM Gravity_Datamart.Projects_AWS\n\"An error occurred: \u0027records\u0027\""
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894715448_2114696615",
+      "id": "paragraph_1724894715448_2114696615",
+      "dateCreated": "2024-08-29 01:25:15.448",
+      "dateStarted": "2024-08-29 01:29:37.524",
+      "dateFinished": "2024-08-29 01:29:37.882",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.ipyspark\n\nspark.conf.set(\"fs.azure.account.key.zetarisgenzstorage.blob.core.windows.net\", \"qG9NdPf1UjqzsDB09SKNDPhwGsUv44hSuzhPsqtBkzs1RPMnqQFv4bgtD6mBcjtj8UcHivXsnGNr+AStUiQsfg\u003d\u003d\")\n\nimport requests\nimport logging\nimport pandas as pd\nimport json\nimport uuid\nfrom base64 import b64encode\nimport base64\nimport time\n#from ZetarisAPI import *\nimport os\nimport openai\nfrom langchain.chains import ConversationalRetrievalChain\nfrom langchain.chat_models import ChatOpenAI\nfrom langchain.agents.agent_types import AgentType\nfrom langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings\nfrom langchain.llms import OpenAI\nfrom langchain.chains import RetrievalQA\nfrom langchain.vectorstores import Chroma\nfrom langchain.document_loaders import JSONLoader,CSVLoader\nfrom langchain.text_splitter import CharacterTextSplitter\nfrom langchain.vectorstores import FAISS\nfrom langchain import PromptTemplate, LLMChain\nfrom langchain.retrievers.multi_query import MultiQueryRetriever\nfrom langchain.chains.question_answering import load_qa_chain\nfrom langchain.callbacks import get_openai_callback\n#from langchain.agents import create_pandas_dataframe_agent\nfrom langchain.text_splitter import RecursiveCharacterTextSplitter\nfrom langchain.document_loaders import DirectoryLoader\n#from langchain.agents import create_csv_agent\nfrom langchain.memory import ConversationBufferMemory\nfrom langchain.llms import HuggingFaceHub\nfrom datetime import datetime\nfrom pathlib import Path\nfrom typing import List\nfrom langchain.chains import LLMChain\nfrom langchain_community.document_loaders import AzureBlobStorageContainerLoader\nfrom pydantic import BaseModel, Field\nfrom langchain.prompts import PromptTemplate\nfrom langchain.output_parsers import PydanticOutputParser\n#from langchain_openai import OpenAIEmbeddings\nfrom langchain.chains import TransformChain\nfrom langchain.chains import SequentialChain\nimport csv\nimport re\nfrom langchain.retrievers import ParentDocumentRetriever\nfrom langchain.storage import InMemoryStore\nimport shutil\nfrom azure.storage.blob import BlobServiceClient\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Adding the OPENAI KEY in the Environment\n\nos.environ[\"OPENAI_API_KEY\"] \u003d \"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\"\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Delete Azure Blob container\ndef delete_container_if_exists(blob_service_client, container_name):\n    try:\n        if blob_service_client.get_container_client(container_name).exists():\n            blob_service_client.delete_container(container_name)\n            print(f\"Container \u0027{container_name}\u0027 deleted successfully\")\n        else:\n            print(f\"Container \u0027{container_name}\u0027 does not exist\")\n\n    except Exception as e:\n        print(f\"An error occurred while deleting the container: {str(e)}\")\n        \n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Create Blob Container\ndef create_container(blob_service_client, container_name):\n    try:\n        blob_service_client.create_container(container_name)\n        print(f\"Container \u0027{container_name}\u0027 created successfully\")\n    except Exception as e:\n        print(f\"An error occurred while creating the container: {str(e)}\")\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Get the result in string or list format and convert it to a dataframe with desired columns\ndef generate_result_dataframe(retres):\n    lines \u003d retres.split(\u0027\\n\u0027)\n    project_names \u003d []\n    categories \u003d []\n    for line in lines:\n        parts \u003d line.split(\u0027:\u0027)\n        project_name \u003d parts[0].strip()\n        categories_str \u003d parts[1].strip()\n        if \u0027,\u0027 in categories_str:\n            categories_list \u003d categories_str.split(\u0027,\u0027)\n            for category in categories_list:\n                project_names.append(project_name)\n                categories.append(category.strip())\n        else:\n            project_names.append(project_name)\n            categories.append(categories_str)\n    df \u003d pd.DataFrame({\u0027Project_Name\u0027: project_names, \u0027Capability_Name\u0027: categories})\n    return df\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#As per the given data, map the appropriate project and capability id with the respective names\ndef find_relevant_id(prj_cap_name,p_or_c,df_project_ids,df_capability_ids):\n    cleaned_name \u003d prj_cap_name.strip().split(\u0027:\u0027)[0].strip().lower()\n    if p_or_c.strip().lower()\u003d\u003d\u0027project\u0027:\n        matching_row \u003d df_project_ids[df_project_ids[\u0027Project_Name\u0027].str.strip().str.lower() \u003d\u003d cleaned_name]\n    else:\n        matching_row \u003d df_capability_ids[df_capability_ids[\u0027Capability_Name\u0027].str.strip().str.lower() \u003d\u003d cleaned_name]\n    if not matching_row.empty:\n        if p_or_c.strip().lower()\u003d\u003d\u0027project\u0027:\n            return matching_row.iloc[0][\u0027project_id\u0027]\n        else:\n            return matching_row.iloc[0][\u0027capability_id\u0027]\n    else:\n        return None\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Connect to Azure Blob Storage account and create container (if it exists, delete it first)\ndef connect_to_container(connection_string, container_name):\n    try:\n        blob_service_client \u003d BlobServiceClient.from_connection_string(connection_string)\n        delete_container_if_exists(blob_service_client, container_name)\n        time.sleep(60)\n        create_container(blob_service_client, container_name)\n        container_client \u003d blob_service_client.get_container_client(container_name)\n        return container_client\n\n    except Exception as e:\n        print(f\"An error occurred while connecting to the container: {str(e)}\")\n        return None\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Get the relevant data mart tables and store the relevant data as csv or json\ndef process_selected_dm_tables(connection_string,container_name):\n    container_client \u003d connect_to_container(connection_string, container_name)\n    dmfull\u003d\"Gravity_Datamart\"\n    dmtables\u003d[\u0027Projects_AWS\u0027,\u0027Capabilities_AWS\u0027]\n    try:\n        create_container(blob_service_client, container_name)        \n        for table in dmtables:\n            csv_filename \u003d f\"{dmfull}_{table}.csv\"\n            select_query_initial \u003d f\"Select * from {dmfull}.{table}\"\n            csv_path \u003d f\"wasbs://{container_name}@{connection_string}.blob.core.windows.net/{csv_filename}\"\n            print(csv_path)\n            df \u003d spark.sql(select_query_initial.lower())\n            df.show()\n            df.write.csv(csv_path, header\u003dTrue)  # Specify header\n        return \u0027Process completed successfully\u0027\n    except Exception as e:\n        return f\"An error occurred: {str(e)}\"\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Get the result in string or list format and convert it to a dataframe with desired columns\ndef generate_result_dataframe(retres):\n    lines \u003d retres.split(\u0027\\n\u0027)\n    project_names \u003d []\n    categories \u003d []\n    for line in lines:\n        parts \u003d line.split(\u0027:\u0027)\n        project_name \u003d parts[0].strip()\n        categories_str \u003d parts[1].strip()\n        if \u0027,\u0027 in categories_str:\n            categories_list \u003d categories_str.split(\u0027,\u0027)\n            for category in categories_list:\n                project_names.append(project_name)\n                categories.append(category.strip())\n        else:\n            project_names.append(project_name)\n            categories.append(categories_str)\n    df \u003d pd.DataFrame({\u0027Project_Name\u0027: project_names, \u0027Capability_Name\u0027: categories})\n    return df\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Use the data stored in the directory above and process the data and create embeddings and result for the user as per the supplied question\ndef process_question_function(container_name, connection_string, question):\n    loader \u003d AzureBlobStorageContainerLoader(conn_str\u003dconnection_string, container\u003dcontainer_name)\n    data \u003d loader.load()\n    print(data)\n    \n    # This text splitter is used to create the parent documents\n    parent_splitter \u003d RecursiveCharacterTextSplitter(chunk_size\u003d1000000)\n    \n    # This text splitter is used to create the child documents\n    # It should create documents smaller than the parent\n    child_splitter \u003d RecursiveCharacterTextSplitter(chunk_size\u003d1000)\n    \n    # The vectorstore to use to index the child chunks\n    vectorstore \u003d Chroma(collection_name\u003d\"return_split_parent_documents\", embedding_function\u003dOpenAIEmbeddings())\n    \n    # The storage layer for the parent documents\n    store \u003d InMemoryStore()\n\n    #This will set up our retriever for us\n    retriever \u003d ParentDocumentRetriever(\n        vectorstore\u003dvectorstore, \n        docstore\u003dstore, \n        child_splitter\u003dchild_splitter,\n        parent_splitter\u003dparent_splitter,\n    )\n    \n    #Both of them will be combined.\n    retriever.add_documents(data)\n    \n    #Let\u0027s check out how many documents we have now\n    print(\u0027Documents Length\u0027)\n    print(len(list(store.yield_keys())))\n    llm \u003d ChatOpenAI(temperature\u003d0, model\u003d\u0027gpt-4\u0027)\n    larger_chunk_relevant_docs \u003d retriever.get_relevant_documents(question)\n\n    print(larger_chunk_relevant_docs)\n\n    prompt_template \u003d \"\"\"Use the following pieces of context to answer the question at the end.\n                        If you don\u0027t know the answer, just say that you don\u0027t know, don\u0027t try to make up an answer.\n                        \n                        {context}\n                        \n                        Question: {question}\n                        Answer:\"\"\"\n    \n    PROMPT \u003d PromptTemplate(\n        template\u003dprompt_template, input_variables\u003d[\"context\", \"question\"]\n    )\n                    \n    result \u003d llm.predict(text\u003dPROMPT.format_prompt(\n        context\u003dlarger_chunk_relevant_docs,\n        question\u003dquestion\n    ).text)\n\n    return(result)",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:31:42.131",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724894725977_982955019",
+      "id": "paragraph_1724894725977_982955019",
+      "dateCreated": "2024-08-29 01:25:25.977",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.ipyspark\n\n#Call the process datamart function and fetch the data\n\nconnection_string \u003d \"DefaultEndpointsProtocol\u003dhttps;AccountName\u003dzetarisgenzstorage;AccountKey\u003dqG9NdPf1UjqzsDB09SKNDPhwGsUv44hSuzhPsqtBkzs1RPMnqQFv4bgtD6mBcjtj8UcHivXsnGNr+AStUiQsfg\u003d\u003d;EndpointSuffix\u003dcore.windows.net\"\ncontainer_name \u003d \"zetarisgenzstorage\"\nprocess_selected_dm_tables(connection_string,container_name)\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Fetch the generated data files and store it as pandas dataframes\n\ndf_project_ids \u003d spark.sql(\u0027select * from ProjectManagementDM.projects\u0027)\ndf_capability_ids \u003d spark.sql(\u0027select * from ProjectManagementDM.capabilities\u0027)\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Ask the required question and fetch the result suing OpenAI\nretres \u003d process_question_function(container_name, connection_string, \u0027Provide insights about suitable capabilities matching the project descriptions and assign a suitable capability . Give the response in this format (Project Name: Capability Name 1, Capability Name 2 and if there are more go ahead similarly.). One project may have one or more capabilities. Do not assign three capabilities to each project just because I gave in the example.\u0027)\nprint(retres)\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\n\n#Convert the generated result into a dataframe\n\ndf_project_capability \u003d generate_result_dataframe(retres)\ndf_project_capability[\u0027Project_ID\u0027] \u003d df_project_capability.apply(lambda row: find_relevant_id(row[\u0027Project_Name\u0027], \u0027project\u0027, df_project_ids, df_capability_ids), axis\u003d1)\ndf_project_capability[\u0027Capability_ID\u0027] \u003d df_project_capability.apply(lambda row: find_relevant_id(row[\u0027Capability_Name\u0027], \u0027capability\u0027, df_project_ids, df_capability_ids), axis\u003d1)\n\n#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:33:03.276",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)\nCell \u001b[0;32mIn[8], line 5\u001b[0m\n\u001b[1;32m      3\u001b[0m connection_string \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mDefaultEndpointsProtocol\u003dhttps;AccountName\u003dzetarisgenzstorage;AccountKey\u003dqG9NdPf1UjqzsDB09SKNDPhwGsUv44hSuzhPsqtBkzs1RPMnqQFv4bgtD6mBcjtj8UcHivXsnGNr+AStUiQsfg\u003d\u003d;EndpointSuffix\u003dcore.windows.net\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m      4\u001b[0m container_name \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mzetarisgenzstorage\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[0;32m----\u003e 5\u001b[0m process_selected_dm_tables(connection_string,container_name)\n\u001b[1;32m      7\u001b[0m \u001b[38;5;66;03m#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#\u001b[39;00m\n\u001b[1;32m      8\u001b[0m \n\u001b[1;32m      9\u001b[0m \u001b[38;5;66;03m#Fetch the generated data files and store it as pandas dataframes\u001b[39;00m\n\u001b[1;32m     11\u001b[0m df_project_ids \u001b[38;5;241m\u003d\u001b[39m spark\u001b[38;5;241m.\u001b[39msql(\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124mselect * from ProjectManagementDM.projects\u001b[39m\u001b[38;5;124m\u0027\u001b[39m)\n\n\u001b[0;31mNameError\u001b[0m: name \u0027process_selected_dm_tables\u0027 is not defined"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724895135406_1515116254",
+      "id": "paragraph_1724895135406_1515116254",
+      "dateCreated": "2024-08-29 01:32:15.406",
+      "dateStarted": "2024-08-29 01:33:03.278",
+      "dateFinished": "2024-08-29 01:33:53.399",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark.ipyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-29 01:33:03.277",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1724895183277_1916772197",
+      "id": "paragraph_1724895183277_1916772197",
+      "dateCreated": "2024-08-29 01:33:03.277",
+      "status": "READY"
+    }
+  ],
+  "name": "Gravity",
+  "id": "2K8JJP35R",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

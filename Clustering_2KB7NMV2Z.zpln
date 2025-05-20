@@ -1,0 +1,411 @@
+{
+  "paragraphs": [
+    {
+      "text": "\nimport requests\nimport json\nimport uuid\nimport os\nfrom base64 import b64encode\nimport base64\nimport numpy as np\nimport pandas as pd\nfrom ast import literal_eval\nfrom openai import OpenAI\nfrom sklearn.cluster import KMeans\nfrom sklearn.manifold import TSNE\nimport matplotlib\nimport matplotlib.pyplot as plt\nimport pandas as pd\nfrom azure.storage.blob import BlobServiceClient\nimport os\nfrom azure.storage.fileshare import ShareFileClient, ShareServiceClient\n\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-01-21 06:38:32.090",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729805657128_35339619",
+      "id": "paragraph_1729805657128_35339619",
+      "dateCreated": "2024-10-24 21:34:17.128",
+      "dateStarted": "2025-01-21 06:38:32.092",
+      "dateFinished": "2025-01-21 06:38:32.095",
+      "status": "FINISHED"
+    },
+    {
+      "text": "# API Calls for Authentication and Query\n\ndef get_auth():\n  return {\n    \"Authorization\": \"Bearer ake5sjfmg20zdkzrjydd0uc8wnibhsy9pcycqwkp5agydnpmibr1afc5cscx\",\n    \"X-Request-ID\": str(uuid.uuid1()),\n    \"X-Org-ID\" : \"50702\"\n  }\n\ndef run_sql(sql:str,api_url):\n    auth \u003d get_auth()\n    body \u003d json.dumps({\n        \"sql\": sql,\n        \"source\": \"Generic\",\n        \"queryId\": str(uuid.uuid1())\n    })\n    response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/sql-editor/sqls/run\u0027,headers\u003dauth,data\u003dbody)\n    response \u003d json.loads(response.text)\n    return response",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-01-21 06:40:05.233",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729810654723_1083842275",
+      "id": "paragraph_1729810654723_1083842275",
+      "dateCreated": "2024-10-24 22:57:34.723",
+      "dateStarted": "2025-01-21 06:40:05.235",
+      "dateFinished": "2025-01-21 06:40:05.239",
+      "status": "FINISHED"
+    },
+    {
+      "text": "# load \u0026 inspect dataset\n\napi_url \u003d \u0027https://api.saas.enterprise.zetaris.com/\u0027\ndata_zetaris \u003d run_sql(\u0027select * from Fine_Food.Review limit 50\u0027, api_url)\nprint(data_zetaris)\nheaders \u003d data_zetaris[\u0027headers\u0027]\nrows \u003d data_zetaris[\u0027data\u0027]\nrecords \u003d [{headers[i]: row[i] for i in range(len(headers))} for row in rows]\nupdated_data \u003d {\u0027data\u0027: records}\ndf \u003d pd.DataFrame(updated_data[\u0027data\u0027])\ndf \u003d df[[\"Time\", \"ProductId\", \"UserId\", \"Score\", \"Summary\", \"Text\"]]\ndf \u003d df.dropna()\ndf[\"combined\"] \u003d (\n    \"Title: \" + df.Summary.str.strip() + \"; Content: \" + df.Text.str.strip()\n)\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-01-21 06:40:11.328",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\u0027headers\u0027: [\u0027Id\u0027, \u0027ProductId\u0027, \u0027UserId\u0027, \u0027ProfileName\u0027, \u0027HelpfulnessNumerator\u0027, \u0027HelpfulnessDenominator\u0027, \u0027Score\u0027, \u0027Time\u0027, \u0027Summary\u0027, \u0027Text\u0027], \u0027data\u0027: [[\u00271\u0027, \u0027B001E4KFG0\u0027, \u0027A3SGXH7AUHU8GW\u0027, \u0027delmartian\u0027, \u00271\u0027, \u00271\u0027, \u00275\u0027, \u00271303862400\u0027, \u0027Good Quality Dog Food\u0027, \u0027I have bought several of the Vitality canned dog food products and have found them all to be of good quality. The product looks more like a stew than a processed meat and it smells better. My Labrador is finicky and she appreciates this product better than  most.\u0027], [\u00272\u0027, \u0027B00813GRG4\u0027, \u0027A1D87F6ZCVE5NK\u0027, \u0027dll pa\u0027, \u00270\u0027, \u00270\u0027, \u00271\u0027, \u00271346976000\u0027, \u0027Not as Advertised\u0027, \u0027\"Product arrived labeled as Jumbo Salted Peanuts...the peanuts were actually small sized unsalted. Not sure if this was an error or if the vendor intended to represent the product as \"\"Jumbo\"\".\"\u0027], [\u00273\u0027, \u0027B000LQOCH0\u0027, \u0027ABXLMWJIXXAIN\u0027, \u0027\"Natalia Corres \"\"Natalia Corres\"\"\"\u0027, \u00271\u0027, \u00271\u0027, \u00274\u0027, \u00271219017600\u0027, \u0027\"\"\"Delight\"\" says it all\"\u0027, \u0027\"This is a confection that has been around a few centuries.  It is a light, pillowy citrus gelatin with nuts - in this case Filberts. And it is cut into tiny squares and then liberally coated with powdered sugar.  And it is a tiny mouthful of heaven.  Not too chewy, and very flavorful.  I highly recommend this yummy treat.  If you are familiar with the story of C.S. Lewis\\\u0027 \"\"The Lion\u0027], [\u00274\u0027, \u0027B000UA0QIQ\u0027, \u0027A395BORC6FGVXV\u0027, \u0027Karl\u0027, \u00273\u0027, \u00273\u0027, \u00272\u0027, \u00271307923200\u0027, \u0027Cough Medicine\u0027, \u0027If you are looking for the secret ingredient in Robitussin I believe I have found it.  I got this in addition to the Root Beer Extract I ordered (which was good) and made some cherry soda.  The flavor is very medicinal.\u0027], [\u00275\u0027, \u0027B006K2ZZ7K\u0027, \u0027A1UQRSCLF8GW1T\u0027, \u0027\"Michael D. Bigham \"\"M. Wassir\"\"\"\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271350777600\u0027, \u0027Great taffy\u0027, \u0027Great taffy at a great price.  There was a wide assortment of yummy taffy.  Delivery was very quick.  If your a taffy lover, this is a deal.\u0027], [\u00276\u0027, \u0027B006K2ZZ7K\u0027, \u0027ADT0SRK1MGOEU\u0027, \u0027Twoapennything\u0027, \u00270\u0027, \u00270\u0027, \u00274\u0027, \u00271342051200\u0027, \u0027Nice Taffy\u0027, \u0027I got a wild hair for taffy and ordered this five pound bag. The taffy was all very enjoyable with many flavors: watermelon, root beer, melon, peppermint, grape, etc. My only complaint is there was a bit too much red/black licorice-flavored pieces (just not my particular favorites). Between me, my kids, and my husband, this lasted only two weeks! I would recommend this brand of taffy -- it was a delightful treat.\u0027], [\u00277\u0027, \u0027B006K2ZZ7K\u0027, \u0027A1SP2KVKFXXRU1\u0027, \u0027David C. Sullivan\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271340150400\u0027, \u0027Great!  Just as good as the expensive brands!\u0027, \"This saltwater taffy had great flavors and was very soft and chewy.  Each candy was individually wrapped well.  None of the candies were stuck together, which did happen in the expensive version, Fralinger\u0027s.  Would highly recommend this candy!  I served it at a beach-themed party and everyone loved it!\"], [\u00278\u0027, \u0027B006K2ZZ7K\u0027, \u0027A3JRGQVEQN31IQ\u0027, \u0027Pamela G. Williams\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271336003200\u0027, \u0027Wonderful, tasty taffy\u0027, \u0027This taffy is so good.  It is very soft and chewy.  The flavors are amazing.  I would definitely recommend you buying it.  Very satisfying!!\u0027], [\u00279\u0027, \u0027B000E7L2R4\u0027, \u0027A1MZYO9TZK0BBI\u0027, \u0027R. James\u0027, \u00271\u0027, \u00271\u0027, \u00275\u0027, \u00271322006400\u0027, \u0027Yay Barley\u0027, \"Right now I\u0027m mostly just sprouting this so my cats can eat the grass. They love it. I rotate it around with Wheatgrass and Rye too\"], [\u002710\u0027, \u0027B00171APVA\u0027, \u0027A21BT40VZCCYT4\u0027, \u0027Carol A. Reed\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271351209600\u0027, \u0027Healthy Dog Food\u0027, \u0027This is a very healthy dog food. Good for their digestion. Also good for small puppies. My dog eats her required amount at every feeding.\u0027], [\u002711\u0027, \u0027B0001PB9FE\u0027, \u0027A3HDKO7OW0QNK4\u0027, \u0027Canadian Fan\u0027, \u00271\u0027, \u00271\u0027, \u00275\u0027, \u00271107820800\u0027, \u0027The Best Hot Sauce in the World\u0027, \"I don\u0027t know if it\u0027s the cactus or the tequila or just the unique combination of ingredients, but the flavour of this hot sauce makes it one of a kind!  We picked up a bottle once on a trip we were on and brought it back home with us and were totally blown away!  When we realized that we simply couldn\u0027t find it anywhere in our city we were bummed.\u003cbr /\u003e\u003cbr /\u003eNow, because of the magic of the internet, we have a case of the sauce and are ecstatic because of it.\u003cbr /\u003e\u003cbr /\u003eIf you love hot sauce..I mean really love hot sauce, but don\u0027t want a sauce that tastelessly burns your throat, grab a bottle of Tequila Picante Gourmet de Inclan.  Just realize that once you taste it, you will never want to use any other sauce.\u003cbr /\u003e\u003cbr /\u003eThank you for the personal, incredible service!\"], [\u002712\u0027, \u0027B0009XLVG0\u0027, \u0027A2725IB4YY9JEB\u0027, \u0027\"A Poeng \"\"SparkyGoHome\"\"\"\u0027, \u00274\u0027, \u00274\u0027, \u00275\u0027, \u00271282867200\u0027, \u0027\"My cats LOVE this \"\"diet\"\" food better than their regular food\"\u0027, \"One of my boys needed to lose some weight and the other didn\u0027t.  I put this food on the floor for the chubby guy, and the protein-rich, no by-product food up higher where only my skinny boy can jump.  The higher food sits going stale.  They both really go for this food.  And my chubby boy has been losing about an ounce a week.\"], [\u002713\u0027, \u0027B0009XLVG0\u0027, \u0027A327PCT23YH90\u0027, \u0027LT\u0027, \u00271\u0027, \u00271\u0027, \u00271\u0027, \u00271339545600\u0027, \u0027My Cats Are Not Fans of the New Food\u0027, \"My cats have been happily eating Felidae Platinum for more than two years. I just got a new bag and the shape of the food is different. They tried the new food when I first put it in their bowls and now the bowls sit full and the kitties will not touch the food. I\u0027ve noticed similar reviews related to formula changes in the past. Unfortunately, I now need to find a new food that my cats will eat.\"], [\u002714\u0027, \u0027B001GVISJM\u0027, \u0027A18ECVX2RJ7HUE\u0027, \u0027\"willie \"\"roadie\"\"\"\u0027, \u00272\u0027, \u00272\u0027, \u00274\u0027, \u00271288915200\u0027, \u0027fresh and greasy!\u0027, \u0027good flavor! these came securely packed... they were fresh and delicious! i love these Twizzlers!\u0027], [\u002715\u0027, \u0027B001GVISJM\u0027, \u0027A2MUGFV2TDQ47K\u0027, \u0027\"Lynrie \"\"Oh HELL no\"\"\"\u0027, \u00274\u0027, \u00275\u0027, \u00275\u0027, \u00271268352000\u0027, \u0027Strawberry Twizzlers - Yummy\u0027, \u0027The Strawberry Twizzlers are my guilty pleasure - yummy. Six pounds will be around for a while with my son and I.\u0027], [\u002716\u0027, \u0027B001GVISJM\u0027, \u0027A1CZX3CP8IKQIJ\u0027, \u0027Brian A. Lee\u0027, \u00274\u0027, \u00275\u0027, \u00275\u0027, \u00271262044800\u0027, \u0027Lots of twizzlers, just what you expect.\u0027, \"My daughter loves twizzlers and this shipment of six pounds really hit the spot. It\u0027s exactly what you would expect...six packages of strawberry twizzlers.\"], [\u002717\u0027, \u0027B001GVISJM\u0027, \u0027A3KLWF6WQ5BNYO\u0027, \u0027Erica Neathery\u0027, \u00270\u0027, \u00270\u0027, \u00272\u0027, \u00271348099200\u0027, \u0027poor taste\u0027, \u0027I love eating them and they are good for watching TV and looking at movies! It is not too sweet. I like to transfer them to a zip lock baggie so they stay fresh so I can take my time eating them.\u0027], [\u002718\u0027, \u0027B001GVISJM\u0027, \u0027AFKW14U97Z6QO\u0027, \u0027Becca\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271345075200\u0027, \u0027Love it!\u0027, \u0027I am very satisfied with my Twizzler purchase.  I shared these with others and we have all enjoyed them.  I will definitely be ordering more.\u0027], [\u002719\u0027, \u0027B001GVISJM\u0027, \u0027A2A9X58G2GTBLP\u0027, \u0027Wolfee1\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271324598400\u0027, \u0027GREAT SWEET CANDY!\u0027, \u0027Twizzlers, Strawberry my childhood favorite candy, made in Lancaster Pennsylvania by Y \u0026 S Candies, Inc. one of the oldest confectionery Firms in the United States, now a Subsidiary of the Hershey Company, the Company was established in 1845 as Young and Smylie, they also make Apple Licorice Twists, Green Color and Blue Raspberry Licorice Twists, I like them all\u003cbr /\u003e\u003cbr /\u003eI keep it in a dry cool place because is not recommended it to put it in the fridge. According to the Guinness Book of Records, the longest Licorice Twist ever made measured 1.200 Feet (370 M) and weighted 100 Pounds (45 Kg) and was made by Y \u0026 S Candies, Inc. This Record-Breaking Twist became a Guinness World Record on July 19, 1998. This Product is Kosher! Thank You\u0027], [\u002720\u0027, \u0027B001GVISJM\u0027, \u0027A3IV7CL2C13K2U\u0027, \u0027Greg\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271318032000\u0027, \u0027Home delivered twizlers\u0027, \u0027Candy was delivered very fast and was purchased at a reasonable price.  I was home bound and unable to get to a store so this was perfect for me.\u0027], [\u002721\u0027, \u0027B001GVISJM\u0027, \u0027A1WO0KGLPR5PV6\u0027, \u0027mom2emma\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271313452800\u0027, \u0027Always fresh\u0027, \"My husband is a Twizzlers addict.  We\u0027ve bought these many times from Amazon because we\u0027re government employees living overseas and can\u0027t get them in the country we are assigned to.  They\u0027ve always been fresh and tasty, packed well and arrive in a timely manner.\"], [\u002722\u0027, \u0027B001GVISJM\u0027, \u0027AZOF9E17RGZH8\u0027, \u0027Tammy Anderson\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271308960000\u0027, \u0027TWIZZLERS\u0027, \u0027\"I bought these for my husband who is currently overseas. He loves these, and apparently his staff likes them also.\u003cbr /\u003eThere are generous amounts of Twizzlers in each 16-ounce bag, and this was well worth the price. \u003ca href\u003d\"\"http://www.amazon.com/gp/product/B001GVISJM\"\"\u003eTwizzlers\u0027], [\u002723\u0027, \u0027B001GVISJM\u0027, \u0027ARYVQL4N737A1\u0027, \u0027Charles Brown\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271304899200\u0027, \u0027Delicious product!\u0027, \"I can remember buying this candy as a kid and the quality hasn\u0027t dropped in all these years. Still a superb product you won\u0027t be disappointed with.\"], [\u002724\u0027, \u0027B001GVISJM\u0027, \u0027AJ613OLZZUG7V\u0027, \"Mare\u0027s\", \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271304467200\u0027, \u0027Twizzlers\u0027, \u0027I love this candy.  After weight watchers I had to cut back but still have a craving for it.\u0027], [\u002725\u0027, \u0027B001GVISJM\u0027, \u0027A22P2J09NJ9HKE\u0027, \u0027\"S. Cabanaugh \"\"jilly pepper\"\"\"\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271295481600\u0027, \u0027Please sell these in Mexico!!\u0027, \"I have lived out of the US for over 7 yrs now, and I so miss my Twizzlers!!  When I go back to visit or someone visits me, I always stock up.  All I can say is YUM!\u003cbr /\u003eSell these in Mexico and you will have a faithful buyer, more often than I\u0027m able to buy them right now.\"], [\u002726\u0027, \u0027B001GVISJM\u0027, \u0027A3FONPR03H3PJS\u0027, \u0027\"Deborah S. Linzer \"\"Cat Lady\"\"\"\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271288310400\u0027, \u0027Twizzlers - Strawberry\u0027, \u0027\"Product received is as advertised.\u003cbr /\u003e\u003cbr /\u003e\u003ca href\u003d\"\"http://www.amazon.com/gp/product/B001GVISJM\"\"\u003eTwizzlers\u0027], [\u002727\u0027, \u0027B001GVISJM\u0027, \u0027A3RXAU2N8KV45G\u0027, \u0027lady21\u0027, \u00270\u0027, \u00271\u0027, \u00271\u0027, \u00271332633600\u0027, \u0027Nasty No flavor\u0027, \u0027The candy is just red , No flavor . Just  plan and chewy .  I would never buy them again\u0027], [\u002728\u0027, \u0027B001GVISJM\u0027, \u0027AAAS38B98HMIK\u0027, \u0027Heather Dube\u0027, \u00270\u0027, \u00271\u0027, \u00274\u0027, \u00271331856000\u0027, \u0027Great Bargain for the Price\u0027, \u0027I was so glad Amazon carried these batteries.  I have a hard time finding them elsewhere because they are such a unique size.  I need them for my garage door opener.\u003cbr /\u003eGreat deal for the price.\u0027], [\u002729\u0027, \u0027B00144C10S\u0027, \u0027A2F4LZVGFLD1OB\u0027, \u0027DaisyH\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271338854400\u0027, \u0027YUMMY!\u0027, \"I got this for my Mum who is not diabetic but needs to watch her sugar intake, and my father who simply chooses to limit unnecessary sugar intake - she\u0027s the one with the sweet tooth - they both LOVED these toffees, you would never guess that they\u0027re sugar-free and it\u0027s so great that you can eat them pretty much guilt free!  i was so impressed that i\u0027ve ordered some for myself (w dark chocolate) to take to the office so i\u0027ll eat them instead of snacking on sugary sweets.\u003cbr /\u003eThese are just EXCELLENT!\"], [\u002730\u0027, \u0027B0001PB9FY\u0027, \u0027A3HDKO7OW0QNK4\u0027, \u0027Canadian Fan\u0027, \u00271\u0027, \u00271\u0027, \u00275\u0027, \u00271107820800\u0027, \u0027The Best Hot Sauce in the World\u0027, \"I don\u0027t know if it\u0027s the cactus or the tequila or just the unique combination of ingredients, but the flavour of this hot sauce makes it one of a kind!  We picked up a bottle once on a trip we were on and brought it back home with us and were totally blown away!  When we realized that we simply couldn\u0027t find it anywhere in our city we were bummed.\u003cbr /\u003e\u003cbr /\u003eNow, because of the magic of the internet, we have a case of the sauce and are ecstatic because of it.\u003cbr /\u003e\u003cbr /\u003eIf you love hot sauce..I mean really love hot sauce, but don\u0027t want a sauce that tastelessly burns your throat, grab a bottle of Tequila Picante Gourmet de Inclan.  Just realize that once you taste it, you will never want to use any other sauce.\u003cbr /\u003e\u003cbr /\u003eThank you for the personal, incredible service!\"], [\u002731\u0027, \u0027B003F6UO7K\u0027, \u0027AFM0O9480F04W\u0027, \u0027Sherril\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271297641600\u0027, \u0027Great machine!\u0027, \"I have never been a huge coffee fan. However, my mother purchased this little machine and talked me into trying the Latte Macciato. No Coffee Shop has a better one and I like most of the other products, too (as a usually non-coffee drinker!).\u003cbr /\u003eThe little Dolche Guesto Machine is super easy to use and prepares a really good Coffee/Latte/Cappuccino/etc in less than a minute (if water is heated up). I would recommend the Dolce Gusto to anyone. Too good for the price and I\u0027am getting one myself! :)\"], [\u002732\u0027, \u0027B003F6UO7K\u0027, \u0027A31OQO709M20Y7\u0027, \u0027\"Molly V. Smith \"\"staral\"\"\"\u0027, \u00270\u0027, \u00271\u0027, \u00275\u0027, \u00271288310400\u0027, \u0027THIS IS MY TASTE...\u0027, \u0027This offer is a great price and a great taste, thanks Amazon for selling this product.\u003cbr /\u003e\u003cbr /\u003eStaral\u0027], [\u002733\u0027, \u0027B001EO5QW8\u0027, \u0027AOVROBZ8BNTP7\u0027, \u0027S. Potter\u0027, \u002719\u0027, \u002719\u0027, \u00274\u0027, \u00271163376000\u0027, \u0027Best of the Instant Oatmeals\u0027, \"McCann\u0027s Instant Oatmeal is great if you must have your oatmeal but can only scrape together two or three minutes to prepare it. There is no escaping the fact, however, that even the best instant oatmeal is nowhere near as good as even a store brand of oatmeal requiring stovetop preparation.  Still, the McCann\u0027s is as good as it gets for instant oatmeal. It\u0027s even better than the organic, all-natural brands I have tried.  All the varieties in the McCann\u0027s variety pack taste good.  It can be prepared in the microwave or by adding boiling water so it is convenient in the extreme when time is an issue.\u003cbr /\u003e\u003cbr /\u003eMcCann\u0027s use of actual cane sugar instead of high fructose corn syrup helped me decide to buy this product.  Real sugar tastes better and is not as harmful as the other stuff. One thing I do not like, though, is McCann\u0027s use of thickeners.  Oats plus water plus heat should make a creamy, tasty oatmeal without the need for guar gum. But this is a convenience product.  Maybe the guar gum is why, after sitting in the bowl a while, the instant McCann\u0027s becomes too thick and gluey.\"], [\u002734\u0027, \u0027B001EO5QW8\u0027, \u0027A3PMM0NFVEJGK9\u0027, \u0027\"Megan \"\"Bad at Nicknames\"\"\"\u0027, \u002713\u0027, \u002713\u0027, \u00274\u0027, \u00271166313600\u0027, \u0027Good Instant\u0027, \"This is a good instant oatmeal from the best oatmeal brand.  It uses cane sugar instead of high fructouse corn syrup, so not only does it have a better sweetness, but some doctors now say that this form of sugar is better for you.  Great on a cold morning when you don\u0027t have time to make McCann\u0027s Steel Cut Oats.  The apple cinnamon is the best but the maple and brown sugar or the regular are good too.  Plus they don\u0027t require doctoring to actually tell the three flavors apart.\"], [\u002735\u0027, \u0027B001EO5QW8\u0027, \u0027A2EB6OGOWCRU5H\u0027, \u0027CorbyJames\u0027, \u00279\u0027, \u00279\u0027, \u00275\u0027, \u00271175212800\u0027, \u0027Great Irish oatmeal for those in a hurry!\u0027, \"Instant oatmeal can become soggy the minute the water hits the bowl. McCann\u0027s Instant Oatmeal holds its texture, has excellent flavor, and is good for you all at the same time. McCann\u0027s regular oat meal is excellent, too, but may take a bit longer to prepare than most have time for in the morning. This is the best instant brand I\u0027ve ever eaten, and a very close second to the non-instant variety.\u003cbr /\u003e\u003cbr /\u003eMcCann\u0027s Instant Irish Oatmeal, Variety Pack of Regular, Apples \u0026 Cinnamon, and Maple \u0026 Brown Sugar, 10-Count Boxes (Pack of 6)\"], [\u002736\u0027, \u0027B001EO5QW8\u0027, \u0027A2CI0RLADCRKPF\u0027, \u0027T. J. Ryan\u0027, \u00273\u0027, \u00273\u0027, \u00274\u0027, \u00271210464000\u0027, \u0027satisfying\u0027, \"McCann\u0027s Instant Irish Oatmeal, Variety Pack of Regular, Apples \u0026 Cinnamon, and Maple \u0026 Brown Sugar, 10-Count Boxes (Pack of 6)\u003cbr /\u003e\u003cbr /\u003eI\u0027m a fan of the McCann\u0027s steel-cut oats, so I thought I\u0027d give the instant variety a try. I found it to be a hardy meal, not too sweet, and great for folks like me (post-bariatric surgery) who need food that is palatable, easily digestible, with fiber but won\u0027t make you bloat.\"], [\u002737\u0027, \u0027B001EO5QW8\u0027, \u0027A1MYS9LFFBIYKM\u0027, \u0027\"Abby Chase \"\"gluten free\"\"\"\u0027, \u00272\u0027, \u00272\u0027, \u00275\u0027, \u00271190851200\u0027, \u0027Love Gluten Free Oatmeal!!!\u0027, \"For those of us with celiac disease this product is a lifesaver and what could be better than getting it at almost half the price of the grocery or health food store!  I love McCann\u0027s instant oatmeal - all flavors!!!\u003cbr /\u003e\u003cbr /\u003eThanks,\u003cbr /\u003eAbby\"], [\u002738\u0027, \u0027B001EO5QW8\u0027, \u0027A3MGP2E1ZZ6GRB\u0027, \u0027\"Zardoz \"\"focuspuller\"\"\"\u0027, \u00271\u0027, \u00271\u0027, \u00275\u0027, \u00271238457600\u0027, \"it\u0027s oatmeal\", \"What else do you need to know? Oatmeal, instant (make it with a half cup of low-fat milk and add raisins;nuke for 90 seconds). More expensive than Kroger store brand oatmeal and maybe a little tastier or better texture or something. It\u0027s still just oatmeal. Mmm, convenient!\"], [\u002739\u0027, \u0027B001EO5QW8\u0027, \u0027A2GHZ2UTV2B0CD\u0027, \u0027JERRY REITH\u0027, \u00270\u0027, \u00270\u0027, \u00274\u0027, \u00271350777600\u0027, \u0027GOOD WAY TO START THE DAY....\u0027, \u0027I WAS VISITING MY FRIEND NATE THE OTHER MORNING FOR COFFEE , HE CAME OUT OF HIS STORAGE ROOM WITH ( A PACKET OF McCANNS INSTANT IRISH OATMEAL .) HE SUGGESTED THAT I TRY IT FOR MY OWN USE ,IN MY STASH . SOMETIMES NATE DOSE NOT GIVE YOU A CHANCE TO SAY NO , SO I ENDED UP TRYING THE APPLE AND CINN . FOUND IT TO BE VERY TASTEFULL WHEN MADE WITH WATER OR POWDERED MILK . IT GOES GOOD WITH O.J. AND COFFEE AND A SLICE OF TOAST AND YOUR READY TO TAKE ON THE WORLD...OR THE DAY AT LEAST..  JERRY REITH...\u0027], [\u002740\u0027, \u0027B001EO5QW8\u0027, \u0027AO80AC8313NIZ\u0027, \u0027kYpondman\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271317168000\u0027, \"Wife\u0027s favorite Breakfast\", \u0027\"I ordered this for my wife as it was reccomended by our daughter.  She has this almost every morning and likes all flavors.  She\\\u0027s happy, I\\\u0027m happy!!!\u003cbr /\u003e\u003ca href\u003d\"\"http://www.amazon.com/gp/product/B001EO5QW8\"\"\u003eMcCANN\\\u0027S Instant Irish Oatmeal\u0027], [\u002741\u0027, \u0027B001EO5QW8\u0027, \u0027AQCY5KRO7489S\u0027, \u0027Garrett\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271303430400\u0027, \"Why wouldn\u0027t you buy oatmeal from Mcanns? Tastes great!\", \"The variety packs taste great!\u003cbr /\u003e\u003cbr /\u003eI have them every morning. At $0.30 cents per meal, I don\u0027t understand why everyone on earth isn\u0027t buying this stuff up.\u003cbr /\u003e\u003cbr /\u003eMaple and brown sugar is terrific, followed by apples and cinnamon, followed by regular. You don\u0027t get tired of the same ole thing, and they taste great.\u003cbr /\u003e\u003cbr /\u003eI just boil water from a small pot, empty the packet or 2 in a bowl, pour in boiling water, and watch it expand to 2x its size!\u003cbr /\u003e\u003cbr /\u003eTaste really good and takes minutes to prepare.\u003cbr /\u003e\u003cbr /\u003eNot sure why everyone on earth isn\u0027t this. Convenient, healthy, very quick, excellent quality, and extremely cheap...\"], [\u002742\u0027, \u0027B001EO5QW8\u0027, \u0027A1WK4ALVZDYPUE\u0027, \u0027\"Dick Baldwin \"\"christobe\"\"\"\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271302134400\u0027, \u0027Oatmeal For Oatmeal Lovers\u0027, \"McCann\u0027s makes oatmeal for every oatmeal connoisseur, whether one likes it from the raw pellet state that cooks for half an hour, to the sloth addled instant, which can be done in the microwave for under three minutes. It\u0027s all good, that\u0027s for sure, and the beauty of the instant variety is that it is available in different flavors as well as regular.\u003cbr /\u003e  This variety pack allows different tastes to be explored, as well as giving you a chance to experience the difference between McCann\u0027s and other well-known oatmeals. What I personally like about McCann\u0027s is that it cooks up thicker and with more body than the top brand here in America. The Apples \u0026 Cinnamon, though, tends to be a little liquidy so you may want to experiment with the amount of water you add. In my 1300watt microwave the oatmeal cooks up in about one minute and twenty-seven seconds, so you should also watch that to get a handle on how much time and water to use.\u003cbr /\u003e  The only bad thing -- if you can consider it a bad thing -- about this offering is that you have to buy in lot so you\u0027ll end up with six ten-count boxes. This is good if you have a whole family of oatmeal-eaters, but if you\u0027re a single person alone -- well, love oatmeal.\"], [\u002743\u0027, \u0027B001EO5QW8\u0027, \u0027A16XFOYQSJREL7\u0027, \u0027Roger Pugliese\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271287014400\u0027, \u0027Food-Great\u0027, \"I have McCann\u0027s Oatmeal every morning and by ordering it from Amazon I am able to save almost $3.00 per box.\u003cbr /\u003eIt is a great product. Tastes great and very healthy\"], [\u002744\u0027, \u0027B001EO5QW8\u0027, \u0027A17DW6SUOC70DJ\u0027, \u0027Mother of 9\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271255392000\u0027, \u0027Good Hot Breakfast\u0027, \"McCann\u0027s Oatmeal is a good quality choice.  Our favorite is the Apples and Cinnamon, but we find that none of these are overly sugary.  For a good hot breakfast in 2 minutes, this is excellent.\"], [\u002745\u0027, \u0027B001EO5QW8\u0027, \u0027A2G7B7FKP2O2PU\u0027, \u0027D. Leschke\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271209686400\u0027, \u0027Great taste and convenience\u0027, \"We really like the McCann\u0027s steel cut oats but find we don\u0027t cook it up too often.\u003cbr /\u003eThis tastes much better to me than the grocery store brands and is just as convenient.\u003cbr /\u003eAnything that keeps me eating oatmeal regularly is a good thing.\"], [\u002746\u0027, \u0027B001EO5QW8\u0027, \u0027A39Z97950MCTQE\u0027, \u0027K. A. Freel\u0027, \u00270\u0027, \u00270\u0027, \u00273\u0027, \u00271205193600\u0027, \u0027Hearty Oatmeal\u0027, \"This seems a little more wholesome than some of the supermarket brands, but it is somewhat mushy and doesn\u0027t have quite as much flavor either.  It didn\u0027t pass muster with my kids, so I probably won\u0027t buy it again.\"], [\u002747\u0027, \u0027B001EO5QW8\u0027, \u0027AQLL2R1PPR46X\u0027, \u0027grumpyrainbow\u0027, \u00270\u0027, \u00270\u0027, \u00275\u0027, \u00271192752000\u0027, \u0027good\u0027, \"Good oatmeal.  I like the apple cinnamon the best.  Though I wouldn\u0027t follow the directions on the package since it always comes out too soupy for my taste.  That could just be me since I like my oatmeal really thick to add some milk on top of.\"], [\u002748\u0027, \u0027B001EO5QW8\u0027, \u0027A26AY1TFK8BQXQ\u0027, \u0027\"kbogo \"\"shoelover\"\"\"\u0027, \u00271\u0027, \u00272\u0027, \u00273\u0027, \u00271200096000\u0027, \u0027Mushy\u0027, \u0027The flavors are good.  However, I do not see any differce between this and Oaker Oats brand - they are both mushy.\u0027], [\u002749\u0027, \u0027B001EO5QW8\u0027, \u0027ALOR97KTZTK1P\u0027, \u0027knitty pants\u0027, \u00271\u0027, \u00272\u0027, \u00274\u0027, \u00271191715200\u0027, \"Very good but next time I won\u0027t order the Variety Pack\", \"I really like the Maple and Brown Sugar flavor. The regular is fine with brown sugar added. The Apples and Cinnamon flavor is OK. This is a very quick, easy and satisfying breakfast and I\u0027ll order this brand again, but not the variety. I\u0027ll get all Maple and Brown Sugar.\"], [\u002750\u0027, \u0027B001EO5QW8\u0027, \u0027A276999Y6VRSCQ\u0027, \u0027JMay\u0027, \u00270\u0027, \u00271\u0027, \u00273\u0027, \u00271334016000\u0027, \u0027Same stuff\u0027, \u0027This is the same stuff you can buy at the big box stores.  There is nothing healthy about it.  It is just carbs and sugars.  Save your money and get something that at least has some taste.\u0027]], \u0027total\u0027: 50, \u0027timeUsed\u0027: 270}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729805402936_1765230205",
+      "id": "paragraph_1729805402936_1765230205",
+      "dateCreated": "2024-10-24 21:30:02.936",
+      "dateStarted": "2025-01-21 06:40:11.330",
+      "dateFinished": "2025-01-21 06:40:11.798",
+      "status": "FINISHED"
+    },
+    {
+      "text": "selected_columns \u003d df.iloc[:, 0]\nprint(selected_columns)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-01-21 06:50:30.714",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "0     1303862400\n1     1346976000\n2     1219017600\n3     1307923200\n4     1350777600\n5     1342051200\n6     1340150400\n7     1336003200\n8     1322006400\n9     1351209600\n10    1107820800\n11    1282867200\n12    1339545600\n13    1288915200\n14    1268352000\n15    1262044800\n16    1348099200\n17    1345075200\n18    1324598400\n19    1318032000\n20    1313452800\n21    1308960000\n22    1304899200\n23    1304467200\n24    1295481600\n25    1288310400\n26    1332633600\n27    1331856000\n28    1338854400\n29    1107820800\n30    1297641600\n31    1288310400\n32    1163376000\n33    1166313600\n34    1175212800\n35    1210464000\n36    1190851200\n37    1238457600\n38    1350777600\n39    1317168000\n40    1303430400\n41    1302134400\n42    1287014400\n43    1255392000\n44    1209686400\n45    1205193600\n46    1192752000\n47    1200096000\n48    1191715200\n49    1334016000\nName: Time, dtype: object\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1737441616053_1516401711",
+      "id": "paragraph_1737441616053_1516401711",
+      "dateCreated": "2025-01-21 06:40:16.053",
+      "dateStarted": "2025-01-21 06:50:30.715",
+      "dateFinished": "2025-01-21 06:50:30.721",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Generating Embeddings\n\nclient \u003d OpenAI(api_key\u003d\"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\")\n\ndef get_embedding(text, model\u003d\"text-embedding-ada-002\"):\n   text \u003d text.replace(\"\\n\", \" \")\n   return client.embeddings.create(input \u003d [text], \nmodel\u003dmodel).data[0].embedding\n\ndf[\u0027embedding\u0027] \u003d df.combined.apply(lambda x: get_embedding(x, model\u003d\u0027text-embedding-ada-002\u0027))",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-11-14 03:05:55.411",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729816604799_655821649",
+      "id": "paragraph_1729816604799_655821649",
+      "dateCreated": "2024-10-25 00:36:44.800",
+      "dateStarted": "2024-11-14 03:05:55.412",
+      "dateFinished": "2024-11-14 03:06:12.169",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Preview the data\ndf.head()",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-10-25 02:13:38.238",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv\u003e\n\u003cstyle scoped\u003e\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n\u003c/style\u003e\n\u003ctable border\u003d\"1\" class\u003d\"dataframe\"\u003e\n  \u003cthead\u003e\n    \u003ctr style\u003d\"text-align: right;\"\u003e\n      \u003cth\u003e\u003c/th\u003e\n      \u003cth\u003eTime\u003c/th\u003e\n      \u003cth\u003eProductId\u003c/th\u003e\n      \u003cth\u003eUserId\u003c/th\u003e\n      \u003cth\u003eScore\u003c/th\u003e\n      \u003cth\u003eSummary\u003c/th\u003e\n      \u003cth\u003eText\u003c/th\u003e\n      \u003cth\u003ecombined\u003c/th\u003e\n      \u003cth\u003eembedding\u003c/th\u003e\n    \u003c/tr\u003e\n  \u003c/thead\u003e\n  \u003ctbody\u003e\n    \u003ctr\u003e\n      \u003cth\u003e0\u003c/th\u003e\n      \u003ctd\u003e1303862400\u003c/td\u003e\n      \u003ctd\u003eB001E4KFG0\u003c/td\u003e\n      \u003ctd\u003eA3SGXH7AUHU8GW\u003c/td\u003e\n      \u003ctd\u003e5\u003c/td\u003e\n      \u003ctd\u003eGood Quality Dog Food\u003c/td\u003e\n      \u003ctd\u003eI have bought several of the Vitality canned d...\u003c/td\u003e\n      \u003ctd\u003eTitle: Good Quality Dog Food; Content: I have ...\u003c/td\u003e\n      \u003ctd\u003e[-5.127829808770912e-06, 0.0024124847259372473...\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth\u003e1\u003c/th\u003e\n      \u003ctd\u003e1346976000\u003c/td\u003e\n      \u003ctd\u003eB00813GRG4\u003c/td\u003e\n      \u003ctd\u003eA1D87F6ZCVE5NK\u003c/td\u003e\n      \u003ctd\u003e1\u003c/td\u003e\n      \u003ctd\u003eNot as Advertised\u003c/td\u003e\n      \u003ctd\u003e\"Product arrived labeled as Jumbo Salted Peanu...\u003c/td\u003e\n      \u003ctd\u003eTitle: Not as Advertised; Content: \"Product ar...\u003c/td\u003e\n      \u003ctd\u003e[-0.010498627088963985, -0.005452724639326334,...\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth\u003e2\u003c/th\u003e\n      \u003ctd\u003e1219017600\u003c/td\u003e\n      \u003ctd\u003eB000LQOCH0\u003c/td\u003e\n      \u003ctd\u003eABXLMWJIXXAIN\u003c/td\u003e\n      \u003ctd\u003e4\u003c/td\u003e\n      \u003ctd\u003e\"\"\"Delight\"\" says it all\"\u003c/td\u003e\n      \u003ctd\u003e\"This is a confection that has been around a f...\u003c/td\u003e\n      \u003ctd\u003eTitle: \"\"\"Delight\"\" says it all\"; Content: \"Th...\u003c/td\u003e\n      \u003ctd\u003e[-0.0015112987020984292, 0.004505478776991367,...\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth\u003e3\u003c/th\u003e\n      \u003ctd\u003e1307923200\u003c/td\u003e\n      \u003ctd\u003eB000UA0QIQ\u003c/td\u003e\n      \u003ctd\u003eA395BORC6FGVXV\u003c/td\u003e\n      \u003ctd\u003e2\u003c/td\u003e\n      \u003ctd\u003eCough Medicine\u003c/td\u003e\n      \u003ctd\u003eIf you are looking for the secret ingredient i...\u003c/td\u003e\n      \u003ctd\u003eTitle: Cough Medicine; Content: If you are loo...\u003c/td\u003e\n      \u003ctd\u003e[0.01103642676025629, 0.016485290601849556, -0...\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth\u003e4\u003c/th\u003e\n      \u003ctd\u003e1350777600\u003c/td\u003e\n      \u003ctd\u003eB006K2ZZ7K\u003c/td\u003e\n      \u003ctd\u003eA1UQRSCLF8GW1T\u003c/td\u003e\n      \u003ctd\u003e5\u003c/td\u003e\n      \u003ctd\u003eGreat taffy\u003c/td\u003e\n      \u003ctd\u003eGreat taffy at a great price.  There was a wid...\u003c/td\u003e\n      \u003ctd\u003eTitle: Great taffy; Content: Great taffy at a ...\u003c/td\u003e\n      \u003ctd\u003e[-0.016545439139008522, -0.003654227824881673,...\u003c/td\u003e\n    \u003c/tr\u003e\n  \u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729809646768_2033627157",
+      "id": "paragraph_1729809646768_2033627157",
+      "dateCreated": "2024-10-24 22:40:46.769",
+      "dateStarted": "2024-10-25 02:13:38.240",
+      "dateFinished": "2024-10-25 02:13:38.297",
+      "status": "FINISHED"
+    },
+    {
+      "text": "# Converting Embeddings to Matrix\nmatrix \u003d np.vstack(df.embedding.values)\nmatrix.shape\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-11-14 03:06:20.680",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "(50, 1536)"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729809781579_985672323",
+      "id": "paragraph_1729809781579_985672323",
+      "dateCreated": "2024-10-24 22:43:01.579",
+      "dateStarted": "2024-11-14 03:06:20.682",
+      "dateFinished": "2024-11-14 03:06:20.736",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Finding clusters using Kmeans\n\nn_clusters \u003d 4\ndf[\u0027Score\u0027] \u003d pd.to_numeric(df[\u0027Score\u0027], errors\u003d\u0027coerce\u0027) # Converting score to numeric\nkmeans \u003d KMeans(n_clusters\u003dn_clusters, init\u003d\"k-means++\", random_state\u003d42)\nkmeans.fit(matrix)\nlabels \u003d kmeans.labels_\ndf[\"Cluster\"] \u003d labels\ndf.groupby(\"Cluster\").Score.mean().sort_values()\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-11-14 03:07:42.233",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Cluster\n2    4.000000\n3    4.222222\n1    4.470588\n0    5.000000\nName: Score, dtype: float64"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729809861014_1385260543",
+      "id": "paragraph_1729809861014_1385260543",
+      "dateCreated": "2024-10-24 22:44:21.014",
+      "dateStarted": "2024-11-14 03:07:42.234",
+      "dateFinished": "2024-11-14 03:07:42.533",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Displaying the clusters\ntsne \u003d TSNE(n_components\u003d2, perplexity\u003d15, random_state\u003d42, init\u003d\"random\", learning_rate\u003d200)\nvis_dims2 \u003d tsne.fit_transform(matrix)\n\nx \u003d [x for x, y in vis_dims2]\ny \u003d [y for x, y in vis_dims2]\n\nfor category, color in enumerate([\"purple\", \"green\", \"red\", \"blue\"]):\n    xs \u003d np.array(x)[df.Cluster \u003d\u003d category]\n    ys \u003d np.array(y)[df.Cluster \u003d\u003d category]\n    plt.scatter(xs, ys, color\u003dcolor, alpha\u003d0.3)\n\n    avg_x \u003d xs.mean()\n    avg_y \u003d ys.mean()\n\n    plt.scatter(avg_x, avg_y, marker\u003d\"x\", color\u003dcolor, s\u003d100)\nplt.title(\"Clusters identified visualized in language 2d using t-SNE\")",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-11-14 03:19:07.760",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Text(0.5, 1.0, \u0027Clusters identified visualized in language 2d using t-SNE\u0027)"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729809828010_2146905041",
+      "id": "paragraph_1729809828010_2146905041",
+      "dateCreated": "2024-10-24 22:43:48.010",
+      "dateStarted": "2024-11-14 03:19:07.761",
+      "dateFinished": "2024-11-14 03:19:08.332",
+      "status": "FINISHED"
+    },
+    {
+      "text": "# Assuming df and n_clusters are already defined\nrev_per_cluster \u003d 5\nall_reviews \u003d []\n\nfor i in range(n_clusters):\n    reviews \u003d \"\\n\".join(\n        df[df.Cluster \u003d\u003d i]\n        .combined.str.replace(\"Title: \", \"\")\n        .str.replace(\"\\n\\nContent: \", \":  \")\n        .sample(rev_per_cluster, random_state\u003d42)\n        .values\n    )\n    all_reviews.append({\"Cluster\": i, \"Reviews\": reviews})\n\n# Create a DataFrame\nreviews_df \u003d pd.DataFrame(all_reviews)\n\n# Convert the DataFrame to CSV in memory\ncsv_buffer \u003d BytesIO()\nreviews_df.to_csv(csv_buffer, index\u003dFalse)\ncsv_buffer.seek(0)\n\nconnection_string \u003d \"DefaultEndpointsProtocol\u003dhttps;AccountName\u003dzetarisqaztsta;AccountKey\u003dWLAB0sRhp/3rQpodbdMDV/aFfwPBIBKXZGBHWQ6o4PhxQvmpb+c7D9Nv4ydISm2A4eEmj0zda4Fh+AStfKaoeQWLAB0sRhp/3rQpodbdMDV/aFfwPBIBKXZGBHWQ6o4PhxQvmpb+c7D9Nv4ydISm2A4eEmj0zda4Fh+AStfKaoeQWLAB0sRhp/3rQpodbdMDV/aFfwPBIBKXZGBHWQ6o4PhxQvmpb+c7D9Nv4ydISm2A4eEmj0zda4Fh+AStfKaoeQ\u003d\u003d;EndpointSuffix\u003dcore.windows.net\"\nshare_name \u003d \"cusdatashare\"\nfolder_path \u003d \"1d0c220d/file-store/FineFoodTest\"\nfile_name \u003d \"reviews.csv\"\n\n# Create a ShareServiceClient\nservice_client \u003d ShareServiceClient.from_connection_string(connection_string)\n\n# Get a ShareClient for the file share\nshare_client \u003d service_client.get_share_client(share_name)\n\n# Get a ShareFileClient for the specific file\nfile_client \u003d share_client.get_file_client(f\"{folder_path}/{file_name}\")\n\n# Upload the CSV buffer to the file share\ncsv_buffer.seek(0)  # Reset the buffer position to the beginning\nfile_client.upload_file(csv_buffer.read())\n\n",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-11-14 03:08:18.288",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mClientAuthenticationError\u001b[0m                 Traceback (most recent call last)\nCell \u001b[0;32mIn[47], line 39\u001b[0m\n\u001b[1;32m     37\u001b[0m \u001b[38;5;66;03m# Upload the CSV buffer to the file share\u001b[39;00m\n\u001b[1;32m     38\u001b[0m csv_buffer\u001b[38;5;241m.\u001b[39mseek(\u001b[38;5;241m0\u001b[39m)  \u001b[38;5;66;03m# Reset the buffer position to the beginning\u001b[39;00m\n\u001b[0;32m---\u003e 39\u001b[0m file_client\u001b[38;5;241m.\u001b[39mupload_file(csv_buffer\u001b[38;5;241m.\u001b[39mread())\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/core/tracing/decorator.py:94\u001b[0m, in \u001b[0;36mdistributed_trace.\u003clocals\u003e.decorator.\u003clocals\u003e.wrapper_use_tracer\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m     92\u001b[0m span_impl_type \u001b[38;5;241m\u003d\u001b[39m settings\u001b[38;5;241m.\u001b[39mtracing_implementation()\n\u001b[1;32m     93\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m span_impl_type \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[0;32m---\u003e 94\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m func(\u001b[38;5;241m*\u001b[39margs, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs)\n\u001b[1;32m     96\u001b[0m \u001b[38;5;66;03m# Merge span is parameter is set, but only if no explicit parent are passed\u001b[39;00m\n\u001b[1;32m     97\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m merge_span \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m passed_in_parent:\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/storage/fileshare/_file_client.py:595\u001b[0m, in \u001b[0;36mShareFileClient.upload_file\u001b[0;34m(self, data, length, file_attributes, file_creation_time, file_last_write_time, file_permission, permission_key, **kwargs)\u001b[0m\n\u001b[1;32m    593\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    594\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mTypeError\u001b[39;00m(\u001b[38;5;124mf\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mUnsupported data type: \u001b[39m\u001b[38;5;132;01m{\u001b[39;00m\u001b[38;5;28mtype\u001b[39m(data)\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m\"\u001b[39m)\n\u001b[0;32m--\u003e 595\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m _upload_file_helper(\n\u001b[1;32m    596\u001b[0m     \u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m    597\u001b[0m     stream,\n\u001b[1;32m    598\u001b[0m     length,\n\u001b[1;32m    599\u001b[0m     metadata,\n\u001b[1;32m    600\u001b[0m     content_settings,\n\u001b[1;32m    601\u001b[0m     validate_content,\n\u001b[1;32m    602\u001b[0m     timeout,\n\u001b[1;32m    603\u001b[0m     max_concurrency,\n\u001b[1;32m    604\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_config,\n\u001b[1;32m    605\u001b[0m     file_attributes\u001b[38;5;241m\u003d\u001b[39mfile_attributes,\n\u001b[1;32m    606\u001b[0m     file_creation_time\u001b[38;5;241m\u003d\u001b[39mfile_creation_time,\n\u001b[1;32m    607\u001b[0m     file_last_write_time\u001b[38;5;241m\u003d\u001b[39mfile_last_write_time,\n\u001b[1;32m    608\u001b[0m     file_permission\u001b[38;5;241m\u003d\u001b[39mfile_permission,\n\u001b[1;32m    609\u001b[0m     file_permission_key\u001b[38;5;241m\u003d\u001b[39mpermission_key,\n\u001b[1;32m    610\u001b[0m     progress_hook\u001b[38;5;241m\u003d\u001b[39mprogress_hook,\n\u001b[1;32m    611\u001b[0m     \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs)\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/storage/fileshare/_file_client.py:111\u001b[0m, in \u001b[0;36m_upload_file_helper\u001b[0;34m(client, stream, size, metadata, content_settings, validate_content, timeout, max_concurrency, file_settings, file_attributes, file_creation_time, file_last_write_time, file_permission, file_permission_key, progress_hook, **kwargs)\u001b[0m\n\u001b[1;32m    109\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m cast(Dict[\u001b[38;5;28mstr\u001b[39m, Any], \u001b[38;5;28msorted\u001b[39m(responses, key\u001b[38;5;241m\u003d\u001b[39m\u001b[38;5;28;01mlambda\u001b[39;00m r: r\u001b[38;5;241m.\u001b[39mget(\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124mlast_modified\u001b[39m\u001b[38;5;124m\u0027\u001b[39m))[\u001b[38;5;241m-\u001b[39m\u001b[38;5;241m1\u001b[39m])\n\u001b[1;32m    110\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m HttpResponseError \u001b[38;5;28;01mas\u001b[39;00m error:\n\u001b[0;32m--\u003e 111\u001b[0m     process_storage_error(error)\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/storage/fileshare/_shared/response_handlers.py:186\u001b[0m, in \u001b[0;36mprocess_storage_error\u001b[0;34m(storage_error)\u001b[0m\n\u001b[1;32m    183\u001b[0m error\u001b[38;5;241m.\u001b[39margs \u001b[38;5;241m\u003d\u001b[39m (error\u001b[38;5;241m.\u001b[39mmessage,)\n\u001b[1;32m    184\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m    185\u001b[0m     \u001b[38;5;66;03m# `from None` prevents us from double printing the exception (suppresses generated layer error context)\u001b[39;00m\n\u001b[0;32m--\u003e 186\u001b[0m     exec(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mraise error from None\u001b[39m\u001b[38;5;124m\"\u001b[39m)   \u001b[38;5;66;03m# pylint: disable\u003dexec-used # nosec\u001b[39;00m\n\u001b[1;32m    187\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mSyntaxError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m exc:\n\u001b[1;32m    188\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m error \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;21;01mexc\u001b[39;00m\n\nFile \u001b[0;32m\u003cstring\u003e:1\u001b[0m\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/storage/fileshare/_file_client.py:82\u001b[0m, in \u001b[0;36m_upload_file_helper\u001b[0;34m(client, stream, size, metadata, content_settings, validate_content, timeout, max_concurrency, file_settings, file_attributes, file_creation_time, file_last_write_time, file_permission, file_permission_key, progress_hook, **kwargs)\u001b[0m\n\u001b[1;32m     80\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m size \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;129;01mor\u001b[39;00m size \u001b[38;5;241m\u003c\u001b[39m \u001b[38;5;241m0\u001b[39m:\n\u001b[1;32m     81\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mValueError\u001b[39;00m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mA content size must be specified for a File.\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n\u001b[0;32m---\u003e 82\u001b[0m response \u001b[38;5;241m\u003d\u001b[39m client\u001b[38;5;241m.\u001b[39mcreate_file(\n\u001b[1;32m     83\u001b[0m     size,\n\u001b[1;32m     84\u001b[0m     content_settings\u001b[38;5;241m\u003d\u001b[39mcontent_settings,\n\u001b[1;32m     85\u001b[0m     metadata\u001b[38;5;241m\u003d\u001b[39mmetadata,\n\u001b[1;32m     86\u001b[0m     timeout\u001b[38;5;241m\u003d\u001b[39mtimeout,\n\u001b[1;32m     87\u001b[0m     file_attributes\u001b[38;5;241m\u003d\u001b[39mfile_attributes,\n\u001b[1;32m     88\u001b[0m     file_creation_time\u001b[38;5;241m\u003d\u001b[39mfile_creation_time,\n\u001b[1;32m     89\u001b[0m     file_last_write_time\u001b[38;5;241m\u003d\u001b[39mfile_last_write_time,\n\u001b[1;32m     90\u001b[0m     file_permission\u001b[38;5;241m\u003d\u001b[39mfile_permission,\n\u001b[1;32m     91\u001b[0m     permission_key\u001b[38;5;241m\u003d\u001b[39mfile_permission_key,\n\u001b[1;32m     92\u001b[0m     \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs\n\u001b[1;32m     93\u001b[0m )\n\u001b[1;32m     94\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m size \u001b[38;5;241m\u003d\u003d\u001b[39m \u001b[38;5;241m0\u001b[39m:\n\u001b[1;32m     95\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m response\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/core/tracing/decorator.py:94\u001b[0m, in \u001b[0;36mdistributed_trace.\u003clocals\u003e.decorator.\u003clocals\u003e.wrapper_use_tracer\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m     92\u001b[0m span_impl_type \u001b[38;5;241m\u003d\u001b[39m settings\u001b[38;5;241m.\u001b[39mtracing_implementation()\n\u001b[1;32m     93\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m span_impl_type \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[0;32m---\u003e 94\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m func(\u001b[38;5;241m*\u001b[39margs, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs)\n\u001b[1;32m     96\u001b[0m \u001b[38;5;66;03m# Merge span is parameter is set, but only if no explicit parent are passed\u001b[39;00m\n\u001b[1;32m     97\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m merge_span \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m passed_in_parent:\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/storage/fileshare/_file_client.py:473\u001b[0m, in \u001b[0;36mShareFileClient.create_file\u001b[0;34m(self, size, file_attributes, file_creation_time, file_last_write_time, file_permission, permission_key, **kwargs)\u001b[0m\n\u001b[1;32m    457\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m cast(Dict[\u001b[38;5;28mstr\u001b[39m, Any], \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_client\u001b[38;5;241m.\u001b[39mfile\u001b[38;5;241m.\u001b[39mcreate(\n\u001b[1;32m    458\u001b[0m         file_content_length\u001b[38;5;241m\u003d\u001b[39msize,\n\u001b[1;32m    459\u001b[0m         metadata\u001b[38;5;241m\u003d\u001b[39mmetadata,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    470\u001b[0m         \u001b[38;5;28mcls\u001b[39m\u001b[38;5;241m\u003d\u001b[39mreturn_response_headers,\n\u001b[1;32m    471\u001b[0m         \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs))\n\u001b[1;32m    472\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m HttpResponseError \u001b[38;5;28;01mas\u001b[39;00m error:\n\u001b[0;32m--\u003e 473\u001b[0m     process_storage_error(error)\n\nFile \u001b[0;32m~/zeppelin/python/conda/envs/zeppelin/lib/python3.11/site-packages/azure/storage/fileshare/_shared/response_handlers.py:186\u001b[0m, in \u001b[0;36mprocess_storage_error\u001b[0;34m(storage_error)\u001b[0m\n\u001b[1;32m    183\u001b[0m error\u001b[38;5;241m.\u001b[39margs \u001b[38;5;241m\u003d\u001b[39m (error\u001b[38;5;241m.\u001b[39mmessage,)\n\u001b[1;32m    184\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m    185\u001b[0m     \u001b[38;5;66;03m# `from None` prevents us from double printing the exception (suppresses generated layer error context)\u001b[39;00m\n\u001b[0;32m--\u003e 186\u001b[0m     exec(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mraise error from None\u001b[39m\u001b[38;5;124m\"\u001b[39m)   \u001b[38;5;66;03m# pylint: disable\u003dexec-used # nosec\u001b[39;00m\n\u001b[1;32m    187\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mSyntaxError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m exc:\n\u001b[1;32m    188\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m error \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;21;01mexc\u001b[39;00m\n\nFile \u001b[0;32m\u003cstring\u003e:1\u001b[0m\n\n\u001b[0;31mClientAuthenticationError\u001b[0m: Server failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature.\nRequestId:af81ffa5-701a-004e-3842-367f2d000000\nTime:2024-11-14T03:08:18.3293500Z\nErrorCode:AuthenticationFailed\nauthenticationerrordetail:The MAC signature found in the HTTP request \u0027Ph/h8VoNj6VVf7iFXbzI7UTibBZMORJrMJGhM3Wcnpw\u003d\u0027 is not the same as any computed signature. Server used following string to sign: \u0027PUT\n\n\n\n\n\n\n\n\n\n\n\nx-ms-client-request-id:b279c8f6-a235-11ef-b113-868e5476a3cd\nx-ms-content-length:6647\nx-ms-date:Thu, 14 Nov 2024 03:08:18 GMT\nx-ms-file-attributes:none\nx-ms-file-creation-time:now\nx-ms-file-last-write-time:now\nx-ms-file-permission:Inherit\nx-ms-type:file\nx-ms-version:2024-11-04\n/zetarisqaztsta/cusdatashare/1d0c220d/file-store/FineFoodTest/reviews.csv\u0027.\nContent: \u003c?xml version\u003d\"1.0\" encoding\u003d\"utf-8\"?\u003e\u003cError\u003e\u003cCode\u003eAuthenticationFailed\u003c/Code\u003e\u003cMessage\u003eServer failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature.\nRequestId:af81ffa5-701a-004e-3842-367f2d000000\nTime:2024-11-14T03:08:18.3293500Z\u003c/Message\u003e\u003cAuthenticationErrorDetail\u003eThe MAC signature found in the HTTP request \u0027Ph/h8VoNj6VVf7iFXbzI7UTibBZMORJrMJGhM3Wcnpw\u003d\u0027 is not the same as any computed signature. Server used following string to sign: \u0027PUT\n\n\n\n\n\n\n\n\n\n\n\nx-ms-client-request-id:b279c8f6-a235-11ef-b113-868e5476a3cd\nx-ms-content-length:6647\nx-ms-date:Thu, 14 Nov 2024 03:08:18 GMT\nx-ms-file-attributes:none\nx-ms-file-creation-time:now\nx-ms-file-last-write-time:now\nx-ms-file-permission:Inherit\nx-ms-type:file\nx-ms-version:2024-11-04\n/zetarisqaztsta/cusdatashare/1d0c220d/file-store/FineFoodTest/reviews.csv\u0027.\u003c/AuthenticationErrorDetail\u003e\u003c/Error\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729812045112_1012695849",
+      "id": "paragraph_1729812045112_1012695849",
+      "dateCreated": "2024-10-24 23:20:45.112",
+      "dateStarted": "2024-11-14 03:08:18.289",
+      "dateFinished": "2024-11-14 03:08:18.555",
+      "status": "ERROR"
+    },
+    {
+      "text": "\n# Assuming df and n_clusters are already defined\nrev_per_cluster \u003d 5\nall_reviews \u003d []\n\nfor i in range(n_clusters):\n    reviews \u003d \"\\n\".join(\n        df[df.Cluster \u003d\u003d i]\n        .combined.str.replace(\"Title: \", \"\")\n        .str.replace(\"\\n\\nContent: \", \":  \")\n        .sample(rev_per_cluster, random_state\u003d42)\n        .values\n    )\n    all_reviews.append({\"Cluster\": i, \"Reviews\": reviews})\n\n# Create a DataFrame\nreviews_df \u003d pd.DataFrame(all_reviews)\n\nreviews_df.to_csv(\u0027/home/zetaris/customer-data/48e6c276/file-store/fine_food_review/reviews.csv\u0027,index\u003dFalse)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-10-25 05:15:49.782",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1729811071444_374142743",
+      "id": "paragraph_1729811071444_374142743",
+      "dateCreated": "2024-10-24 23:04:31.444",
+      "status": "READY"
+    }
+  ],
+  "name": "Clustering",
+  "id": "2KB7NMV2Z",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

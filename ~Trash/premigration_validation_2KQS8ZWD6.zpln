@@ -1,0 +1,117 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.ipyspark\n",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-27 01:25:14.585",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743038714584_1130857077",
+      "id": "paragraph_1743038714584_1130857077",
+      "dateCreated": "2025-03-27 01:25:14.585",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.ipyspark\n\n%spark.ipyspark\n\nimport pandas as pd\nimport glob\nimport os\nfrom azure.storage.fileshare import ShareFileClient, ShareServiceClient\nfrom azure.storage.blob import BlobServiceClient\n\nconnection_string \u003d \"DefaultEndpointsProtocol\u003dhttps;AccountName\u003dztdevsaasstacc;AccountKey\u003dASVqA3JusHezx4h/ltZG99Kn6DTjM8JwdnvreeViBBkZNE0sic7PP0IJ/1zqLvk/HGS+RQ1NKJxx+AStovQbug\u003d\u003d;EndpointSuffix\u003dcore.windows.net\"\nshare_name \u003d \"cusdatashare\"\ninput_folder \u003d \"d1c89bbd/file-store/sales_excels\"\noutput_folder \u003d \"d1c89bbd/file-store/sales_csvs\"\nfile_name \u003d \"goliath_outlet_sales_1.xlsx\"\n\n# Create a ShareServiceClient\nservice_client \u003d ShareServiceClient.from_connection_string(connection_string)\n\n# Get a ShareClient for the file share\nshare_client \u003d service_client.get_share_client(share_name)\n\n# Get a ShareFileClient for the specific file\nfile_client \u003d share_client.get_file_client(f\"{input_folder}/{file_name}\")\n\n",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-27 01:48:37.715",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743038261682_2072097405",
+      "id": "paragraph_1743038261682_2072097405",
+      "dateCreated": "2025-03-27 01:17:41.682",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.ipyspark\n\nimport pandas as pd\nimport glob\nimport os\nfrom azure.storage.fileshare import ShareFileClient, ShareServiceClient\nfrom azure.storage.blob import BlobServiceClient\n\nconnection_string \u003d \"DefaultEndpointsProtocol\u003dhttps;AccountName\u003dztdevsaasstacc;AccountKey\u003dASVqA3JusHezx4h/ltZG99Kn6DTjM8JwdnvreeViBBkZNE0sic7PP0IJ/1zqLvk/HGS+RQ1NKJxx+AStovQbug\u003d\u003d;EndpointSuffix\u003dcore.windows.net\"\nshare_name \u003d \"cusdatashare\"\ninput_path \u003d \"d1c89bbd/file-store/sales_excels\"\noutput_path \u003d \"d1c89bbd/file-store/sales_csvs\"\n\n# Create a ShareServiceClient\nservice_client \u003d ShareServiceClient.from_connection_string(connection_string)\n\n# Get a ShareClient for the file share\nshare_client \u003d service_client.get_share_client(share_name)\n\ndef excel_to_multiple_csv(input_folder, output_folder):\n\n    # Find all Excel files starting with \u0027goliath_outlet_sales_\u0027 in the specified input folder\n    excel_files \u003d glob.glob(os.path.join(input_folder, \u0027goliath_outlet_sales_*.xlsx\u0027))\n\n    # Loop through each Excel file\n    for excel_file in excel_files:\n        # Load the Excel file\n        excel_data \u003d pd.ExcelFile(excel_file)\n        \n        # Loop through each sheet in the Excel file\n        for sheet_name in excel_data.sheet_names:\n            # Read each sheet into a DataFrame\n            df \u003d pd.read_excel(excel_file, sheet_name\u003dsheet_name)\n            \n            # Create a valid CSV filename using the Excel file name and sheet name\n            base_filename \u003d os.path.basename(excel_file).replace(\u0027.xlsx\u0027, \u0027\u0027)  # Remove extension\n            #csv_filename \u003d f\"{base_filename}_{sheet_name}.csv\"\n            #csv_file \u003d os.path.join(output_folder, csv_filename)\n            \n            # Get a ShareFileClient for the specific file\n            csv_file \u003d share_client.get_file_client(f\"{input_folder}/{base_filename}_{sheet_name}.csv\")\n\n            # Upload the CSV buffer to the file share\n            csv_buffer.seek(0)  # Reset the buffer position to the beginning\n            csv_file.upload_file(csv_buffer.read())\n\n            # Save the DataFrame to CSV\n            df.to_csv(csv_file, index\u003dFalse)\n            print(f\"Sheet \u0027{sheet_name}\u0027 from \u0027{excel_file}\u0027 has been successfully converted to {csv_file}.\")\n\n# Example usage\n#input_folder \u003d \u0027input_excels\u0027   # Folder where your Excel files are located\n#output_folder \u003d \u0027output_csvs\u0027   # Folder where CSV files will be saved\n\n# Create output folder if it doesn\u0027t exist\n#os.makedirs(output_folder, exist_ok\u003dTrue)\n\n# Call the function to convert Excel to CSV\nexcel_to_multiple_csv(input_folder, output_folder)",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-27 01:56:16.871",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743035859480_1666505864",
+      "id": "paragraph_1743035859480_1666505864",
+      "dateCreated": "2025-03-27 00:37:39.481",
+      "dateStarted": "2025-03-27 01:14:41.451",
+      "dateFinished": "2025-03-27 01:15:07.149",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.ipyspark\n",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-27 00:58:27.249",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743037107249_1464577335",
+      "id": "paragraph_1743037107249_1464577335",
+      "dateCreated": "2025-03-27 00:58:27.249",
+      "status": "READY"
+    }
+  ],
+  "name": "premigration_validation",
+  "id": "2KQS8ZWD6",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

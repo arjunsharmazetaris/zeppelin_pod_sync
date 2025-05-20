@@ -1,0 +1,78 @@
+{
+  "paragraphs": [
+    {
+      "text": "import requests\n\nurl \u003d \"https://s3.eu-west-3.amazonaws.com/openfoodfacts/images/products/123456.json\"\nresponse \u003d requests.get(url)\n\nif response.status_code \u003d\u003d 200:\n    data \u003d response.json()\n    print(data)\nelse:\n    print(\"Failed to retrieve JSON file.\")",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-03 14:29:12.777",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Failed to retrieve JSON file.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1727918335605_1812533756",
+      "id": "paragraph_1727918335605_1812533756",
+      "dateCreated": "2024-10-03 01:18:55.605",
+      "dateStarted": "2025-04-03 14:29:12.778",
+      "dateFinished": "2025-04-03 14:29:13.737",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-03 01:21:20.514",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1727918470478_471118991",
+      "id": "paragraph_1727918470478_471118991",
+      "dateCreated": "2024-10-03 01:21:10.479",
+      "status": "READY"
+    }
+  ],
+  "name": "s3Test",
+  "id": "2K9822YSR",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

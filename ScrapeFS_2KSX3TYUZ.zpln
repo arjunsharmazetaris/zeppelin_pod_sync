@@ -1,0 +1,63 @@
+{
+  "paragraphs": [
+    {
+      "text": "!pip install os",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-03-26 05:07:29.915",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1742965642036_765365230",
+      "id": "paragraph_1742965642036_765365230",
+      "dateCreated": "2025-03-26 05:07:22.036",
+      "status": "READY"
+    },
+    {
+      "text": "import os\nimport csv\nfrom datetime import datetime\n \n# Define the directory to scan (in this case, the C drive)\ndirectory_to_scan \u003d \u0027C:\\\\Users\\\\raina\\\\Downloads\u0027\n \n# Create a list to store file and directory information\ndata \u003d []\n \n# Walk through the directory and collect information\nfor root, dirs, files in os.walk(directory_to_scan):\n    for file in files:\n        file_path \u003d os.path.join(root, file)\n        file_size \u003d os.path.getsize(file_path)\n        last_modified \u003d datetime.fromtimestamp(os.path.getmtime(file_path))\n \n        # Append information to the data list\n        data.append([root, file, file_size, last_modified])\n \n# Define the CSV file path\ncsv_file_path \u003d \u0027C:\\\\Users\\\\raina\\\\Downloads\\\\ZetarisAI\\\\C_drive_contents.csv\u0027\n \n# Write the data to a CSV file\nwith open(csv_file_path, \u0027w\u0027, newline\u003d\u0027\u0027) as csv_file:\n    csv_writer \u003d csv.writer(csv_file)\n    csv_writer.writerow([\u0027Directory\u0027, \u0027File Name\u0027, \u0027File Size (bytes)\u0027, \u0027Last Modified\u0027])\n \n    for row in data:\n        csv_writer.writerow(row)\n \nprint(f\"Data has been written to {csv_file_path}\")",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2025-03-26 05:07:48.112",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1742965650945_1867773437",
+      "id": "paragraph_1742965650945_1867773437",
+      "dateCreated": "2025-03-26 05:07:30.945",
+      "status": "READY"
+    }
+  ],
+  "name": "ScrapeFS",
+  "id": "2KSX3TYUZ",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,159 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.ipyspark\r\n\r\nfrom pyspark.sql import SparkSession\r\nfrom pyspark.sql.functions import col\r\nfrom pyspark.ml.fpm import FPGrowth\r\n\r\nsales_order_detail_df \u003d spark.sql(\"SELECT databases LIMIT 200\")\r\n#product_df \u003d spark.sql(\"SELECT * FROM LIGHTNING_DB.Product LIMIT 200\")\r\n\r\n# Show the structure of the SalesOrderDetail dataset\r\nsales_order_detail_df.show(5)",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 17:09:28.393",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mAnalysisException\u001b[0m                         Traceback (most recent call last)\nCell \u001b[0;32mIn[56], line 5\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;21;01mpyspark\u001b[39;00m\u001b[38;5;21;01m.\u001b[39;00m\u001b[38;5;21;01msql\u001b[39;00m\u001b[38;5;21;01m.\u001b[39;00m\u001b[38;5;21;01mfunctions\u001b[39;00m \u001b[38;5;28;01mimport\u001b[39;00m col\n\u001b[1;32m      3\u001b[0m \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;21;01mpyspark\u001b[39;00m\u001b[38;5;21;01m.\u001b[39;00m\u001b[38;5;21;01mml\u001b[39;00m\u001b[38;5;21;01m.\u001b[39;00m\u001b[38;5;21;01mfpm\u001b[39;00m \u001b[38;5;28;01mimport\u001b[39;00m FPGrowth\n\u001b[0;32m----\u003e 5\u001b[0m sales_order_detail_df \u001b[38;5;241m\u003d\u001b[39m spark\u001b[38;5;241m.\u001b[39msql(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mSELECT databases LIMIT 200\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n\u001b[1;32m      6\u001b[0m \u001b[38;5;66;03m#product_df \u003d spark.sql(\"SELECT * FROM LIGHTNING_DB.Product LIMIT 200\")\u001b[39;00m\n\u001b[1;32m      7\u001b[0m \n\u001b[1;32m      8\u001b[0m \u001b[38;5;66;03m# Show the structure of the SalesOrderDetail dataset\u001b[39;00m\n\u001b[1;32m      9\u001b[0m sales_order_detail_df\u001b[38;5;241m.\u001b[39mshow(\u001b[38;5;241m5\u001b[39m)\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/sql/session.py:1631\u001b[0m, in \u001b[0;36mSparkSession.sql\u001b[0;34m(self, sqlQuery, args, **kwargs)\u001b[0m\n\u001b[1;32m   1627\u001b[0m         \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m   1628\u001b[0m         litArgs \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm\u001b[38;5;241m.\u001b[39mPythonUtils\u001b[38;5;241m.\u001b[39mtoArray(\n\u001b[1;32m   1629\u001b[0m             [_to_java_column(lit(v)) \u001b[38;5;28;01mfor\u001b[39;00m v \u001b[38;5;129;01min\u001b[39;00m (args \u001b[38;5;129;01mor\u001b[39;00m [])]\n\u001b[1;32m   1630\u001b[0m         )\n\u001b[0;32m-\u003e 1631\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m DataFrame(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jsparkSession\u001b[38;5;241m.\u001b[39msql(sqlQuery, litArgs), \u001b[38;5;28mself\u001b[39m)\n\u001b[1;32m   1632\u001b[0m \u001b[38;5;28;01mfinally\u001b[39;00m:\n\u001b[1;32m   1633\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mlen\u001b[39m(kwargs) \u001b[38;5;241m\u003e\u001b[39m \u001b[38;5;241m0\u001b[39m:\n\nFile \u001b[0;32m/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py:1322\u001b[0m, in \u001b[0;36mJavaMember.__call__\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m   1316\u001b[0m command \u001b[38;5;241m\u003d\u001b[39m proto\u001b[38;5;241m.\u001b[39mCALL_COMMAND_NAME \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1317\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mcommand_header \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1318\u001b[0m     args_command \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1319\u001b[0m     proto\u001b[38;5;241m.\u001b[39mEND_COMMAND_PART\n\u001b[1;32m   1321\u001b[0m answer \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client\u001b[38;5;241m.\u001b[39msend_command(command)\n\u001b[0;32m-\u003e 1322\u001b[0m return_value \u001b[38;5;241m\u003d\u001b[39m get_return_value(\n\u001b[1;32m   1323\u001b[0m     answer, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mtarget_id, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mname)\n\u001b[1;32m   1325\u001b[0m \u001b[38;5;28;01mfor\u001b[39;00m temp_arg \u001b[38;5;129;01min\u001b[39;00m temp_args:\n\u001b[1;32m   1326\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mhasattr\u001b[39m(temp_arg, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m_detach\u001b[39m\u001b[38;5;124m\"\u001b[39m):\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py:185\u001b[0m, in \u001b[0;36mcapture_sql_exception.\u003clocals\u003e.deco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m    181\u001b[0m converted \u001b[38;5;241m\u003d\u001b[39m convert_exception(e\u001b[38;5;241m.\u001b[39mjava_exception)\n\u001b[1;32m    182\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28misinstance\u001b[39m(converted, UnknownException):\n\u001b[1;32m    183\u001b[0m     \u001b[38;5;66;03m# Hide where the exception came from that shows a non-Pythonic\u001b[39;00m\n\u001b[1;32m    184\u001b[0m     \u001b[38;5;66;03m# JVM exception message.\u001b[39;00m\n\u001b[0;32m--\u003e 185\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m converted \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m    186\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    187\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m\n\n\u001b[0;31mAnalysisException\u001b[0m: [UNRESOLVED_COLUMN.WITHOUT_SUGGESTION] A column or function parameter with name `databases` cannot be resolved. ; line 1 pos 7;\n\u0027GlobalLimit 200\n+- \u0027LocalLimit 200\n   +- \u0027Project [\u0027databases]\n      +- OneRowRelation\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743959248485_1875938641",
+      "id": "paragraph_1743959248485_1875938641",
+      "dateCreated": "2025-04-06 17:07:28.485",
+      "dateStarted": "2025-04-06 17:09:28.394",
+      "dateFinished": "2025-04-06 17:09:28.706",
+      "status": "ERROR"
+    },
+    {
+      "text": "from pyspark.sql import SparkSession\n%spark.ipyspark\n\n\n# Initialize Spark Session (if not already done)\nspark \u003d SparkSession.builder.appName(\"ExploreDatabases\").getOrCreate()\n\n# List all databases\nprint(\"Available Databases:\")\nfor db in spark.catalog.listDatabases():\n    print(f\"- {db.name}\")\n\n# Choose one database and list its tables\nselected_db \u003d \"default\"  # or any other known database\nprint(f\"\\nTables in {selected_db}:\")\nfor table in spark.catalog.listTables(selected_db):\n    print(f\"- {table.name}\")\n",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 17:12:21.202",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:1: \u001b[31merror: \u001b[0m\u0027;\u0027 expected but \u0027.\u0027 found.\n       from pyspark.sql import SparkSession\n                   ^\n\u003cconsole\u003e:2: \u001b[31merror: \u001b[0m\u0027;\u0027 expected but \u0027.\u0027 found.\n       %spark.ipyspark\n             ^\n\u003cconsole\u003e:8: \u001b[31merror: \u001b[0m\u0027;\u0027 expected but \u0027#\u0027 found.\n       # List all databases\n       ^\n\u003cconsole\u003e:10: \u001b[31merror: \u001b[0m\u0027(\u0027 expected but identifier found.\n       for db in spark.catalog.listDatabases():\n           ^\n\u003cconsole\u003e:14: \u001b[31merror: \u001b[0m\u0027;\u0027 expected but \u0027#\u0027 found.\n       selected_db \u003d \"default\"  # or any other known database\n                                ^\n\u003cconsole\u003e:16: \u001b[31merror: \u001b[0m\u0027(\u0027 expected but identifier found.\n       for table in spark.catalog.listTables(selected_db):\n           ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743959262505_2096568191",
+      "id": "paragraph_1743959262505_2096568191",
+      "dateCreated": "2025-04-06 17:07:42.505",
+      "dateStarted": "2025-04-06 17:12:21.204",
+      "dateFinished": "2025-04-06 17:12:21.209",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark.ipyspark\r\n\r\n# Import necessary libraries\r\nfrom pyspark.sql import SparkSession\r\nfrom pyspark.sql.functions import col\r\nfrom pyspark.ml.fpm import FPGrowth\r\n\r\n# If running outside Databricks, uncomment and configure the SparkSession\r\n# spark \u003d SparkSession.builder \\\r\n#     .appName(\"DataAnalysis\") \\\r\n#     .config(\"spark.jars\", \"/path/to/spark-3.1-spline-agent-bundle_2.12-0.6.1.jar\") \\\r\n#     .getOrCreate()\r\n\r\n# List all databases (correct SQL command)\r\ndatabases_df \u003d spark.sql(\"SHOW DATABASES\")\r\nprint(\"Available databases:\")\r\ndatabases_df.show(5, truncate\u003dFalse)\r\n\r\n# Select a specific database (e.g., default) and query a table\r\nselected_db \u003d \"default\"  # Replace with your database name if different\r\nsales_order_detail_df \u003d spark.sql(f\"SELECT * FROM {selected_db}.SalesOrderDetail LIMIT 200\")\r\n\r\n# Show the structure of the SalesOrderDetail dataset\r\nprint(\"SalesOrderDetail dataset (first 5 rows):\")\r\nsales_order_detail_df.show(5)\r\nsales_order_detail_df.printSchema()",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 17:18:34.112",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Available databases:\n+---------+\n|namespace|\n+---------+\n|default  |\n+---------+\n\n\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mAnalysisException\u001b[0m                         Traceback (most recent call last)\nCell \u001b[0;32mIn[60], line 19\u001b[0m\n\u001b[1;32m     17\u001b[0m \u001b[38;5;66;03m# Select a specific database (e.g., default) and query a table\u001b[39;00m\n\u001b[1;32m     18\u001b[0m selected_db \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mdefault\u001b[39m\u001b[38;5;124m\"\u001b[39m  \u001b[38;5;66;03m# Replace with your database name if different\u001b[39;00m\n\u001b[0;32m---\u003e 19\u001b[0m sales_order_detail_df \u001b[38;5;241m\u003d\u001b[39m spark\u001b[38;5;241m.\u001b[39msql(\u001b[38;5;124mf\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mSELECT * FROM \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mselected_db\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m.SalesOrderDetail LIMIT 200\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n\u001b[1;32m     21\u001b[0m \u001b[38;5;66;03m# Show the structure of the SalesOrderDetail dataset\u001b[39;00m\n\u001b[1;32m     22\u001b[0m \u001b[38;5;28mprint\u001b[39m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mSalesOrderDetail dataset (first 5 rows):\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/sql/session.py:1631\u001b[0m, in \u001b[0;36mSparkSession.sql\u001b[0;34m(self, sqlQuery, args, **kwargs)\u001b[0m\n\u001b[1;32m   1627\u001b[0m         \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m   1628\u001b[0m         litArgs \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jvm\u001b[38;5;241m.\u001b[39mPythonUtils\u001b[38;5;241m.\u001b[39mtoArray(\n\u001b[1;32m   1629\u001b[0m             [_to_java_column(lit(v)) \u001b[38;5;28;01mfor\u001b[39;00m v \u001b[38;5;129;01min\u001b[39;00m (args \u001b[38;5;129;01mor\u001b[39;00m [])]\n\u001b[1;32m   1630\u001b[0m         )\n\u001b[0;32m-\u003e 1631\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m DataFrame(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jsparkSession\u001b[38;5;241m.\u001b[39msql(sqlQuery, litArgs), \u001b[38;5;28mself\u001b[39m)\n\u001b[1;32m   1632\u001b[0m \u001b[38;5;28;01mfinally\u001b[39;00m:\n\u001b[1;32m   1633\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mlen\u001b[39m(kwargs) \u001b[38;5;241m\u003e\u001b[39m \u001b[38;5;241m0\u001b[39m:\n\nFile \u001b[0;32m/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py:1322\u001b[0m, in \u001b[0;36mJavaMember.__call__\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m   1316\u001b[0m command \u001b[38;5;241m\u003d\u001b[39m proto\u001b[38;5;241m.\u001b[39mCALL_COMMAND_NAME \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1317\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mcommand_header \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1318\u001b[0m     args_command \u001b[38;5;241m+\u001b[39m\\\n\u001b[1;32m   1319\u001b[0m     proto\u001b[38;5;241m.\u001b[39mEND_COMMAND_PART\n\u001b[1;32m   1321\u001b[0m answer \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client\u001b[38;5;241m.\u001b[39msend_command(command)\n\u001b[0;32m-\u003e 1322\u001b[0m return_value \u001b[38;5;241m\u003d\u001b[39m get_return_value(\n\u001b[1;32m   1323\u001b[0m     answer, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mgateway_client, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mtarget_id, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mname)\n\u001b[1;32m   1325\u001b[0m \u001b[38;5;28;01mfor\u001b[39;00m temp_arg \u001b[38;5;129;01min\u001b[39;00m temp_args:\n\u001b[1;32m   1326\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mhasattr\u001b[39m(temp_arg, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m_detach\u001b[39m\u001b[38;5;124m\"\u001b[39m):\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py:185\u001b[0m, in \u001b[0;36mcapture_sql_exception.\u003clocals\u003e.deco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m    181\u001b[0m converted \u001b[38;5;241m\u003d\u001b[39m convert_exception(e\u001b[38;5;241m.\u001b[39mjava_exception)\n\u001b[1;32m    182\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28misinstance\u001b[39m(converted, UnknownException):\n\u001b[1;32m    183\u001b[0m     \u001b[38;5;66;03m# Hide where the exception came from that shows a non-Pythonic\u001b[39;00m\n\u001b[1;32m    184\u001b[0m     \u001b[38;5;66;03m# JVM exception message.\u001b[39;00m\n\u001b[0;32m--\u003e 185\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m converted \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m    186\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    187\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m\n\n\u001b[0;31mAnalysisException\u001b[0m: [TABLE_OR_VIEW_NOT_FOUND] The table or view `default`.`SalesOrderDetail` cannot be found. Verify the spelling and correctness of the schema and catalog.\nIf you did not qualify the name with a schema, verify the current_schema() output, or qualify the name with the correct schema and catalog.\nTo tolerate the error on drop use DROP VIEW IF EXISTS or DROP TABLE IF EXISTS.; line 1 pos 14;\n\u0027GlobalLimit 200\n+- \u0027LocalLimit 200\n   +- \u0027Project [*]\n      +- \u0027UnresolvedRelation [default, SalesOrderDetail], [], false\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743959899939_745406926",
+      "id": "paragraph_1743959899939_745406926",
+      "dateCreated": "2025-04-06 17:18:19.939",
+      "dateStarted": "2025-04-06 17:18:34.113",
+      "dateFinished": "2025-04-06 17:18:35.029",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-06 17:11:38.928",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743959488667_972815940",
+      "id": "paragraph_1743959488667_972815940",
+      "dateCreated": "2025-04-06 17:11:28.667",
+      "status": "READY"
+    }
+  ],
+  "name": "spark_test",
+  "id": "2KSZ4SN6C",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

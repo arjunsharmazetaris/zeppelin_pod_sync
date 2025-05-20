@@ -1,0 +1,62 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.ipyspark\n\ndef excel_to_multiple_csv(excel_file, output_folder):\n    \n    connection_string \u003d \"DefaultEndpointsProtocol\u003dhttps;AccountName\u003dztdevsaasstacc;AccountKey\u003dASVqA3JusHezx4h/ltZG99Kn6DTjM8JwdnvreeViBBkZNE0sic7PP0IJ/1zqLvk/HGS+RQ1NKJxx+AStovQbug\u003d\u003d;EndpointSuffix\u003dcore.windows.net\"\n    share_name \u003d \"cusdatashare\"\n    folder_path \u003d \"7cd07542/file-store/Health\"\n    file_name \u003d \"hl7.csv\"\n    \n    # Load the Excel file\n    excel_data \u003d pd.ExcelFile(excel_file)\n    \n    # Loop through each sheet in the Excel file\n    for sheet_name in excel_data.sheet_names:\n        # Read each sheet into a DataFrame\n        df \u003d pd.read_excel(excel_file, sheet_name\u003dsheet_name)\n        \n        # Define the output CSV file name using the sheet name\n        csv_file \u003d f\"{output_folder}/{sheet_name}.csv\"\n        \n        # Save the DataFrame to CSV\n        df.to_csv(csv_file, index\u003dFalse)\n        print(f\"Sheet \u0027{sheet_name}\u0027 has been successfully converted to {csv_file}.\")\n\n\n",
+      "user": "JIM@LIGHTNING.COM",
+      "dateUpdated": "2025-03-27 00:20:34.107",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743033914351_322783287",
+      "id": "paragraph_1743033914351_322783287",
+      "dateCreated": "2025-03-27 00:05:14.351",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.ipyspark\n",
+      "user": "JIM@LIGHTNING.COM",
+      "dateUpdated": "2025-03-27 00:20:08.708",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743034808708_2097930796",
+      "id": "paragraph_1743034808708_2097930796",
+      "dateCreated": "2025-03-27 00:20:08.708",
+      "status": "READY"
+    }
+  ],
+  "name": "premigration_checks",
+  "id": "2KPW39AJJ",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

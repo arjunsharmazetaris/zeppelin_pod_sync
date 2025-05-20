@@ -1,0 +1,78 @@
+{
+  "paragraphs": [
+    {
+      "text": " import stata_setup",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-08 02:40:19.711",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)\nCell \u001b[0;32mIn[23], line 1\u001b[0m\n\u001b[0;32m----\u003e 1\u001b[0m \u001b[38;5;28;01mimport\u001b[39;00m \u001b[38;5;21;01mstata_setup\u001b[39;00m\n\n\u001b[0;31mModuleNotFoundError\u001b[0m: No module named \u0027stata_setup\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723033205607_223024632",
+      "id": "paragraph_1723033205607_223024632",
+      "dateCreated": "2024-08-07 12:20:05.607",
+      "dateStarted": "2024-09-08 02:40:19.719",
+      "dateFinished": "2024-09-08 02:40:19.777",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-07 12:21:56.813",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1723033306569_717547719",
+      "id": "paragraph_1723033306569_717547719",
+      "dateCreated": "2024-08-07 12:21:46.569",
+      "status": "READY"
+    }
+  ],
+  "name": "teststata",
+  "id": "2K4QSSWUX",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

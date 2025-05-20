@@ -1,0 +1,121 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.SparkSession",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-29 03:40:59.485",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1714362055947_1124177510",
+      "id": "paragraph_1714362055947_1124177510",
+      "dateCreated": "2024-04-29 03:40:55.947",
+      "dateStarted": "2024-04-29 03:40:59.486",
+      "dateFinished": "2024-04-29 03:40:59.604",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val query \u003d \n   \"\"\"\n   SELECT COUNT(*) FROM Reference_Data.name_abbreviation\n   \"\"\"\n\nval result \u003d spark.sql(query)\n\nresult.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-29 03:47:17.632",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.spark.sql.AnalysisException: Path does not exist: file:/home/zetaris/lightning/data/3622ef6d/file-store/name_abbreviation.csv\n  at org.apache.spark.sql.errors.QueryCompilationErrors$.dataPathNotExistError(QueryCompilationErrors.scala:1011)\n  at org.apache.spark.sql.execution.datasources.DataSource$.$anonfun$checkAndGlobPathIfNecessary$4(DataSource.scala:785)\n  at org.apache.spark.sql.execution.datasources.DataSource$.$anonfun$checkAndGlobPathIfNecessary$4$adapted(DataSource.scala:782)\n  at org.apache.spark.util.ThreadUtils$.$anonfun$parmap$2(ThreadUtils.scala:372)\n  at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)\n  at scala.util.Success.$anonfun$map$1(Try.scala:255)\n  at scala.util.Success.map(Try.scala:213)\n  at scala.concurrent.Future.$anonfun$map$1(Future.scala:292)\n  at scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)\n  at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)\n  at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n  at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402)\n  at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)\n  at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)\n  at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)\n  at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1714362059486_1584339086",
+      "id": "paragraph_1714362059486_1584339086",
+      "dateCreated": "2024-04-29 03:40:59.486",
+      "dateStarted": "2024-04-29 03:47:17.633",
+      "dateFinished": "2024-04-29 03:47:17.991",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2024-08-28 00:25:37.909",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1714362120255_173933815",
+      "id": "paragraph_1714362120255_173933815",
+      "dateCreated": "2024-04-29 03:42:00.255",
+      "status": "READY"
+    }
+  ],
+  "name": "Omniomics",
+  "id": "2JY4KKV7V",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.0-SNAPSHOT",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

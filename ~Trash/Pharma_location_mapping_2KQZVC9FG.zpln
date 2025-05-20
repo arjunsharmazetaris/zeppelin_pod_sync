@@ -1,0 +1,63 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "user": "PHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 19:50:27.945",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743018625125_376255800",
+      "id": "paragraph_1743018625125_376255800",
+      "dateCreated": "2025-03-26 19:50:25.125",
+      "status": "READY"
+    },
+    {
+      "text": "import pandas as pd\nimport numpy as np\n\n# Load Sample Data\ndf \u003d pd.read_csv(\"demand_data.csv\")  # Columns: \u0027date\u0027, \u0027sku_id\u0027, \u0027store_id\u0027, \u0027sales\u0027\ndf[\u0027date\u0027] \u003d pd.to_datetime(df[\u0027date\u0027])\n\n# Define Regional Locations\nregional_locations \u003d {\n    \u0027Chongqing\u0027: {\u0027latitude\u0027: 29.56301, \u0027longitude\u0027: 106.55156},\n    \u0027Wuxi\u0027: {\u0027latitude\u0027: 31.57429, \u0027longitude\u0027: 120.30167},\n    \u0027Hubei\u0027: {\u0027latitude\u0027: 30.59285, \u0027longitude\u0027: 114.30554},\n    \u0027Shanghai\u0027: {\u0027latitude\u0027: 31.23039, \u0027longitude\u0027: 121.47370},\n    \u0027Hainan\u0027: {\u0027latitude\u0027: 20.04422, \u0027longitude\u0027: 110.19989}\n}\n\n# Assign Regions to Stores\nstore_region_mapping \u003d {\n    \u0027Store_1\u0027: \u0027Chongqing\u0027,\n    \u0027Store_2\u0027: \u0027Wuxi\u0027,\n    \u0027Store_3\u0027: \u0027Hubei\u0027,\n    # Add mappings for other stores\n}\n\ndf[\u0027region\u0027] \u003d df[\u0027store_id\u0027].map(store_region_mapping)\ndf[\u0027latitude\u0027] \u003d df[\u0027region\u0027].map(lambda x: regional_locations[x][\u0027latitude\u0027])\ndf[\u0027longitude\u0027] \u003d df[\u0027region\u0027].map(lambda x: regional_locations[x][\u0027longitude\u0027])\n\n# Proceed with Demand Forecasting and Inventory Planning\n# (Use the existing demand planning calculations)\n",
+      "user": "PHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 19:50:35.019",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743018628025_251210801",
+      "id": "paragraph_1743018628025_251210801",
+      "dateCreated": "2025-03-26 19:50:28.025",
+      "status": "READY"
+    }
+  ],
+  "name": "Pharma_location_mapping",
+  "id": "2KQZVC9FG",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

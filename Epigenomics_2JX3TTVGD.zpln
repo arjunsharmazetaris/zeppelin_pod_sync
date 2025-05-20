@@ -1,0 +1,194 @@
+{
+  "paragraphs": [
+    {
+      "text": "import os",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2024-10-30 22:47:05.416",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1714356427955_659188355",
+      "id": "paragraph_1714356427955_659188355",
+      "dateCreated": "2024-04-29 02:07:07.955",
+      "dateStarted": "2024-10-30 22:47:05.417",
+      "dateFinished": "2024-10-30 22:47:05.421",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python.ipython\n\n#from bokeh.io import output_notebook\n#import bkzep\n\n#output_notebook(notebook_type\u003d\u0027zeppelin\u0027)\n\nimport pandas as pd, numpy as np\n\nidx \u003d pd.date_range(\u00271/1/2000\u0027, periods\u003d1000)\ndf \u003d pd.DataFrame(np.random.randn(1000,4), index\u003didx, columns\u003dlist(\u0027ABCD\u0027)).cumsum()\n\nimport hvplot.pandas\ndf.hvplot",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2024-10-30 23:03:25.949",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.zeppelin.interpreter.InterpreterException: Fail to interpret python code\n\tat org.apache.zeppelin.jupyter.JupyterKernelInterpreter.internalInterpret(JupyterKernelInterpreter.java:332)\n\tat org.apache.zeppelin.interpreter.AbstractInterpreter.interpret(AbstractInterpreter.java:55)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:108)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:877)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:769)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:186)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:135)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler.lambda$runJobInScheduler$0(FIFOScheduler.java:42)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\nCaused by: org.apache.zeppelin.jupyter.io.grpc.StatusRuntimeException: UNKNOWN: Uncaught exception in the SynchronizationContext. Re-thrown.\n\tat org.apache.zeppelin.jupyter.io.grpc.Status.asRuntimeException(Status.java:530)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.RetriableStream$1.uncaughtException(RetriableStream.java:75)\n\tat org.apache.zeppelin.jupyter.io.grpc.SynchronizationContext.drain(SynchronizationContext.java:97)\n\tat org.apache.zeppelin.jupyter.io.grpc.SynchronizationContext.execute(SynchronizationContext.java:127)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.RetriableStream.cancel(RetriableStream.java:493)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.RetriableStream.start(RetriableStream.java:361)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.ClientCallImpl.startInternal(ClientCallImpl.java:289)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.ClientCallImpl.start(ClientCallImpl.java:191)\n\tat org.apache.zeppelin.jupyter.io.grpc.stub.ClientCalls.startCall(ClientCalls.java:341)\n\tat org.apache.zeppelin.jupyter.io.grpc.stub.ClientCalls.asyncUnaryRequestCall(ClientCalls.java:315)\n\tat org.apache.zeppelin.jupyter.io.grpc.stub.ClientCalls.asyncUnaryRequestCall(ClientCalls.java:303)\n\tat org.apache.zeppelin.jupyter.io.grpc.stub.ClientCalls.asyncServerStreamingCall(ClientCalls.java:89)\n\tat org.apache.zeppelin.interpreter.jupyter.proto.JupyterKernelGrpc$JupyterKernelStub.execute(JupyterKernelGrpc.java:342)\n\tat org.apache.zeppelin.jupyter.JupyterKernelClient.stream_execute(JupyterKernelClient.java:145)\n\tat org.apache.zeppelin.jupyter.JupyterKernelInterpreter.internalInterpret(JupyterKernelInterpreter.java:309)\n\t... 10 more\nCaused by: java.util.concurrent.RejectedExecutionException: Task org.apache.zeppelin.jupyter.io.grpc.internal.SerializingExecutor@1883cd48 rejected from java.util.concurrent.ThreadPoolExecutor@7b21221c[Terminated, pool size \u003d 0, active threads \u003d 0, queued tasks \u003d 0, completed tasks \u003d 32]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2065)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:833)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1365)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.SerializingExecutor.schedule(SerializingExecutor.java:102)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.SerializingExecutor.execute(SerializingExecutor.java:95)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.closedInternal(ClientCallImpl.java:752)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.closed(ClientCallImpl.java:688)\n\tat org.apache.zeppelin.jupyter.io.grpc.internal.RetriableStream$4.run(RetriableStream.java:498)\n\tat org.apache.zeppelin.jupyter.io.grpc.SynchronizationContext.drain(SynchronizationContext.java:95)\n\t... 22 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730328404087_977870952",
+      "id": "paragraph_1730328404087_977870952",
+      "dateCreated": "2024-10-30 22:46:44.087",
+      "dateStarted": "2024-10-30 23:02:50.060",
+      "dateFinished": "2024-10-30 23:02:50.063",
+      "status": "ERROR"
+    },
+    {
+      "text": "%conda install bkzep",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2024-10-30 22:48:24.914",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.zeppelin.interpreter.InterpreterException: java.io.IOException: Fail to run shell commands: conda install --yes -n zeppelin bkzep\n\tat org.apache.zeppelin.python.PythonCondaInterpreter.interpret(PythonCondaInterpreter.java:137)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:108)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:877)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:769)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:186)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:135)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler.lambda$runJobInScheduler$0(FIFOScheduler.java:42)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\nCaused by: java.io.IOException: Fail to run shell commands: conda install --yes -n zeppelin bkzep\n\tat org.apache.zeppelin.python.PythonCondaInterpreter.runCommand(PythonCondaInterpreter.java:405)\n\tat org.apache.zeppelin.python.PythonCondaInterpreter.runCondaCommandForTextOutput(PythonCondaInterpreter.java:186)\n\tat org.apache.zeppelin.python.PythonCondaInterpreter.runCondaInstall(PythonCondaInterpreter.java:294)\n\tat org.apache.zeppelin.python.PythonCondaInterpreter.interpret(PythonCondaInterpreter.java:122)\n\t... 9 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730328492765_1884885313",
+      "id": "paragraph_1730328492765_1884885313",
+      "dateCreated": "2024-10-30 22:48:12.765",
+      "dateStarted": "2024-10-30 22:48:24.915",
+      "dateFinished": "2024-10-30 22:49:08.428",
+      "status": "ERROR"
+    },
+    {
+      "text": "!pip3 install bkzep",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2024-10-30 22:53:32.620",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Traceback (most recent call last):\n  File \"/tmp/python9571596705894645931/zeppelin_python.py\", line 152, in \u003cmodule\u003e\n    code \u003d compile(\u0027\\n\u0027.join(stmts), \u0027\u003cstdin\u003e\u0027, \u0027exec\u0027, ast.PyCF_ONLY_AST, 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"\u003cstdin\u003e\", line 1\n    !pip3 install bkzep\n    ^\nSyntaxError: invalid syntax\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730328504915_773329744",
+      "id": "paragraph_1730328504915_773329744",
+      "dateCreated": "2024-10-30 22:48:24.915",
+      "dateStarted": "2024-10-30 22:53:32.621",
+      "dateFinished": "2024-10-30 22:53:32.624",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2024-10-30 22:52:46.230",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730328756167_505525890",
+      "id": "paragraph_1730328756167_505525890",
+      "dateCreated": "2024-10-30 22:52:36.167",
+      "status": "READY"
+    }
+  ],
+  "name": "Epigenomics",
+  "id": "2JX3TTVGD",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.0-SNAPSHOT",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

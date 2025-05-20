@@ -1,0 +1,106 @@
+{
+  "paragraphs": [
+    {
+      "text": "from jaydeebeeapi import connect\nimport warnings\nimport pandas as pd",
+      "user": "anonymous",
+      "dateUpdated": "2025-03-04 23:37:42.446",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1741130760265_1997952622",
+      "id": "paragraph_1741130760265_1997952622",
+      "dateCreated": "2025-03-04 23:26:00.265",
+      "status": "READY"
+    },
+    {
+      "text": "OUT_DATA_DIR \u003d \u0027s3://zetaris-demo/prepared_data/zetaris-hcp-hadb/\u0027\nOUT_FILE \u003d \u0027taxi_data_prec_7.csv\u0027\nYEAR_MONTH \u003d [[2013,1], [2013,2], [2013,3], [2013,4], [2013,5], [2013,6], \n              [2013,7], [2013,8], [2013,9], [2013,10], [2013,11], [2013,12],\n              [2014,1], [2014,2], [2014,3], [2014,4], [2014,5], [2014,6], \n              [2014,7], [2014,8], [2014,9], [2014,10], [2014,11], [2014,12],\n              [2015,1], [2015,2], [2015,3], [2015,4], [2015,5], [2015,6]]\n\nwarnings.simplefilter(\u0027ignore\u0027, UserWarning)\n\nconn \u003d connect(\n    \u0027com.zetaris.lightning.jdbc.LightningDriver\u0027,\n    \u0027jdbc:zetaris:lightning@172.31.41.29:10000\u0027,\n    driver_args\u003d[\u0027admin@zetaris.com\u0027, \u00270654c7d2e68df6bbZetaris@123\u0027],\n    jars\u003d[\u0027./ndp-jdbc-driver-2.1.0.20-driver.jar\u0027]\n)",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-03-26 11:56:56.870",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)\nCell \u001b[0;32mIn[7], line 11\u001b[0m\n\u001b[1;32m      3\u001b[0m YEAR_MONTH \u001b[38;5;241m\u003d\u001b[39m [[\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m1\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m2\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m3\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m4\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m5\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m6\u001b[39m], \n\u001b[1;32m      4\u001b[0m               [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m7\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m8\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m9\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m10\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m11\u001b[39m], [\u001b[38;5;241m2013\u001b[39m,\u001b[38;5;241m12\u001b[39m],\n\u001b[1;32m      5\u001b[0m               [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m1\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m2\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m3\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m4\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m5\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m6\u001b[39m], \n\u001b[1;32m      6\u001b[0m               [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m7\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m8\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m9\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m10\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m11\u001b[39m], [\u001b[38;5;241m2014\u001b[39m,\u001b[38;5;241m12\u001b[39m],\n\u001b[1;32m      7\u001b[0m               [\u001b[38;5;241m2015\u001b[39m,\u001b[38;5;241m1\u001b[39m], [\u001b[38;5;241m2015\u001b[39m,\u001b[38;5;241m2\u001b[39m], [\u001b[38;5;241m2015\u001b[39m,\u001b[38;5;241m3\u001b[39m], [\u001b[38;5;241m2015\u001b[39m,\u001b[38;5;241m4\u001b[39m], [\u001b[38;5;241m2015\u001b[39m,\u001b[38;5;241m5\u001b[39m], [\u001b[38;5;241m2015\u001b[39m,\u001b[38;5;241m6\u001b[39m]]\n\u001b[1;32m      9\u001b[0m warnings\u001b[38;5;241m.\u001b[39msimplefilter(\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124mignore\u001b[39m\u001b[38;5;124m\u0027\u001b[39m, \u001b[38;5;167;01mUserWarning\u001b[39;00m)\n\u001b[0;32m---\u003e 11\u001b[0m conn \u001b[38;5;241m\u003d\u001b[39m connect(\n\u001b[1;32m     12\u001b[0m     \u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124mcom.zetaris.lightning.jdbc.LightningDriver\u001b[39m\u001b[38;5;124m\u0027\u001b[39m,\n\u001b[1;32m     13\u001b[0m     \u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124mjdbc:zetaris:lightning@172.31.41.29:10000\u001b[39m\u001b[38;5;124m\u0027\u001b[39m,\n\u001b[1;32m     14\u001b[0m     driver_args\u001b[38;5;241m\u003d\u001b[39m[\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124madmin@zetaris.com\u001b[39m\u001b[38;5;124m\u0027\u001b[39m, \u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m0654c7d2e68df6bbZetaris@123\u001b[39m\u001b[38;5;124m\u0027\u001b[39m],\n\u001b[1;32m     15\u001b[0m     jars\u001b[38;5;241m\u003d\u001b[39m[\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124m./ndp-jdbc-driver-2.1.0.20-driver.jar\u001b[39m\u001b[38;5;124m\u0027\u001b[39m]\n\u001b[1;32m     16\u001b[0m )\n\n\u001b[0;31mNameError\u001b[0m: name \u0027connect\u0027 is not defined"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1741131255583_756725904",
+      "id": "paragraph_1741131255583_756725904",
+      "dateCreated": "2025-03-04 23:34:15.583",
+      "dateStarted": "2025-03-26 11:56:56.871",
+      "dateFinished": "2025-03-26 11:56:56.929",
+      "status": "ERROR"
+    },
+    {
+      "text": "SQL_QUERY \u003d \"\"\"\nSELECT dm_year, dm_month, day, time_cat, time_num, time_cos, time_sin, \n       day_cat, day_num, day_cos, day_sin, weekend, geohash, pickups\nFROM NYC_TAXI.GYT_PICKUPS\nWHERE dm_year\u003d%d AND dm_month\u003d%d AND td_year\u003d%d AND td_month\u003d%d\n\"\"\"\n\nfor ym in YEAR_MONTH:\n    yr \u003d ym[0]\n    mo \u003d ym[1]\n    print(str(yr) + \"-\" + str(mo))\n\n    SQL \u003d SQL_QUERY % (yr, mo, yr, mo)\n\n    df \u003d pd.io.sql.read_sql(SQL, conn)\n    print(df, end\u003d\u0027\u0027)\n    print(df.shape)\n\n    header \u003d False\n    if (yr \u003d\u003d 2013) \u0026 (mo \u003d\u003d 1):\n        header \u003d True\n    \n    df.to_csv(OUT_DATA_DIR + OUT_FILE, mode\u003d\u0027a\u0027, header\u003dheader, index\u003dFalse)\n\nconn.close()",
+      "user": "anonymous",
+      "dateUpdated": "2025-03-04 23:37:19.668",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1741131431065_550738287",
+      "id": "paragraph_1741131431065_550738287",
+      "dateCreated": "2025-03-04 23:37:11.065",
+      "status": "READY"
+    }
+  ],
+  "name": "NY_Taxi",
+  "id": "2KQ58ABRK",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,230 @@
+{
+  "paragraphs": [
+    {
+      "text": "pip install lineagex",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-02 23:07:39.908",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[33mWARNING: The directory \u0027/home/zetaris/.cache/pip\u0027 or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo\u0027s -H flag.\u001b[0m\u001b[33m\r\n\u001b[0mCollecting lineagex\r\n  Downloading lineagex-0.0.26-py3-none-any.whl.metadata (5.0 kB)\r\nCollecting psycopg2-binary\u003c3.0.0,\u003e\u003d2.9.6 (from lineagex)\r\n  Downloading psycopg2_binary-2.9.9-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.4 kB)\r\nCollecting sqlglot\u003c13.0.0,\u003e\u003d12.3.0 (from lineagex)\r\n  Downloading sqlglot-12.4.0-py3-none-any.whl.metadata (14 kB)\r\nDownloading lineagex-0.0.26-py3-none-any.whl (1.3 MB)\r\n\u001b[?25l   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/1.3 MB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.3/1.3 MB\u001b[0m \u001b[31m119.5 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\r\n\u001b[?25hDownloading psycopg2_binary-2.9.9-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)\r\n\u001b[?25l   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/3.0 MB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K   \u001b[91m━━━━\u001b[0m\u001b[90m╺\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.3/3.0 MB\u001b[0m \u001b[31m10.1 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[91m━━━━━━━━━━━━━━━\u001b[0m\u001b[90m╺\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.1/3.0 MB\u001b[0m \u001b[31m19.9 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[91m━━━━━━━━━━━━━━━\u001b[0m\u001b[90m╺\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.2/3.0 MB\u001b[0m \u001b[31m13.0 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[91m━━━━━━━━━━━━━━━━\u001b[0m\u001b[91m╸\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.3/3.0 MB\u001b[0m \u001b[31m9.9 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[91m━━━━━━━━━━━━━━━━\u001b[0m\u001b[91m╸\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.3/3.0 MB\u001b[0m \u001b[31m9.9 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[91m━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[90m╺\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.4/3.0 MB\u001b[0m \u001b[31m7.1 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[91m━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[90m╺\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.8/3.0 MB\u001b[0m \u001b[31m7.3 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m3.0/3.0 MB\u001b[0m \u001b[31m11.9 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\r\n\u001b[?25hDownloading sqlglot-12.4.0-py3-none-any.whl (259 kB)\r\n\u001b[?25l   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/259.2 kB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m259.2/259.2 kB\u001b[0m \u001b[31m341.6 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\r\n\u001b[?25hInstalling collected packages: sqlglot, psycopg2-binary, lineagex\r\nSuccessfully installed lineagex-0.0.26 psycopg2-binary-2.9.9 sqlglot-12.4.0\r\n\u001b[33mWARNING: Running pip as the \u0027root\u0027 user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\u001b[0m\u001b[33m\r\n\u001b[0mNote: you may need to restart the kernel to use updated packages.\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1725318431247_22055812",
+      "id": "paragraph_1725318431247_22055812",
+      "dateCreated": "2024-09-02 23:07:11.247",
+      "dateStarted": "2024-09-02 23:07:39.909",
+      "dateFinished": "2024-09-02 23:07:42.980",
+      "status": "FINISHED"
+    },
+    {
+      "text": "from lineagex.lineagex import lineagex\nfrom lineagex.example import example",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-02 23:08:54.127",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1725318459909_1935634922",
+      "id": "paragraph_1725318459909_1935634922",
+      "dateCreated": "2024-09-02 23:07:39.909",
+      "dateStarted": "2024-09-02 23:08:54.128",
+      "dateFinished": "2024-09-02 23:08:54.185",
+      "status": "FINISHED"
+    },
+    {
+      "text": "example(\"dependency_example\")\nexample(\"github_example\") ## this would produce the gif below\nexample(\"mimic-iii\")\nexample(\"mimic-iv\")",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-02 23:09:24.154",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "basic_patient_info  processing\naa_table  processing\na_table  processing\nfrom_aa_table  processing\nno_dob  processing\n5 SQLs are parsed, 0 SQLs are not parsed, took a total of 0.0 seconds\ndependency_example finished, please check in the folder for output.json and index.html\ntable2  processing\ntable1  processing\n2 SQLs are parsed, 0 SQLs are not parsed, took a total of 0.0 seconds\ngithub_example finished, please check in the folder for output.json and index.html\ncode_status  processing\necho_data  processing\nventilation_durations  processing\nventilation_first_day  processing\ngcs_first_day  processing\nheight_first_day  processing\nweight_first_day  processing\nblood_gas_first_day  processing\nblood_gas_first_day_arterial  processing\nlabs_first_day is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nrrt_first_day is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nvitals_first_day  processing\nurine_output_first_day  processing\nabx_prescriptions_list  processing\nsuspicion_of_infection  processing\nepinephrine_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\ncrrt_durations  processing\nepinephrine_dose is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nisuprel_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nadenosine_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nvasopressor_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nventilation_classification  processing\nventilation_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nvasopressin_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\ndobutamine_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nphenylephrine_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nweight_durations  processing\ndobutamine_dose is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\ndopamine_dose is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\ndopamine_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nvasopressin_dose is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nmilrinone_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\ncentral_line_durations  processing\nnorepinephrine_durations is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nneuroblock_dose is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nventilation_classification is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\narterial_line_durations  processing\nnorepinephrine_dose is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nphenylephrine_dose is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nkdigo_creatinine  processing\nkdigo_uo  processing\nkdigo_stages  processing\nurine_output  processing\nkdigo_stages_48hr  processing\nkdigo_stages_7day  processing\nlabs_first_day  processing\nmeld is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nmartin  processing\nangus  processing\nexplicit  processing\nelixhauser_quan  processing\nelixhauser_ahrq_v37_no_drg  processing\nelixhauser_ahrq_v37  processing\nelixhauser_score_ahrq  processing\nelixhauser_score_quan  processing\nicustay_detail  processing\nicustay_times  processing\nheightweight  processing\nicustay_hours  processing\nnote_counts  processing\noasis  processing\nlabs_first_day  processing\nsirs is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nlabs_first_day  processing\nsofa is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nlabs_first_day  processing\nlods is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nlabs_first_day  processing\nmlods is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nlabs_first_day  processing\nsaps is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nqsofa  processing\nlabs_first_day  processing\napsiii is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nlabs_first_day  processing\nsapsii is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\nrbc_transfusion is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\ncolloid_bolus  processing\nffp_transfusion  processing\ncrystalloid_bolus  processing\n50 SQLs are parsed, 30 SQLs are not parsed, took a total of 3.2 seconds\nmimic-iii finished, please check in the folder for output.json and index.html\nWARNING: duplicate script detected for first_day_lab\nfirst_day_vitalsign  processing\nfirst_day_urine_output  processing\nfirst_day_weight  processing\nfirst_day_sofa  processing\nfirst_day_lab  processing\nfirst_day_rrt  processing\nfirst_day_bg_art  processing\nfirst_day_bg  processing\nfirst_day_gcs  processing\nfirst_day_height  processing\nrrt is not processed because it countered \u0027NoneType\u0027 object has no attribute \u0027find_all\u0027\ncrrt  processing\nventilation  processing\ninvasive_line  processing\nnorepinephrine  processing\ndopamine  processing\nneuroblock  processing\nantibiotic  processing\nvasopressin  processing\nepinephrine  processing\ndobutamine  processing\nphenylephrine  processing\nnorepinephrine_equivalent_dose  processing\nmilrinone  processing\nvasoactive_agent  processing\nkdigo_creatinine  processing\nkdigo_stages  processing\nkdigo_uo  processing\nmeld  processing\nsofa  processing\nsepsis3  processing\nsuspicion_of_infection  processing\ncharlson  processing\nicustay_detail  processing\nicustay_times  processing\nicustay_hourly  processing\nweight_durations  processing\nage  processing\noasis  processing\nsirs  processing\ngcs  processing\nlods  processing\napsiii  processing\nsapsii  processing\nicp  processing\nbg  processing\nurine_output  processing\nenzyme  processing\nvitalsign  processing\ncoagulation  processing\nventilator_setting  processing\nblood_differential  processing\ncardiac_marker  processing\nheight  processing\ninflammation  processing\noxygen_delivery  processing\nchemistry  processing\nurine_output_rate  processing\nrhythm  processing\ncomplete_blood_count  processing\ncreatinine_baseline  processing\n60 SQLs are parsed, 1 SQLs are not parsed, took a total of 2.0 seconds\nmimic-iv finished, please check in the folder for output.json and index.html\n\u003clineagex.example.example at 0x7fcb1a9b17d0\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1725318485867_1909648532",
+      "id": "paragraph_1725318485867_1909648532",
+      "dateCreated": "2024-09-02 23:08:05.867",
+      "dateStarted": "2024-09-02 23:09:24.158",
+      "dateFinished": "2024-09-02 23:09:29.635",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import os \ndef get_current_path():\n            # Returns the path of the current script\n     return os.path.dirname(os.path.realpath(__file__))\n\ncwd \u003d get_current_path()\nprint(cwd)",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-03 07:59:50.225",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)\nCell \u001b[0;32mIn[31], line 6\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mget_current_path\u001b[39m():\n\u001b[1;32m      3\u001b[0m             \u001b[38;5;66;03m# Returns the path of the current script\u001b[39;00m\n\u001b[1;32m      4\u001b[0m      \u001b[38;5;28;01mreturn\u001b[39;00m os\u001b[38;5;241m.\u001b[39mpath\u001b[38;5;241m.\u001b[39mdirname(os\u001b[38;5;241m.\u001b[39mpath\u001b[38;5;241m.\u001b[39mrealpath(\u001b[38;5;18m__file__\u001b[39m))\n\u001b[0;32m----\u003e 6\u001b[0m cwd \u001b[38;5;241m\u003d\u001b[39m get_current_path()\n\u001b[1;32m      7\u001b[0m \u001b[38;5;28mprint\u001b[39m(cwd)\n\nCell \u001b[0;32mIn[31], line 4\u001b[0m, in \u001b[0;36mget_current_path\u001b[0;34m()\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mget_current_path\u001b[39m():\n\u001b[1;32m      3\u001b[0m             \u001b[38;5;66;03m# Returns the path of the current script\u001b[39;00m\n\u001b[0;32m----\u003e 4\u001b[0m      \u001b[38;5;28;01mreturn\u001b[39;00m os\u001b[38;5;241m.\u001b[39mpath\u001b[38;5;241m.\u001b[39mdirname(os\u001b[38;5;241m.\u001b[39mpath\u001b[38;5;241m.\u001b[39mrealpath(\u001b[38;5;18m__file__\u001b[39m))\n\n\u001b[0;31mNameError\u001b[0m: name \u0027__file__\u0027 is not defined"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1725318564157_944137615",
+      "id": "paragraph_1725318564157_944137615",
+      "dateCreated": "2024-09-02 23:09:24.157",
+      "dateStarted": "2024-09-03 07:59:50.226",
+      "dateFinished": "2024-09-03 07:59:50.285",
+      "status": "ERROR"
+    },
+    {
+      "text": "lineagex(sql\u003d\"public\", conn_string\u003d\"postgresql://trial@crashdata:Monster.821@crashdata.postgres.database.azure.com:5432/crashdata\", search_path_schema\u003d\"trial\")",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-03 04:13:57.376",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "editorHide": true,
+        "title": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;36m  Cell \u001b[0;32mIn[30], line 1\u001b[0;36m\u001b[0m\n\u001b[0;31m    lineagex(sql\u003dhome/zetaris/, target_schema\u003d\"trial\", conn_string\u003d\"postgresql://trial@crashdata:Monster.821@crashdata.postgres.database.azure.com:5432/crashdata\", search_path_schema\u003d\"trial\")\u001b[0m\n\u001b[0m                              ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1725318881302_1161954240",
+      "id": "paragraph_1725318881302_1161954240",
+      "dateCreated": "2024-09-02 23:14:41.302",
+      "dateStarted": "2024-09-02 23:52:50.890",
+      "dateFinished": "2024-09-02 23:52:50.946",
+      "status": "ERROR"
+    },
+    {
+      "text": "lineagex(sql\u003d\"pg_catalog\", conn_string\u003d\"postgresql://zetarispostgres.postgres.database.azure.com:5432/qa_automation\u0026username\u003dzetaris@zetarispostgres\u0026password\u003dP@55word\", search_path_schema\u003d\"qa_test\")",
+      "user": "RAINATHOMAS@GMAIL.COM",
+      "dateUpdated": "2024-09-03 04:14:27.114",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1725321062662_22007866",
+      "id": "paragraph_1725321062662_22007866",
+      "dateCreated": "2024-09-02 23:51:02.662",
+      "status": "READY"
+    }
+  ],
+  "name": "LineageUntitled Note 1",
+  "id": "2K8JMEFU2",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

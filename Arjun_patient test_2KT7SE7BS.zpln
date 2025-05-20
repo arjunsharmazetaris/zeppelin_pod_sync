@@ -1,0 +1,182 @@
+{
+  "paragraphs": [
+    {
+      "text": "import requests\nimport json\nimport uuid\nimport os\nfrom base64 import b64encode\nimport base64\n\ndef set_api_base_url(url:str):\n  global api_url\n  api_url \u003d url\n\ndef get_auth(token:str\u003dNone):\n  if token \u003d\u003d None:\n    global bearer_token\n    token \u003d bearer_token\n  return {\n    \"Authorization\": token,\n    \"X-Request-ID\": str(uuid.uuid1()),\n    \"X-Org-ID\" : \"1568338\"\n  }\n\ndef basic_auth(username:str,password:str):\n  token \u003d b64encode(f\"{username}:{password}\".encode(\u0027utf-8\u0027)).decode(\"ascii\")\n  return f\u0027Basic {token}\u0027\n\ndef login(username:str,password:str):\n  global bearer_token\n  global refresh_token\n  auth\u003dget_auth(basic_auth(username, password))\n\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/auth/login\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  bearer_token \u003d f\"Bearer {response[\u0027idToken\u0027]}\"\n  refresh_token \u003d f\"Bearer {response[\u0027refreshToken\u0027]}\"\n\ndef refresh_tokens():\n  global bearer_token\n  global refresh_token\n  auth \u003d get_auth(refresh_token)\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/auth/refresh\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  bearer_token \u003d f\"Bearer {response[\u0027idToken\u0027]}\"\n  refresh_token \u003d f\"Bearer {response[\u0027refreshToken\u0027]}\"\n\ndef get_pipeline_containers():\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef get_pipeline_relations(pipeline_container_id:int):\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers/{pipeline_container_id}/relations\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef execute_pipeline(pipeline_container_id:int, pipeline_relation_id:int, pageLimit:int):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"pageLimit\": pageLimit\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/pipeline/containers/{pipeline_container_id}/relations/{pipeline_relation_id}/execute\u0027,headers\u003dauth,data\u003dbody)\n  print(response.text)\n  response \u003d json.loads(response.text)\n  return response\n\ndef open_sql_query(sql_query:str, pageLimit:int):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"select\": sql_query,\n    \"pageLimit\": pageLimit\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/start\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef register_table(datasource_name:str, table_name:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"dataSourceName\": datasource_name,\n      \"tableName\": table_name\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/register-table\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef generic_query(sql_query:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"sql\": sql_query\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/query/sql/generic-query\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef run_sql(sql:str):\n  auth \u003d get_auth()\n  body \u003d json.dumps({\n    \"sql\": sql\n  })\n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/sql-editor/sqls/run\u0027,headers\u003dauth,data\u003dbody)\n  response \u003d json.loads(response.text)\n  return response\n\ndef page_sql_query(queryToken:str, pageLimit:int, pageNumber:int):\n  auth \u003d get_auth()\n  params \u003d {\n    \"queryToken\": queryToken,\n    \"pageLimit\": pageLimit,\n    \"pageNumber\": pageNumber\n  }\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/query/sql/page\u0027,headers\u003dauth,params\u003dparams)\n  response \u003d json.loads(response.text)\n  return response\n\ndef close_sql_query(query_token:str):\n  auth \u003d get_auth()\n  requests.delete(url\u003df\u0027{api_url}/api/v1.0/query/sql/close/{query_token}\u0027,headers\u003dauth)\n\ndef clear_query_cache(username:str):\n  auth \u003d get_auth()\n  requests.delete(url\u003df\u0027{api_url}/api/v1.0/query/sql/clear/{username}\u0027,headers\u003dauth)\n    \ndef get_table_cbac(table_type:str,datbase_name:str,table_name:str):\n  auth \u003d get_auth()\n  response \u003d requests.get(url\u003df\u0027{api_url}/api/v1.0/access-control/cbac/generic/{table_type}/{datbase_name}/{table_name}\u0027,headers\u003dauth)\n  response \u003d json.loads(response.text)\n  return response\n\ndef update_table_cbac(table_type:str,database_name:str,table_name:str,policyname:str,filtername:str, userlist:list, rolelist:list):\n  auth \u003d get_auth()\n  body \u003d {\n        \"version\": 0,\n        \"id\": database_name + \u0027.\u0027 + table_name,\n        \"partitionColumns\":[],\n        \"users\":userlist,\n        \"policies\": [\n            {\n                \"policyName\": policyname,\n                \"filter\": filtername,\n                \"fields\": []\n            }\n        ],          \n      \"roles\": rolelist\n    }\n  print(body)  \n  response \u003d requests.post(url\u003df\u0027{api_url}/api/v1.0/access-control/cbac/generic/{table_type}/{database_name}/{table_name}\u0027,headers\u003dauth,json\u003dbody)\n  return response",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-05 16:18:32.407",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743675200303_261678667",
+      "id": "paragraph_1724892085171_9898657",
+      "dateCreated": "2025-04-03 10:13:20.303",
+      "dateStarted": "2025-04-05 16:18:32.408",
+      "dateFinished": "2025-04-05 16:18:32.462",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Function to get data from Zetaris by passing the select query.\n\ndef SelectQuery(select_query):\n    page_limit \u003d 100\n    x \u003d open_sql_query(select_query,page_limit)\n    data \u003d x[\u0027records\u0027]\n    query_token \u003d x[\u0027queryToken\u0027]\n    max_pages \u003d x[\u0027totalPages\u0027]\n    for i in range(2,max_pages+1):\n        page_data\u003dpage_sql_query(query_token,page_limit,i)\n        data +\u003d page_data[\u0027records\u0027]\n    return data",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-04 05:35:56.036",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743675200304_1537546063",
+      "id": "paragraph_1724892703779_1341233586",
+      "dateCreated": "2025-04-03 10:13:20.304",
+      "dateStarted": "2025-04-04 05:35:56.037",
+      "dateFinished": "2025-04-04 05:35:56.091",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#Get the relevent data mart tables and store the relevant data as csv or json\n\ndef process_selected_dm_tables(apiurl, username, password):\n    \n    dmfull_\u003d\"PatientDM\"\n    dmtables_\u003d[\u0027Patients\u0027,\u0027Visits\u0027]\n\n    \n    dmfull\u003d\"my_test_db\"\n    dmtables\u003d[\u0027orders_order\u0027,\u0027product_catalog\u0027]\n\n    try:\n        set_api_base_url(apiurl)\n        login(username, password)\n        for table in dmtables:\n            select_query_initial \u003d f\"SELECT * FROM {dmfull}.{table} limit 10\"\n            csv_filename \u003d f\"{dmfull}_{table}.csv\"\n            print(\u0027Printing Select Query\u0027)\n            print(select_query_initial)  \n            data_zetaris \u003d SelectQuery(select_query_initial)\n            updated_data \u003d {\u0027data\u0027: data_zetaris}\n            print(updated_data)\n        return \u0027Process completed successfully\u0027\n\n    except Exception as e:\n        return f\"An error occurred: {str(e)}\"",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-05 16:16:34.620",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743675200304_1508746657",
+      "id": "paragraph_1724893393757_1136844362",
+      "dateCreated": "2025-04-03 10:13:20.304",
+      "dateStarted": "2025-04-05 16:16:34.621",
+      "dateFinished": "2025-04-05 16:16:34.676",
+      "status": "FINISHED"
+    },
+    {
+      "text": "#process_selected_dm_tables(\u0027https://api.saas.enterprise.zetaris.com/\u0027,\u0027rainathomas@gmail.com\u0027,\u0027P@55word\u0027)\r\n\r\nprocess_selected_dm_tables(\u0027https://api.saas.enterprise.zetaris.com/\u0027,\u0027arjun.sharma@zetaris.com\u0027,\u0027P@55word\u0027)",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-05 16:18:39.104",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Printing Select Query\nSELECT * FROM my_test_db.orders_order limit 10\n{\u0027data\u0027: [{\u0027tax_inclusive_price\u0027: \u002714020\u0027, \u0027bulk_discount\u0027: \u002729.12\u0027, \u0027state\u0027: \u0027Maharashtra\u0027, \u0027line_status\u0027: \u0027delivered\u0027, \u0027product_title\u0027: \u0027SUPREME 76 Ltr 600x400x380 mm Plastic Crates SCL-604038\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027400069\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027Mumbai\u0027, \u0027order_id\u0027: \u002733889728\u0027, \u0027sku\u0027: \u0027PL.ST.PL5.403164\u0027, \u0027logical_cp\u0027: \u0027530\u0027, \u0027order_no_final\u0027: \u00271033889728\u0027, \u0027order_item_id\u0027: \u002731013969\u0027, \u0027order_tax\u0027: \u00272139\u0027, \u0027total_cp\u0027: \u00277950\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u002714020\u0027, \u0027cod_charge\u0027: \u0027299\u0027, \u0027order_quantity\u0027: \u002715\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027delivered\u0027, \u0027utm_campaign\u0027: \u0027plam_gstpref\u0027, \u0027uid\u0027: \u00271033889728|PL.ST.PL5.403164\u0027, \u0027utm_medium\u0027: \u0027pla\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u00272499\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Telangana\u0027, \u0027line_status\u0027: \u0027delivered\u0027, \u0027product_title\u0027: \u0027Xerox B7025 / B7030 / B7035 Toner Cartridge\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027506006\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027warangal\u0027, \u0027order_id\u0027: \u002733889743\u0027, \u0027sku\u0027: \u0027OFF.INK.55546873\u0027, \u0027logical_cp\u0027: \u00271800\u0027, \u0027order_no_final\u0027: \u00271033889743\u0027, \u0027order_item_id\u0027: \u002731013981\u0027, \u0027order_tax\u0027: \u0027381\u0027, \u0027total_cp\u0027: \u00271800\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u00272499\u0027, \u0027cod_charge\u0027: \u002769\u0027, \u0027order_quantity\u0027: \u00271\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027delivered\u0027, \u0027utm_campaign\u0027: \u0027plam_top_gstpref\u0027, \u0027uid\u0027: \u00271033889743|OFF.INK.55546873\u0027, \u0027utm_medium\u0027: \u0027pla\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u002717998\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Delhi\u0027, \u0027line_status\u0027: \u0027delivered\u0027, \u0027product_title\u0027: \u0027PowerHouse 1.5 HP 12 Stage Single Phase 4 Inch Water Filled Borewell Submersible Pump with Control Panel and 60 m Safety wire\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027110043\u0027, \u0027utm_source\u0027: \u0027whatsapp\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027West Delhi\u0027, \u0027order_id\u0027: \u002733889805\u0027, \u0027sku\u0027: \u0027PUM.BOR.824247650\u0027, \u0027logical_cp\u0027: \u00276100\u0027, \u0027order_no_final\u0027: \u00271033889805\u0027, \u0027order_item_id\u0027: \u002731014047\u0027, \u0027order_tax\u0027: \u00272745\u0027, \u0027total_cp\u0027: \u002712200\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u002717998\u0027, \u0027cod_charge\u0027: \u0027399\u0027, \u0027order_quantity\u0027: \u00272\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027android\u0027, \u0027order_status\u0027: \u0027delivered\u0027, \u0027utm_campaign\u0027: \u0027order_delivery_gst_users\u0027, \u0027uid\u0027: \u00271033889805|PUM.BOR.824247650\u0027, \u0027utm_medium\u0027: \u0027feedback\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u0027529\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Maharashtra\u0027, \u0027line_status\u0027: \u0027delivered\u0027, \u0027product_title\u0027: \u0027Jia Industries 3 Ply Corrugated Carton Box - 12 x 1.5 x 18 inch (Pack of 25 Box, Brown)\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027400102\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027Mumbai\u0027, \u0027order_id\u0027: \u002733889812\u0027, \u0027sku\u0027: \u0027PAC.COR.28100083\u0027, \u0027logical_cp\u0027: \u0027299\u0027, \u0027order_no_final\u0027: \u00271033889812\u0027, \u0027order_item_id\u0027: \u002731014058\u0027, \u0027order_tax\u0027: \u002781\u0027, \u0027total_cp\u0027: \u0027299\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u0027529\u0027, \u0027cod_charge\u0027: \u002739\u0027, \u0027order_quantity\u0027: \u00271\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027delivered\u0027, \u0027utm_campaign\u0027: \u0027pla_low\u0027, \u0027uid\u0027: \u00271033889812|PAC.COR.28100083\u0027, \u0027utm_medium\u0027: \u0027pla\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u00273398\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027West Bengal\u0027, \u0027line_status\u0027: \u0027RTO\u0027, \u0027product_title\u0027: \u0027Lumax Revolving Light Magnetic Type-U Shape for 073-REV-MUB\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027722102\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027Bankura\u0027, \u0027order_id\u0027: \u002733889824\u0027, \u0027sku\u0027: \u0027AU.AU.AU.LI.1476501\u0027, \u0027logical_cp\u0027: \u00271093\u0027, \u0027order_no_final\u0027: \u00271033889824\u0027, \u0027order_item_id\u0027: \u002731014082\u0027, \u0027order_tax\u0027: \u0027518\u0027, \u0027total_cp\u0027: \u00272186\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u00273398\u0027, \u0027cod_charge\u0027: \u00270\u0027, \u0027order_quantity\u0027: \u00272\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027delivered_returned\u0027, \u0027utm_campaign\u0027: \u0027plam_gstnonpref\u0027, \u0027uid\u0027: \u00271033889824|AU.AU.AU.LI.1476501\u0027, \u0027utm_medium\u0027: \u0027pla\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u00271581\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Maharashtra\u0027, \u0027line_status\u0027: \u0027delivered\u0027, \u0027product_title\u0027: \u0027Powerhouse Tile Cutter 600 mm with 6 Months Warranty\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027422401\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027Nasik\u0027, \u0027order_id\u0027: \u002733889858\u0027, \u0027sku\u0027: \u0027POW.MAR.73927806\u0027, \u0027logical_cp\u0027: \u00271875.56\u0027, \u0027order_no_final\u0027: \u00271033889858\u0027, \u0027order_item_id\u0027: \u002731014117\u0027, \u0027order_tax\u0027: \u0027241\u0027, \u0027total_cp\u0027: \u00271875.56\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u00271581\u0027, \u0027cod_charge\u0027: \u002769\u0027, \u0027order_quantity\u0027: \u00271\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027delivered\u0027, \u0027utm_campaign\u0027: \u0027plam_private_label_rest\u0027, \u0027uid\u0027: \u00271033889858|POW.MAR.73927806\u0027, \u0027utm_medium\u0027: \u0027pla\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u00271499\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Maharashtra\u0027, \u0027line_status\u0027: \u0027delivered\u0027, \u0027product_title\u0027: \u0027Renmax 200 W 9000 mAh Rechargeable Torch Light Black Silver Distance 1 Km, RM-TORCH-MZ-M982\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027400017\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027Mumbai\u0027, \u0027order_id\u0027: \u002733889876\u0027, \u0027sku\u0027: \u0027LED.HAN.926056195\u0027, \u0027logical_cp\u0027: \u0027980\u0027, \u0027order_no_final\u0027: \u00271033889876\u0027, \u0027order_item_id\u0027: \u002731014146\u0027, \u0027order_tax\u0027: \u0027229\u0027, \u0027total_cp\u0027: \u0027980\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u00271499\u0027, \u0027cod_charge\u0027: \u002769\u0027, \u0027order_quantity\u0027: \u00271\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027DESKTOP\u0027, \u0027order_status\u0027: \u0027delivered\u0027, \u0027utm_campaign\u0027: \u0027search_brand_exact\u0027, \u0027uid\u0027: \u00271033889876|LED.HAN.926056195\u0027, \u0027utm_medium\u0027: \u0027search\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u00271038\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Karnataka\u0027, \u0027line_status\u0027: \u0027cancelled\u0027, \u0027product_title\u0027: \u0027NTN Single Row Deep Groove Ball Bearing, Inner Dia 28 mm, Outer Dia 52 mm, Width 12 mm, 60/28ZZ/2AS\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027560094\u0027, \u0027utm_source\u0027: \u0027Organic\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027Bangalore\u0027, \u0027order_id\u0027: \u002733889929\u0027, \u0027sku\u0027: \u0027BEA.DEE.63164674\u0027, \u0027logical_cp\u0027: \u0027326\u0027, \u0027order_no_final\u0027: \u00271033889929\u0027, \u0027order_item_id\u0027: \u002731014203\u0027, \u0027order_tax\u0027: \u0027158\u0027, \u0027total_cp\u0027: \u0027652\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u00271038\u0027, \u0027cod_charge\u0027: \u002769\u0027, \u0027order_quantity\u0027: \u00272\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027cancelled\u0027, \u0027utm_campaign\u0027: None, \u0027uid\u0027: \u00271033889929|BEA.DEE.63164674\u0027, \u0027utm_medium\u0027: \u0027https://www.google.com/\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u0027418\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Karnataka\u0027, \u0027line_status\u0027: \u0027delivered\u0027, \u0027product_title\u0027: \u0027De Neers 500 g Carbon Steel Ball Pein/Cross Pein Hammer with Wooden Handle\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027580021\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027Hubli\u0027, \u0027order_id\u0027: \u002733889994\u0027, \u0027sku\u0027: \u0027HAN.BAL.98591867\u0027, \u0027logical_cp\u0027: \u0027148.47\u0027, \u0027order_no_final\u0027: \u00271033889994\u0027, \u0027order_item_id\u0027: \u002731014293\u0027, \u0027order_tax\u0027: \u002764\u0027, \u0027total_cp\u0027: \u0027296.94\u0027, \u0027payment_mode\u0027: \u0027upi\u0027, \u0027total\u0027: \u0027418\u0027, \u0027cod_charge\u0027: \u00270\u0027, \u0027order_quantity\u0027: \u00272\u0027, \u0027shipping_charge\u0027: \u0027118\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027delivered\u0027, \u0027utm_campaign\u0027: \u0027plam_longtail_gstpref_troas\u0027, \u0027uid\u0027: \u00271033889994|HAN.BAL.98591867\u0027, \u0027utm_medium\u0027: \u0027pla\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}, {\u0027tax_inclusive_price\u0027: \u00276699\u0027, \u0027bulk_discount\u0027: \u00270\u0027, \u0027state\u0027: \u0027Delhi\u0027, \u0027line_status\u0027: \u0027cancelled\u0027, \u0027product_title\u0027: \u0027Ingco 85 W 1450 rpm Scroll Saw Machine SS852\u0027, \u0027order_date\u0027: \u002712/1/2024\u0027, \u0027coupoun_discount\u0027: \u00270\u0027, \u0027pincode\u0027: \u0027110065\u0027, \u0027utm_source\u0027: \u0027google\u0027, \u0027category_env\u0027: \u0027industrybuying\u0027, \u0027city\u0027: \u0027South Delhi\u0027, \u0027order_id\u0027: \u002733890030\u0027, \u0027sku\u0027: \u0027POW.SAW.103033292\u0027, \u0027logical_cp\u0027: \u00274003.73\u0027, \u0027order_no_final\u0027: \u00271033890030\u0027, \u0027order_item_id\u0027: \u002731014324\u0027, \u0027order_tax\u0027: \u00271022\u0027, \u0027total_cp\u0027: \u00274003.73\u0027, \u0027payment_mode\u0027: \u0027cod\u0027, \u0027total\u0027: \u00276699\u0027, \u0027cod_charge\u0027: \u0027149\u0027, \u0027order_quantity\u0027: \u00271\u0027, \u0027shipping_charge\u0027: \u00270\u0027, \u0027booked_device\u0027: \u0027MOBILE\u0027, \u0027order_status\u0027: \u0027cancelled\u0027, \u0027utm_campaign\u0027: \u0027plam_longtail_gstpref_troas\u0027, \u0027uid\u0027: \u00271033890030|POW.SAW.103033292\u0027, \u0027utm_medium\u0027: \u0027pla\u0027, \u0027ib_cash_debit\u0027: \u00270\u0027}]}\nPrinting Select Query\nSELECT * FROM my_test_db.product_catalog limit 10\n{\u0027data\u0027: [{\u0027sku_type\u0027: \u0027Planned Inventory SKU\u0027, \u0027sku\u0027: \u0027PL.ST.PL5.403164\u0027, \u0027brand\u0027: \u0027supreme\u0027, \u0027brand_type\u0027: \u0027FOCUS_BRAND\u0027, \u0027category\u0027: \u0027Material Handling and Packaging\u0027, \u0027leaf_category\u0027: \u0027Plastic Crates\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Crates\u0027}, {\u0027sku_type\u0027: \u0027Planned Inventory SKU\u0027, \u0027sku\u0027: \u0027OFF.INK.55546873\u0027, \u0027brand\u0027: \u0027xerox\u0027, \u0027brand_type\u0027: \u0027HIGH\u0027, \u0027category\u0027: \u0027Office Supplies\u0027, \u0027leaf_category\u0027: \u0027Printer Cartridge\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Printer Cartridge\u0027}, {\u0027sku_type\u0027: \u0027Private Label SKU\u0027, \u0027sku\u0027: \u0027PUM.BOR.824247650\u0027, \u0027brand\u0027: \u0027powerhouse\u0027, \u0027brand_type\u0027: \u0027LOCAL\u0027, \u0027category\u0027: \u0027Pumps\u0027, \u0027leaf_category\u0027: \u0027Borewell Submersible Pumps\u0027, \u0027stock_status\u0027: \u0027Inactive\u0027, \u0027C1_Category\u0027: \u0027Submersible Pumps\u0027}, {\u0027sku_type\u0027: \u0027Planned Inventory SKU\u0027, \u0027sku\u0027: \u0027PAC.COR.28100083\u0027, \u0027brand\u0027: \u0027jia industries\u0027, \u0027brand_type\u0027: \u0027LOCAL\u0027, \u0027category\u0027: \u0027Material Handling and Packaging\u0027, \u0027leaf_category\u0027: \u0027Corrugated Boxes\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Packaging Products\u0027}, {\u0027sku_type\u0027: \u0027Planned Inventory SKU\u0027, \u0027sku\u0027: \u0027AU.AU.AU.LI.1476501\u0027, \u0027brand\u0027: \u0027lumax\u0027, \u0027brand_type\u0027: \u0027FOCUS_BRAND\u0027, \u0027category\u0027: \u0027Automotive Maintenance and Lubricants\u0027, \u0027leaf_category\u0027: \u0027Auxiliary Light\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Automotive Lightings\u0027}, {\u0027sku_type\u0027: \u0027Private Label SKU\u0027, \u0027sku\u0027: \u0027POW.MAR.73927806\u0027, \u0027brand\u0027: \u0027powerhouse\u0027, \u0027brand_type\u0027: \u0027LOCAL\u0027, \u0027category\u0027: \u0027Power Tools\u0027, \u0027leaf_category\u0027: \u0027Tile Cutters\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Cutters\u0027}, {\u0027sku_type\u0027: \u0027Planned Inventory SKU\u0027, \u0027sku\u0027: \u0027LED.HAN.926056195\u0027, \u0027brand\u0027: \u0027renmax\u0027, \u0027brand_type\u0027: \u0027LOCAL\u0027, \u0027category\u0027: \u0027LED \u0026 Lights\u0027, \u0027leaf_category\u0027: \u0027Hand Torch \u0026 Lamps\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Led Torch \u0026 Emergency Light\u0027}, {\u0027sku_type\u0027: \u0027MarketPlace SKU\u0027, \u0027sku\u0027: \u0027BEA.DEE.63164674\u0027, \u0027brand\u0027: \u0027ntn\u0027, \u0027brand_type\u0027: \u0027HIGH\u0027, \u0027category\u0027: \u0027Bearings\u0027, \u0027leaf_category\u0027: \u0027Deep Groove Ball Bearings\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Ball Bearings\u0027}, {\u0027sku_type\u0027: \u0027MarketPlace SKU\u0027, \u0027sku\u0027: \u0027HAN.BAL.98591867\u0027, \u0027brand\u0027: \u0027de neers\u0027, \u0027brand_type\u0027: \u0027MEDIUM\u0027, \u0027category\u0027: \u0027Hand Tools\u0027, \u0027leaf_category\u0027: \u0027Ball Pein Hammer\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Hammers\u0027}, {\u0027sku_type\u0027: \u0027Private Label SKU\u0027, \u0027sku\u0027: \u0027POW.SAW.103033292\u0027, \u0027brand\u0027: \u0027ingco\u0027, \u0027brand_type\u0027: \u0027MEDIUM\u0027, \u0027category\u0027: \u0027Power Tools\u0027, \u0027leaf_category\u0027: \u0027Scroll Saw\u0027, \u0027stock_status\u0027: \u0027in stock\u0027, \u0027C1_Category\u0027: \u0027Saws \u0026 Chasers\u0027}]}\n\u0027Process completed successfully\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743675200304_1029561022",
+      "id": "paragraph_1724893404891_1068206250",
+      "dateCreated": "2025-04-03 10:13:20.304",
+      "dateStarted": "2025-04-05 16:18:39.105",
+      "dateFinished": "2025-04-05 16:18:39.712",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-03 10:13:20.304",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743675200304_143828030",
+      "id": "paragraph_1724894308224_2013013003",
+      "dateCreated": "2025-04-03 10:13:20.304",
+      "status": "READY"
+    }
+  ],
+  "name": "Arjun_patient test",
+  "id": "2KT7SE7BS",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

@@ -1,0 +1,106 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.ipyspark\n\nfrom pyspark.sql import SparkSession\nimport os\n\ndef migrate_pdf_files(source_path, target_path):\n    \"\"\"\n    Migrate PDF files from source path to target path using Apache Spark\n    \n    Args:\n        source_path: Source directory or file path\n        target_path: Target directory path\n    \"\"\"\n    # Initialize Spark session\n    spark \u003d SparkSession.builder \\\n        .appName(\"PDF Migration\") \\\n        .getOrCreate()\n    \n    sc \u003d spark.sparkContext\n    \n    # Check if source is a directory or a single file\n    is_directory \u003d os.path.isdir(source_path)\n    \n    if is_directory:\n        # List all PDF files in the source directory\n        pdf_files \u003d [os.path.join(source_path, f) for f in os.listdir(source_path) \n                     if f.lower().endswith(\u0027.pdf\u0027)]\n    else:\n        # Single file case\n        if source_path.lower().endswith(\u0027.pdf\u0027):\n            pdf_files \u003d [source_path]\n        else:\n            raise ValueError(f\"Source file {source_path} is not a PDF file\")\n    \n    # Create RDD from the list of PDF files\n    pdf_files_rdd \u003d sc.parallelize(pdf_files)\n    \n    # Define a function to copy files\n    def copy_file(file_path):\n        from py4j.java_gateway import java_import\n        gateway \u003d sc._gateway\n        java_import(gateway.jvm, \"java.nio.file.*\")\n        \n        file_name \u003d os.path.basename(file_path)\n        target_file_path \u003d os.path.join(target_path, file_name)\n        \n        # Use Java\u0027s NIO to copy the file\n        source \u003d gateway.jvm.Paths.get(file_path)\n        target \u003d gateway.jvm.Paths.get(target_file_path)\n        \n        # Create target directory if it doesn\u0027t exist\n        target_dir \u003d gateway.jvm.Paths.get(target_path)\n        if not gateway.jvm.Files.exists(target_dir):\n            gateway.jvm.Files.createDirectories(target_dir)\n        \n        # Copy the file, replacing if exists\n        gateway.jvm.Files.copy(source, target, \n                              gateway.jvm.StandardCopyOption.REPLACE_EXISTING)\n        \n        return (file_path, target_file_path)\n    \n    # Process files in parallel\n    results \u003d pdf_files_rdd.map(copy_file).collect()\n    \n    # Print migration results\n    print(\"PDF Migration Results:\")\n    for source, target in results:\n        print(f\"Migrated: {source} -\u003e {target}\")\n    \n    print(f\"Successfully migrated {len(results)} PDF file(s)\")\n    \n    # Stop the Spark session\n    spark.stop()\n\n# Example usage\nif __name__ \u003d\u003d \"__main__\":\n    import argparse\n    \n    parser \u003d argparse.ArgumentParser(description\u003d\u0027Migrate PDF files using Apache Spark\u0027)\n    parser.add_argument(\u0027--source\u0027, required\u003dTrue, help\u003d\u0027Source directory or file path\u0027)\n    parser.add_argument(\u0027--target\u0027, required\u003dTrue, help\u003d\u0027Target directory path\u0027)\n    \n    args \u003d parser.parse_args()\n    \n    migrate_pdf_files(args.source, args.target)",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-05-08 05:46:07.757",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1746683089206_1088906985",
+      "id": "paragraph_1746683089206_1088906985",
+      "dateCreated": "2025-05-08 05:44:49.206",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.ipyspark\n\nfrom pyspark.sql import SparkSession\n\ndef migrate_pdf_between_azure_containers(\n    source_storage_account_name,\n    source_container_name,\n    source_blob_name,\n    destination_storage_account_name,\n    destination_container_name,\n    destination_blob_name,\n    storage_account_key\n):\n    \"\"\"\n    Migrate a PDF file from one Azure Blob container to another using Apache Spark.\n    \n    Parameters:\n    -----------\n    source_storage_account_name : str\n        The name of the source Azure Storage account\n    source_container_name : str\n        The name of the source container\n    source_blob_name : str\n        The name/path of the source PDF blob\n    destination_storage_account_name : str\n        The name of the destination Azure Storage account\n    destination_container_name : str\n        The name of the destination container\n    destination_blob_name : str\n        The name/path for the destination PDF blob\n    storage_account_key : str\n        The access key for the Azure Storage accounts (assuming same key for both accounts)\n    \"\"\"\n    # Create a Spark session\n    spark \u003d SparkSession.builder \\\n        .appName(\"PDF Migration Between Azure Blob Containers\") \\\n        .config(\"spark.hadoop.fs.azure.account.key.{}.blob.core.windows.net\".format(source_storage_account_name), \n                storage_account_key) \\\n        .config(\"spark.hadoop.fs.azure.account.key.{}.blob.core.windows.net\".format(destination_storage_account_name), \n                storage_account_key) \\\n        .getOrCreate()\n    \n    # Define the source and destination paths\n    source_path \u003d f\"wasbs://{source_container_name}@{source_storage_account_name}.blob.core.windows.net/{source_blob_name}\"\n    destination_path \u003d f\"wasbs://{destination_container_name}@{destination_storage_account_name}.blob.core.windows.net/{destination_blob_name}\"\n    \n    print(f\"Starting migration of PDF file from {source_path} to {destination_path}\")\n    \n    try:\n        # Read the PDF as a binary file using Spark\u0027s binary file format\n        pdf_df \u003d spark.read.format(\"binaryFile\").load(source_path)\n        \n        # Write the PDF to the destination\n        pdf_df.write.format(\"binaryFile\").save(destination_path, mode\u003d\"overwrite\")\n        \n        print(f\"Successfully migrated PDF from {source_path} to {destination_path}\")\n    except Exception as e:\n        print(f\"Error during migration: {str(e)}\")\n    finally:\n        # Stop the Spark session\n        spark.stop()\n\nif __name__ \u003d\u003d \"__main__\":\n    # Replace these with your actual Azure Storage details\n    SOURCE_STORAGE_ACCOUNT \u003d \"lightningdata\"\n    SOURCE_CONTAINER \u003d \"datalake\"\n    SOURCE_BLOB_NAME \u003d \"wesfarmers_annual_report_2024.pdf\"\n    \n    DESTINATION_STORAGE_ACCOUNT \u003d \"lightningdata\"\n    DESTINATION_CONTAINER \u003d \"knowledgebase\"\n    DESTINATION_BLOB_NAME \u003d \"wesfarmers_annual_report_2024.pdf\"\n    \n    STORAGE_ACCOUNT_KEY \u003d \"JvCD+5XrNzXV9gPE7DPYFGLxPLDKGqwMCbEuhH9U4RR1dKuwML5d/IHwS9GJQ92Q3TfW//gb0lq4+ASt7x+ytg\u003d\u003d\"\n    \n    # Execute the migration\n    migrate_pdf_between_azure_containers(\n        SOURCE_STORAGE_ACCOUNT,\n        SOURCE_CONTAINER,\n        SOURCE_BLOB_NAME,\n        DESTINATION_STORAGE_ACCOUNT,\n        DESTINATION_CONTAINER,\n        DESTINATION_BLOB_NAME,\n        STORAGE_ACCOUNT_KEY\n    )\n",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-05-08 06:18:08.449",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mAttributeError\u001b[0m                            Traceback (most recent call last)\nCell \u001b[0;32mIn[90], line 1\u001b[0m\n\u001b[0;32m----\u003e 1\u001b[0m sc\u001b[38;5;241m.\u001b[39msetJobGroup(\u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124mzeppelin|BEN.TZANNES@ZETARIS.COM|2KVETBFRT|paragraph_1746684397415_1500287209\u001b[39m\u001b[38;5;124m\u0027\u001b[39m, \u001b[38;5;124m\u0027\u001b[39m\u001b[38;5;124mStarted by: BEN.TZANNES@ZETARIS.COM\u001b[39m\u001b[38;5;124m\u0027\u001b[39m)\n\nFile \u001b[0;32m/opt/spark/python/lib/pyspark.zip/pyspark/context.py:2166\u001b[0m, in \u001b[0;36mSparkContext.setJobGroup\u001b[0;34m(self, groupId, description, interruptOnCancel)\u001b[0m\n\u001b[1;32m   2098\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21msetJobGroup\u001b[39m(\u001b[38;5;28mself\u001b[39m, groupId: \u001b[38;5;28mstr\u001b[39m, description: \u001b[38;5;28mstr\u001b[39m, interruptOnCancel: \u001b[38;5;28mbool\u001b[39m \u001b[38;5;241m\u003d\u001b[39m \u001b[38;5;28;01mFalse\u001b[39;00m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m\u003e\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[1;32m   2099\u001b[0m \u001b[38;5;250m    \u001b[39m\u001b[38;5;124;03m\"\"\"\u001b[39;00m\n\u001b[1;32m   2100\u001b[0m \u001b[38;5;124;03m    Assigns a group ID to all the jobs started by this thread until the group ID is set to a\u001b[39;00m\n\u001b[1;32m   2101\u001b[0m \u001b[38;5;124;03m    different value or cleared.\u001b[39;00m\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m   2164\u001b[0m \u001b[38;5;124;03m    Cancelled\u001b[39;00m\n\u001b[1;32m   2165\u001b[0m \u001b[38;5;124;03m    \"\"\"\u001b[39;00m\n\u001b[0;32m-\u003e 2166\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jsc\u001b[38;5;241m.\u001b[39msetJobGroup(groupId, description, interruptOnCancel)\n\n\u001b[0;31mAttributeError\u001b[0m: \u0027NoneType\u0027 object has no attribute \u0027setJobGroup\u0027"
+          },
+          {
+            "type": "TEXT",
+            "data": "Fail to setJobGroup"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1746684397415_1500287209",
+      "id": "paragraph_1746684397415_1500287209",
+      "dateCreated": "2025-05-08 06:06:37.416",
+      "dateStarted": "2025-05-08 06:18:08.451",
+      "dateFinished": "2025-05-08 06:18:08.608",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark.ipyspark\n",
+      "user": "BEN.TZANNES@ZETARIS.COM",
+      "dateUpdated": "2025-05-08 06:14:55.501",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1746684895501_668580874",
+      "id": "paragraph_1746684895501_668580874",
+      "dateCreated": "2025-05-08 06:14:55.501",
+      "status": "READY"
+    }
+  ],
+  "name": "migrate_unstructured",
+  "id": "2KVETBFRT",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

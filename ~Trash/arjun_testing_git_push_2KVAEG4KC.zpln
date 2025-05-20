@@ -1,0 +1,78 @@
+{
+  "paragraphs": [
+    {
+      "text": "import os\r\nprint(os.getcwd())",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-30 02:04:08.497",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "/opt/spark/work-dir\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1745978619599_635587344",
+      "id": "paragraph_1745978619599_635587344",
+      "dateCreated": "2025-04-30 02:03:39.599",
+      "dateStarted": "2025-04-30 02:04:08.498",
+      "dateFinished": "2025-04-30 02:04:08.554",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "ARJUN.SHARMA@ZETARIS.COM",
+      "dateUpdated": "2025-04-30 02:04:18.717",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1745978648497_1639940053",
+      "id": "paragraph_1745978648497_1639940053",
+      "dateCreated": "2025-04-30 02:04:08.498",
+      "status": "READY"
+    }
+  ],
+  "name": "arjun_testing_git_push",
+  "id": "2KVAEG4KC",
+  "defaultInterpreterGroup": "python",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,39 @@
+{
+  "paragraphs": [
+    {
+      "text": "",
+      "user": "HEALTHCARE@ZETARIS.COM",
+      "dateUpdated": "2025-04-03 05:33:13.238",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1743658382943_1879380264",
+      "id": "paragraph_1743658382943_1879380264",
+      "dateCreated": "2025-04-03 05:33:02.943",
+      "status": "READY"
+    }
+  ],
+  "name": "Decisioning",
+  "id": "2KTVGM2QB",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
